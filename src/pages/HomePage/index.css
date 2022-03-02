@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+  line-height: 50px;
+  text-align: center;
+}
+td {
+  background: rgb(247, 238, 238);
+  color: #f37320;
+}
+
+tr {
+  background: rgb(247, 238, 238);
+  color: #f32004;
+}

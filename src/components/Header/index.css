@@ -1,0 +1,27 @@
+:root {
+  --orange: #f37320;
+  --white: #faf0e6;
+}
+
+.centered {
+  position: relative;
+  background-color: var(--orange);
+  height: 57px;
+}
+
+.logo {
+  margin-top: 13px;
+  margin-left: 31px;
+  width: 28px;
+  height: 28px;
+}
+
+.Grid {
+  position: absolute;
+  bottom: 12px;
+  left: 71px;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  height: 24px;
+  color: var(--white);
+}
