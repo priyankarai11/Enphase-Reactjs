@@ -1,15 +1,88 @@
-table {
-  width: 100%;
-  table-layout: fixed;
-  line-height: 50px;
-  text-align: center;
-}
-td {
-  background: rgb(247, 238, 238);
-  color: #f37320;
+.centered {
+  position: relative;
+  padding-right: 100px;
 }
 
-tr {
-  background: rgb(247, 238, 238);
-  color: #f32004;
+
+.profileName {
+  float: right;
+  margin-top: 20px;
+  color: white;
+  font: normal normal normal 14px/19px Roboto;
+  padding-left: 10px;
+}
+.profile_img {
+  margin-top: 13px;
+  float: right;
+  width: 32px;
+  height: 32px;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 30px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.dashboardPage span {
+  color: grey;
+  font: normal normal normal 16px/29px Roboto;
+  margin-left: 50px;
+  top: 20px;
+  padding:0 20px;
+}
+
+.leftcolumn {
+  padding-left: 30px;
+  flex: 1;
+  margin-bottom: 50px;
+  top: 262px;
+  left: 90px;
+  width: 431px;
+  height: 235px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 10px 30px #00000010;
+  border-radius: 8px;
+  opacity: 1;
+}
+
+.leftcolumn .dashboardForm h1 {
+  font-size: 30px;
+  margin-left: 80px;
+  /* line-height: 3rem; */
+  margin-bottom: 2rem;
+  padding-bottom: 38px;
+  border-bottom-style: solid;
+  border-bottom-width: 0.1rem;
+  width: fit-content;
+  font-family: Roboto, sans-serif;
+}
+
+.leftcolumn .dashboardForm {
+  margin-top: 10%;
+  background-color: white;
+  padding: 40px;
+  border-radius: 5px;
+}
+
+.cardview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+}
+.card-view {
+  padding: 30px;
+}
+
+.welcome {
+  padding-left: 70px;
+  padding-top: 48px;
+}
+@media only screen and (min-width: 1000px) {
+  .cardview {
+    flex-direction: row;
+  }
 }

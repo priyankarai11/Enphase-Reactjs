@@ -2,8 +2,9 @@ import React from "react";
 import "./index.css";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-import { Button } from "@mui/material";
-import Dialog from "../components/DialogBox";
+import { Button, TextField } from "@mui/material";
+
+// import Dialog from "../components/DialogBox";
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -25,6 +26,8 @@ const formValid = (formErrors) => {
 class Login extends React.Component {
   constructor(props) {
     super(props);
+    this.textRef = React.createRef();
+    this.passwordRef = React.createRef();
     this.state = {
       isOpen: false,
       isPasswordShown: false,
@@ -40,8 +43,8 @@ class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const key = this.email.value;
-    const value = this.password.value;
+    const key = this.textRef.value;
+    const value = this.passwordRef.value;
 
     if (formValid(this.state.formErrors)) {
       const data = { name: key, password: value };
@@ -142,16 +145,14 @@ class Login extends React.Component {
                     applications on behalf of homeowners
                   </p>
                   <div className="field-group">
-                    {/* <label>Email Address</label> */}
-                    <input
-                      ref={(ref) => {
-                        this.email = ref;
-                      }}
-                      className={formErrors.email.length > 0 ? "error" : null}
+                    <TextField
+                      inputRef={(element) => (this.textRef = element)}
+                      className="form-input-fields"
                       id="email"
                       type="email"
                       name="email"
-                      placeholder="Email Address"
+                      label="Email Address"
+                      variant="standard"
                       onChange={this.handleChange}
                       required
                     />
@@ -162,18 +163,14 @@ class Login extends React.Component {
                   </div>
 
                   <div className="field-group">
-                    {/* <label>Password</label> */}
-                    <input
-                      ref={(ref) => {
-                        this.password = ref;
-                      }}
-                      className={
-                        formErrors.password.length > 0 ? "error" : null
-                      }
+                    <TextField
+                      inputRef={(element) => (this.passwordRef = element)}
+                      className="form-input-fields"
                       id="password"
                       name="password"
                       type={isPasswordShown ? "text" : "password"}
-                      placeholder="Password"
+                      label="Password"
+                      variant="standard"
                       onChange={this.handleChange}
                       required
                     />
@@ -181,7 +178,7 @@ class Login extends React.Component {
                       className="password-icon"
                       onClick={this.togglePasswordVisiblity}
                     >
-                      {isPasswordShown ?  <FaEye />:<FaEyeSlash /> }
+                      {isPasswordShown ? <FaEye /> : <FaEyeSlash />}
                     </i>
                     {formErrors.password.length > 0 && (
                       <span className="errorMessage">

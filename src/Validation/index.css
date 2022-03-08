@@ -1,3 +1,10 @@
+/* .MuiFormLabel-root.Mui-focused {
+  color: red !important;
+}
+.MuiStandardInput-root.Mui-focused .MuiStandardInput-notchedStandard {
+ border-bottom-color: red !important;
+} */
+
 
 * {
   padding: 0;
@@ -88,31 +95,27 @@
 .field-group {
   position: relative;
   margin-bottom: 40px;
-
 }
 
-.right-col input {
+.right-col .form-input-fields {
   border-radius: solid 4px;
   border-bottom-width: thin;
   width: 100%;
-  border-top: none;
-  border-left: none;
-  border-right: none;
   padding-left: 5px;
   outline: 0;
   font-size: 16px;
   border-radius: grey;
 }
 
-
-.right-col input :focus {
+.right-col .form-input-fields :focus {
   outline: none;
   background-color: white;
 }
 
-.input:required:invalid {
+.form-input-fields:required:invalid {
   border-color: red;
 }
+
 
 .errorMessage {
   color: red;
@@ -123,17 +126,22 @@
   margin-left: 5px;
 }
 
-input:required:valid {
+.form-input-fields:required:valid {
   border-color: green;
 }
 
-input:focus:invalid {
+.form-input-fields:focus:invalid {
   border-color: red;
 }
 
-input:required:hover {
+.form-input-fields:required:hover {
   border-color: black;
 }
+
+.form-input-fields label {
+  left: 10px;
+}
+
 .right-col button[type="submit"] {
   width: 100%;
   height: 48px;
@@ -177,6 +185,7 @@ input:required:hover {
   position: absolute;
   right: 5px;
   cursor: pointer;
+  margin-top: 25px;
 }
 
 @media only screen and (min-width: 1000px) {

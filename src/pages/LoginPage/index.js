@@ -1,6 +1,5 @@
 import React from "react";
-import Header from "../../components/Header/index.js";
-import Footer from "../../components/Footer/index.js";
+import Header from "../../components/Header/index.js"
 import SignUp from "../../Validation/index";
 
 function LoginPage() {
@@ -8,7 +7,6 @@ function LoginPage() {
     <div>
       <Header />
       <SignUp />
-      <Footer />
     </div>
   );
 }

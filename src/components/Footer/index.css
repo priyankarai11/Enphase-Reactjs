@@ -3,14 +3,14 @@
 }
 
 .logo_enphase {
-  margin-top: 7px;
+  margin-top: 11px;
   margin-left: 33px;
   height: 22px;
 }
 
 .copyright {
   position: absolute;
-  top: 11px;
+  top: 16px;
   margin-left: 135px;
   font: normal normal normal 14px/16px grey;
   color: grey;
@@ -28,10 +28,6 @@
 .copyright a{
   text-decoration: none;
 }
-.welcome {
-  padding-left: 70px;
-  padding-top: 48px;
-}
 
 .modalClass {
   text-align: center;
@@ -44,14 +40,14 @@
   }
 
   .logo_enphase {
-    margin-top: 18px;
+    margin-top: 8px;
     margin-left: 41px;
     height: 28px;
   }
 
   .copyright {
     position: absolute;
-    top: 26px;
+    top: 15px;
     margin-left: 192px;
     font: normal normal normal 14px/16px grey;
     color: grey;
