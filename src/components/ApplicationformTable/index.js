@@ -24,9 +24,9 @@ const useStyles = makeStyles({
   alltableRow: {
     textAlign: "center",
   },
-  tableContainer: {
-    maxHeight: 450,
-  },
+  // tableContainer: {
+  //   maxHeight: 450,
+  // },
 });
 
 function Index({ columns, rows, page, rowsPerPage }) {
@@ -35,7 +35,7 @@ function Index({ columns, rows, page, rowsPerPage }) {
     <>
       <Paper className={classes.paper}>
         <TableContainer className={classes.tableContainer}>
-          <Table stickyHeader aria-label="sticky table">
+          <Table>
             <TableHead>
               <TableRow>
                 {columns.map((column) => (
