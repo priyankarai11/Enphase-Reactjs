@@ -5,9 +5,6 @@ const useStyles = makeStyles({
     padding: 10,
   },
 
-  styleTable: {
-    backgroundColor: "#335977",
-  },
   dashboardTracker: {
     color: "grey",
     marginTop: 30,

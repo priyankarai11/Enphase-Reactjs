@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Table from "@mui/material/Table";
 import { TableBody } from "@material-ui/core";
 import { TableCell } from "@material-ui/core";
@@ -6,22 +6,43 @@ import { TableContainer } from "@material-ui/core";
 import { TableHead } from "@material-ui/core";
 import { TablePagination } from "@material-ui/core";
 import { TableRow } from "@material-ui/core";
-import { Link } from "@material-ui/core";
 import Paper from "@mui/material/Paper";
+import { makeStyles } from "@material-ui/styles";
 
-function Index({classes, columns, rows, page, rowsPerPage}) {
+const useStyles = makeStyles({
+  tabelCell: {
+    backgroundColor: "#335977",
+    color: "yellow",
+    minWidth: 150,
+    textAlign: "center",
+  },
+  paper: {
+    width: "100%",
+    padding: 30,
+    marginTop: 30,
+  },
+  alltableRow: {
+    textAlign: "center",
+  },
+  tableContainer: {
+    maxHeight: 450,
+  },
+});
+
+function Index({ columns, rows, page, rowsPerPage }) {
+  const classes = useStyles();
   return (
     <>
-      <Paper sx={{ width: "100%", padding: 5 }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
+      <Paper className={classes.paper}>
+        <TableContainer className={classes.tableContainer}>
           <Table stickyHeader aria-label="sticky table">
-            <TableHead className={classes.styleTable}>
+            <TableHead>
               <TableRow>
                 {columns.map((column) => (
                   <TableCell
+                    className={classes.tabelCell}
                     key={column.id}
                     align={column.align}
-                    style={{ minWidth: column.minWidth, color: "yellow" }}
                   >
                     {column.label}
                   </TableCell>
@@ -33,27 +54,23 @@ function Index({classes, columns, rows, page, rowsPerPage}) {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
-                    >
+                    <TableRow className={classes.tableRow}>
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
-                          <TableCell key={column.id} align={column.align}>
-                            <Link
+                          <TableCell
+                            className={classes.alltableRow}
+                            key={column.id}
+                          >
+                            {/* <Link
                               to={`/elsewhere/${column.id}`}
                               style={{
                                 textDecoration: "none",
                               }}
                             >
                               {}
-                            </Link>
-                            {column.format && typeof value === "number"
-                              ? column.format(value)
-                              : value}
+                            </Link> */}
+                            {value}
                           </TableCell>
                         );
                       })}
@@ -75,4 +92,4 @@ function Index({classes, columns, rows, page, rowsPerPage}) {
   );
 }
 
-export default Index
+export default Index;

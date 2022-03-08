@@ -10,7 +10,7 @@ import { FaSlidersH } from "react-icons/fa";
 import { Menu } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import Chip from "@mui/material/Chip";
-import ApplicationformTable from '../../components/ApplicationformTable/index'
+import ApplicationformTable from "../../components/ApplicationformTable/index";
 
 function createData(id, siteId, ownerName, installerName, status) {
   return { id, siteId, ownerName, installerName, status };
@@ -77,7 +77,7 @@ function Index() {
         avatar={
           <div className={classes.round} style={{ background: "red" }}></div>
         }
-        label="Rejected by APS" 
+        label="Rejected by APS"
         size="small"
         variant="outlined"
       />
@@ -196,27 +196,22 @@ function Index() {
     {
       id: "id",
       label: "APPICATION ID",
-      minWidth: 170,
       // render: (rowData) => (
       //   <Link href={`${rowData.id}`} target="_blank">
-        
+
       // {rowData.id}
       //   </Link>
-        
+
       // ),
     },
     { id: "siteId", label: "ENPHASE SITE ID", minWidth: 100 },
     {
       id: "ownerName",
       label: "HOME OWNER FULL NAME",
-      minWidth: 170,
-      align: "center",
     },
     {
       id: "installerName",
       label: "INSTALLER NAME",
-      minWidth: 170,
-      align: "center",
     },
     {
       id: "status",
@@ -232,8 +227,7 @@ function Index() {
           />
         </div>
       ),
-      align: "center",
-      width:"500px"
+      width: "500px",
     },
   ];
 
