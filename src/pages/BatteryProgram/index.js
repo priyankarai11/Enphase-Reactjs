@@ -44,7 +44,10 @@ function Index() {
       "Buckridge Stuart",
       <Chip
         avatar={
-          <div className={classes.round} style={{ background: "yellow" }}></div>
+          <div
+            className={classes.roundIcon}
+            style={{ background: "yellow" }}
+          ></div>
         }
         label="Submitted by APS Review"
         size="small"
@@ -59,11 +62,11 @@ function Index() {
       <Chip
         avatar={
           <div
-            className={classes.round}
+            className={classes.roundIcon}
             style={{ background: "#b2ff59" }}
           ></div>
         }
-        label="Approved by APS"
+        label={<div className={classes.labelStyle}>Approved by APS</div>}
         size="small"
         variant="outlined"
       />
@@ -75,9 +78,12 @@ function Index() {
       "Kub Darwin",
       <Chip
         avatar={
-          <div className={classes.round} style={{ background: "red" }}></div>
+          <div
+            className={classes.roundIcon}
+            style={{ background: "red" }}
+          ></div>
         }
-        label="Rejected by APS"
+        label={<div className={classes.labelStyle}>Rejected by APS</div>}
         size="small"
         variant="outlined"
       />
@@ -89,7 +95,10 @@ function Index() {
       "Grant Samir",
       <Chip
         avatar={
-          <div className={classes.round} style={{ background: "yellow" }}></div>
+          <div
+            className={classes.roundIcon}
+            style={{ background: "yellow" }}
+          ></div>
         }
         label="Submitted for Enphase Review"
         size="small"
@@ -104,11 +113,11 @@ function Index() {
       <Chip
         avatar={
           <div
-            className={classes.round}
+            className={classes.roundIcon}
             style={{ background: "#b2ff59" }}
           ></div>
         }
-        label="Approved by Enphase"
+        label={<div className={classes.labelStyle}>Approved by Enphase</div>}
         size="small"
         variant="outlined"
       />
@@ -121,11 +130,11 @@ function Index() {
       <Chip
         avatar={
           <div
-            className={classes.round}
+            className={classes.roundIcon}
             style={{ background: "#b2ff59" }}
           ></div>
         }
-        label="Approved by APS"
+        label={<div className={classes.labelStyle}>Approved by APS</div>}
         size="small"
         variant="outlined"
       />
@@ -137,9 +146,12 @@ function Index() {
       "Tromp Audie",
       <Chip
         avatar={
-          <div className={classes.round} style={{ background: "red" }}></div>
+          <div
+            className={classes.roundIcon}
+            style={{ background: "red" }}
+          ></div>
         }
-        label="Rejected by Enphase"
+        label={<div className={classes.labelStyle}>Rejected by Enphase</div>}
         size="small"
         variant="outlined"
       />
@@ -151,7 +163,10 @@ function Index() {
       "Boyer Sammie",
       <Chip
         avatar={
-          <div className={classes.round} style={{ background: "yellow" }}></div>
+          <div
+            className={classes.roundIcon}
+            style={{ background: "yellow" }}
+          ></div>
         }
         label="Submitted for APS review"
         size="small"
@@ -166,7 +181,7 @@ function Index() {
       <Chip
         avatar={
           <div
-            className={classes.round}
+            className={classes.roundIcon}
             style={{ background: "#b2ff59" }}
           ></div>
         }
@@ -183,7 +198,10 @@ function Index() {
 
       <Chip
         avatar={
-          <div className={classes.round} style={{ background: "yellow" }}></div>
+          <div
+            className={classes.roundIcon}
+            style={{ background: "yellow" }}
+          ></div>
         }
         label="Submitted for Enphase review"
         size="small"
@@ -291,7 +309,6 @@ function Index() {
       </Menu>
 
       <ApplicationformTable
-        classes={classes}
         columns={columns}
         rows={rows}
         page={page}

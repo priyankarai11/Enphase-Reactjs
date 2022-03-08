@@ -38,14 +38,14 @@ const useStyles = makeStyles({
     marginTop: 10,
     marginRight: 50,
   },
-  noXMargin: {
-    marginLeft: "0px",
-    marginRight: "0px",
-  },
-  round: {
+ 
+  roundIcon: {
     borderRadius: "10px",
     width: "15px",
     height: "15px",
+  },
+  labelStyle:{
+    width:160
   },
 });
 
