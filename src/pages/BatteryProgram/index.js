@@ -11,14 +11,11 @@ import { Menu } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import Chip from "@mui/material/Chip";
 import ApplicationformTable from "../../components/ApplicationformTable/index";
+import { Breadcrumbs } from "@material-ui/core";
 
 function createData(id, siteId, ownerName, installerName, status) {
   return { id, siteId, ownerName, installerName, status };
 }
-
-const backtoDashboard = () => {
-  window.location.href = "/home";
-};
 
 function Index() {
   const [page] = React.useState(0);
@@ -38,7 +35,7 @@ function Index() {
 
   const rows = [
     createData(
-      <Link> 32342</Link>,
+      <a href="/application-Id-tracker"> 32342</a>,
       "---",
       "Miller Vivian",
       "Buckridge Stuart",
@@ -55,7 +52,7 @@ function Index() {
       />
     ),
     createData(
-      <Link>34334</Link>,
+      <a href="/application-Id-tracker">34334</a>,
       <Link>Enter Enphase Site ID &#62; </Link>,
       "Bernier Zachary",
       "Von Ronaldo",
@@ -72,7 +69,7 @@ function Index() {
       />
     ),
     createData(
-      <Link>23434</Link>,
+      <a href="/application-Id-tracker">23434</a>,
       "---",
       "Murray Alfredo",
       "Kub Darwin",
@@ -89,7 +86,7 @@ function Index() {
       />
     ),
     createData(
-      <Link>23434</Link>,
+      <a href="/application-Id-tracker">23434</a>,
       "32123",
       "Schinner Leone",
       "Grant Samir",
@@ -185,7 +182,7 @@ function Index() {
             style={{ background: "#b2ff59" }}
           ></div>
         }
-        label="Approved by Enphase"
+        label={<div className={classes.labelStyle}>Approved by Enphase</div>}
         size="small"
         variant="outlined"
       />
@@ -245,7 +242,6 @@ function Index() {
           />
         </div>
       ),
-      width: "500px",
     },
   ];
 
@@ -258,15 +254,18 @@ function Index() {
 
         <h3 className="Grid">Grid Services-Installer Intake Portal</h3>
       </div>
-      <Typography
+      <Breadcrumbs
         className={classes.dashboardTracker}
-        onClick={backtoDashboard}
+        separator="›"
+        aria-label="breadcrumb"
       >
-        Dashboard
-      </Typography>
-      <Typography className={classes.batteryTracker}>
-        &#62; APS Residential Battery Program
-      </Typography>
+        <Link underline="hover" color="inherit" href="/">
+          Dashboard
+        </Link>
+        <Typography className={classes.batteryTracker}>
+          APS Residential Battery Program
+        </Typography>
+      </Breadcrumbs>
       <Typography
         className={classes.applicationTracker}
         variant="h5"

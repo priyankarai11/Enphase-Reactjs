@@ -6,14 +6,11 @@ const useStyles = makeStyles({
   },
 
   dashboardTracker: {
-    color: "grey",
     marginTop: 30,
     paddingLeft: 50,
   },
   batteryTracker: {
     color: "#f37320",
-    marginLeft: 140,
-    marginTop: -24,
   },
   applicationTracker: {
     color: "#335977",
@@ -38,14 +35,14 @@ const useStyles = makeStyles({
     marginTop: 10,
     marginRight: 50,
   },
- 
+
   roundIcon: {
     borderRadius: "10px",
     width: "15px",
     height: "15px",
   },
-  labelStyle:{
-    width:160
+  labelStyle: {
+    width: 160,
   },
 });
 
