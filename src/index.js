@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <div>
     <App />
-    <Footer />
+    {/* <Footer /> */}
   </div>,
   document.getElementById("root")
 );
