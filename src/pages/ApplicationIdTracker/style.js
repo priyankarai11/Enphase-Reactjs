@@ -36,7 +36,7 @@ export const useStyles = makeStyles({
     marginLeft: 20,
   },
   information: {
-    height: 1230,
+    height: 1250,
     margin: 20,
     flexDirection: "column",
     "@media (min-width: 1000px)": {
@@ -104,7 +104,24 @@ export const useStyles = makeStyles({
     marginTop: -26,
     marginLeft: 80,
   },
-  chipLabel:{
-  marginLeft:100,
-  }
+
+  batteryDetails: {
+    marginLeft: 15,
+  },
+
+  chipLabel: {
+    marginTop: -52,
+    marginLeft: 125,
+  },
+  backtoApplicationTracker: {
+    float: "right",
+    color: "#F37320",
+    width: 200,
+    height: 40,
+    fontSize: 16,
+  },
+  back: {
+    height: 80,
+    width: "100%",
+  },
 });

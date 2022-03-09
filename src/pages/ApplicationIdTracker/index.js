@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../assets/icons/Logo.png";
 import Profile from "../../assets/icons/profile.svg";
-import { CardContent, Typography } from "@material-ui/core";
+import { CardContent, Divider, Typography } from "@material-ui/core";
 import { useStyles } from "./style";
 import pdfIcon from "../../assets/icons/pdf-Icon.svg";
 import pdfDownload from "../../assets/icons/pdfDownload.svg";
@@ -15,15 +15,18 @@ import { ListItem } from "@material-ui/core";
 import { ListItemText } from "@material-ui/core";
 import { Breadcrumbs } from "@material-ui/core";
 import { Link } from "@material-ui/core";
-
+import Button from "@restart/ui/esm/Button";
 
 function Index() {
   const classes = useStyles();
   let name = sessionStorage.getItem("user_name");
+
   const backtosignInPage = () => {
     window.location.href = "/";
   };
-
+  const backtoApplicationTracker = () => {
+    window.location.href = "/application-tracker";
+  };
   const steps = [
     "Download T&C Document",
     "Application submitted for APS Review",
@@ -169,15 +172,19 @@ function Index() {
                     secondary="764-504-7970"
                   />
                 </ListItem>
-                <ListItem>
+                <div>
                   <ListItemText
+                    className={classes.batteryDetails}
                     primary="Battery Details"
                     secondary="Encharge 3"
-                    // secondary="Encharge 10"
                   />
-                  {/* <Chip className={classes.chipLabel} label="1" size="small"/> */}
-                  {/* <ListItemText secondary="Encharge 10" /> */}
-                </ListItem>
+                  <Chip className={classes.chipLabel} label="1" size="small" />
+                  <ListItemText
+                    className={classes.batteryDetails}
+                    secondary="Encharge 10"
+                  />
+                  <Chip className={classes.chipLabel} label="2" size="small" />
+                </div>
               </List>
             </div>
             <div className={classes.rightScannedCopy}>
@@ -201,6 +208,18 @@ function Index() {
               </Card>
             </div>
           </div>
+        </Card>
+        <Card className={classes.back}>
+          <CardContent className={classes.backtoApplicationTrack}>
+            <div>
+              <Button
+                onClick={backtoApplicationTracker}
+                className={classes.backtoApplicationTracker}
+              >
+                Back
+              </Button>
+            </div>
+          </CardContent>
         </Card>
       </div>
     </>
