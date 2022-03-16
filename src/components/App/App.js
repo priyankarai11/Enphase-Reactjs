@@ -2,8 +2,10 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../../pages/HomePage/index.js";
 import LoginPage from "../../pages/LoginPage/index";
-import BatteryProgram from "../../pages/BatteryProgram/index"
-import ApplicationIdTracker from "../../pages/ApplicationIdTracker/index"
+import BatteryProgram from "../../pages/BatteryProgram/index";
+import ApplicationIdTracker from "../../pages/ApplicationIdTracker/index";
+import SubmitNewApplication from "../../pages/SubmitNewApplication/index";
+
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +16,10 @@ function App() {
         <Route
           path="/application-Id-tracker"
           element={<ApplicationIdTracker />}
+        />
+        <Route
+          path="/submit-new-application"
+          element={<SubmitNewApplication />}
         />
       </Routes>
     </BrowserRouter>

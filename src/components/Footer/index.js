@@ -4,7 +4,7 @@ import UserIcon from "../../assets/icons/logoEnphase.png";
 
 function index() {
   return (
-    <footer className="footer_part">
+    <div className="footer_part">
       <img src={UserIcon} className="logo_enphase" />
       <h3 className="copyright">
         ©2008-2021 Enphase Energy Inc. All rights reserved.{" "}
@@ -24,7 +24,7 @@ function index() {
           Terms
         </a>
       </h3>
-    </footer>
+    </div>
   );
 }
 

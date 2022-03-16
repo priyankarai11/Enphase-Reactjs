@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../assets/icons/Logo.png";
 import Profile from "../../assets/icons/profile.svg";
-import { CardContent, Divider, Typography } from "@material-ui/core";
+import { CardContent, Typography } from "@material-ui/core";
 import { useStyles } from "./style";
 import pdfIcon from "../../assets/icons/pdf-Icon.svg";
 import pdfDownload from "../../assets/icons/pdfDownload.svg";
@@ -87,10 +87,13 @@ function Index() {
       </Typography>
       <div>
         <Card className={classes.box}>
-          <Stepper className={classes.step} activeStep={2} alternativeLabel>
+          <Stepper className={classes.stepper} activeStep={2} alternativeLabel>
             {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+              <Step
+                className={(classes.step, classes.completed, classes.active)}
+                key={label}
+              >
+                <StepLabel className={classes.stepLabel}>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
@@ -210,8 +213,8 @@ function Index() {
           </div>
         </Card>
         <Card className={classes.back}>
-          <CardContent className={classes.backtoApplicationTrack}>
-            <div>
+          <div className={classes.backtoApplicationTrack}>
+            <div className={classes.nextButton}>
               <Button
                 onClick={backtoApplicationTracker}
                 className={classes.backtoApplicationTracker}
@@ -219,7 +222,7 @@ function Index() {
                 Back
               </Button>
             </div>
-          </CardContent>
+          </div>
         </Card>
       </div>
     </>

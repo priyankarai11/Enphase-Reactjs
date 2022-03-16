@@ -1,13 +1,15 @@
 .centered {
   position: relative;
   padding-right: 100px;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between; */
 }
 
 .profileName {
   float: right;
   margin-top: 20px;
   color: white;
-  font: normal normal normal 14px/19px Roboto;
   padding-left: 10px;
 }
 .profile_img {
@@ -30,7 +32,7 @@
   font: normal normal normal 16px/29px Roboto;
   margin-left: 50px;
   top: 20px;
-  padding:0 20px;
+  padding: 0 20px;
 }
 
 .leftcolumn {
@@ -79,6 +81,7 @@
 .welcome {
   padding-left: 70px;
   padding-top: 48px;
+  font: normal normal bold 41px/29px Roboto;
 }
 @media only screen and (min-width: 1000px) {
   .cardview {

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Divider from "@material-ui/core/Divider";
 import App from "./components/App/App";
 import Footer from "./components/Footer/index.js";
 import reportWebVitals from "./reportWebVitals";
@@ -9,7 +8,6 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <div>
     <App />
-    <Divider />
     <Footer />
   </div>,
   document.getElementById("root")

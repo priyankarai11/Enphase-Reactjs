@@ -17,8 +17,12 @@
 }
 
 .footer_part {
-  position: relative;
+  position: fixed;
   height: 47px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
 }
 
 .copyright a:hover {
@@ -35,7 +39,7 @@
 }
 @media only screen and (min-width: 1000px) {
   .footer_part {
-    position: relative;
+    position: fixed;
     height: 47px;
   }
 

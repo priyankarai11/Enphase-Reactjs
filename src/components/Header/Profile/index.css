@@ -1,0 +1,13 @@
+.profileName {
+  float: right;
+  margin-top: 20px;
+  color: white;
+  font: normal normal normal 14px/19px Roboto;
+  padding-left: 10px;
+}
+.profile_img {
+  margin-top: 13px;
+  float: right;
+  width: 32px;
+  height: 32px;
+}

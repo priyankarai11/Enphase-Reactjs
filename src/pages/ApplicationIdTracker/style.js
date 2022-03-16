@@ -26,7 +26,7 @@ export const useStyles = makeStyles({
       marginTop: -50,
     },
   },
-  step: {
+  stepper: {
     "& .MuiStepIcon-active": { color: "gray" },
     "& .MuiStepIcon-completed": { color: "#f37320" },
     "& .Mui-disabled .MuiStepIcon-root": { color: "gray" },
@@ -40,7 +40,7 @@ export const useStyles = makeStyles({
     margin: 20,
     flexDirection: "column",
     "@media (min-width: 1000px)": {
-      height: 900,
+      height: 860,
     },
   },
   headerofCard: {
@@ -117,11 +117,15 @@ export const useStyles = makeStyles({
     float: "right",
     color: "#F37320",
     width: 200,
-    height: 40,
+    height: 32,
     fontSize: 16,
+    marginTop: -20,
   },
   back: {
     height: 80,
     width: "100%",
+  },
+  nextButton: {
+    margin: 20,
   },
 });
