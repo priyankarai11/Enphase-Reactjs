@@ -26,7 +26,7 @@ let formValid = (formErrors) => {
 function Login() {
   let textRef = useRef();
   let passwordRef = useRef();
-  let [isOpen, setIsOpen] = useState(false);
+  // let [isOpen, setIsOpen] = useState(false);
 
   const [isPasswordShown, setPasswordShown] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
