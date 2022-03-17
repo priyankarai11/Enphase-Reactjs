@@ -10,7 +10,6 @@ const useStyles = makeStyles({
   paper: {
     width: "100%",
     padding: 30,
-    // marginTop: 30,
   },
   tableRow: {
     "&.MuiTableCell-body": {
@@ -27,6 +26,19 @@ const useStyles = makeStyles({
   tableBody: {},
   filter: {
     marginLeft: 20,
+  },
+  roundIcon: {
+    borderRadius: "10px",
+    width: "15px",
+    height: "15px",
+  },
+  labelStyle: {
+    width: 180,
+  },
+  root: {
+    "&.MuiChip-root": {
+      borderRadius: 0,
+    },
   },
 });
 

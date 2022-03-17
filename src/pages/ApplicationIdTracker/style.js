@@ -26,11 +26,15 @@ export const useStyles = makeStyles({
       marginTop: -50,
     },
   },
-  stepper: {
-    "& .MuiStepIcon-active": { color: "gray" },
-    "& .MuiStepIcon-completed": { color: "#f37320" },
-    "& .Mui-disabled .MuiStepIcon-root": { color: "gray" },
+  stepIconRoot: {
+    "&.MuiStepIcon-root.MuiStepIcon-active": {
+      color: "#f37320",
+    },
+    "&.MuiStepIcon-root.MuiStepIcon-completed": {
+      color: "#f37320",
+    },
   },
+
   box: {
     marginRight: 20,
     marginLeft: 20,

@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     paddingLeft: 50,
     marginTop: 70,
     marginRight: 50,
+    font: "normal normal bold 29px/29px Roboto",
     "@media (min-width: 1000px)": {
       marginTop: 65,
     },
@@ -33,26 +34,12 @@ const useStyles = makeStyles({
       borderColor: "#f37320",
     },
   },
+
  
-  roundIcon: {
-    borderRadius: "10px",
-    width: "15px",
-    height: "15px",
-  },
   labelStyle: {
     width: 160,
   },
-  // style: {
-  //   position: "absolute",
-  //   top: "50%",
-  //   left: "50%",
-  //   transform: "translate(-50%, -50%)",
-  //   width: 400,
-  //   bgcolor: "background.paper",
-  //   border: "2px solid #000",
-  //   boxShadow: 24,
-  //   p: 4,
-  // },
+
   batteryProgramHeader: {
     display: "flex",
     flexDirection: "row",
@@ -61,6 +48,7 @@ const useStyles = makeStyles({
   buttonSections: {
     marginTop: 50,
   },
+
 });
 
 export { useStyles };

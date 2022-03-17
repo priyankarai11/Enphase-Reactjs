@@ -5,6 +5,7 @@ export const stockData = [
     ownername: "Miller Vivian",
     installerName: "Buckridge Stuart",
     applicationStatus: "Submitted for APS Review",
+    color: "#eeff41",
   },
   {
     id: "34334",
@@ -12,6 +13,7 @@ export const stockData = [
     ownername: "Bernier Zachary",
     installerName: "Von Ronaldo",
     applicationStatus: "Approved by APS",
+    color: "#91ff35",
   },
   {
     id: "23434",
@@ -19,6 +21,7 @@ export const stockData = [
     ownername: "Murray Alfredo",
     installerName: "Kub Darwin",
     applicationStatus: "Rejected by APS",
+    color: "#f44336",
   },
   {
     id: "23434",
@@ -26,6 +29,7 @@ export const stockData = [
     ownername: "Schinner Leone",
     installerName: "Grant Samir",
     applicationStatus: "Submitted for Enphase Review",
+    color: "#eeff41",
   },
   {
     id: "24334	",
@@ -33,6 +37,7 @@ export const stockData = [
     ownername: "Osinski Elwyn",
     installerName: "Padberg Lacey",
     applicationStatus: "Approved by Enphase",
+    color: "#91ff35",
   },
   {
     id: "32342",
@@ -40,6 +45,7 @@ export const stockData = [
     ownername: "Abernathy Mckenzie",
     installerName: "Turcotte Josie",
     applicationStatus: "Approved by APS",
+    color: "#91ff35",
   },
   {
     id: "34323",
@@ -47,6 +53,7 @@ export const stockData = [
     ownername: "Klocko Albertha",
     installerName: "Tromp Audie",
     applicationStatus: "Rejected by Enphase",
+    color: "#f44336",
   },
   {
     id: "32322	",
@@ -54,6 +61,7 @@ export const stockData = [
     ownername: "Terry Ericka",
     installerName: "Boyer Sammie",
     applicationStatus: "Submitted by APS Review",
+    color: "#eeff41",
   },
 
   {
@@ -62,6 +70,7 @@ export const stockData = [
     ownername: "Roob Leland",
     installerName: "Heidenreich Eldora",
     applicationStatus: "Approved by Enphase",
+    color: "#91ff35",
   },
   {
     id: "32123",
@@ -69,5 +78,6 @@ export const stockData = [
     ownername: "Jerde Frederic	",
     installerName: "Reichel Kim",
     applicationStatus: "Submitted for Enphase Review",
+    color: "#eeff41",
   },
 ];

@@ -16,6 +16,7 @@ import { ListItemText } from "@material-ui/core";
 import { Breadcrumbs } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import Button from "@restart/ui/esm/Button";
+import {saveAs} from "file-saver"
 
 function Index() {
   const classes = useStyles();
@@ -27,6 +28,19 @@ function Index() {
   const backtoApplicationTracker = () => {
     window.location.href = "/application-tracker";
   };
+
+   const saveFile = () => {
+     saveAs(
+       "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+       "example.pdf"
+     );
+   };
+  const pdfGenerate = () => {
+    <a
+      href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+      download
+    />;
+  };
   const steps = [
     "Download T&C Document",
     "Application submitted for APS Review",
@@ -35,6 +49,7 @@ function Index() {
     "Application submitted for Enphase Review",
     "Approved/Rejected by Enphase",
   ];
+
   return (
     <>
       <div className="centered">
@@ -87,13 +102,16 @@ function Index() {
       </Typography>
       <div>
         <Card className={classes.box}>
-          <Stepper className={classes.stepper} activeStep={2} alternativeLabel>
+          <Stepper activeStep={2} alternativeLabel>
             {steps.map((label) => (
-              <Step
-                className={(classes.step, classes.completed, classes.active)}
-                key={label}
-              >
-                <StepLabel className={classes.stepLabel}>{label}</StepLabel>
+              <Step key={label}>
+                <StepLabel
+                  StepIconProps={{
+                    classes: { root: classes.stepIconRoot },
+                  }}
+                >
+                  {label}
+                </StepLabel>
               </Step>
             ))}
           </Stepper>
@@ -194,7 +212,7 @@ function Index() {
               <Typography className={classes.secondheaderofCard}>
                 Files Uploaded
               </Typography>
-              <Card className={classes.fileUploader}>
+              <Card onClick={saveFile} className={classes.fileUploader}>
                 <CardContent>
                   <img className={classes.pdfIcon} src={pdfIcon} />
                   <Typography className={classes.scannedCopy}>

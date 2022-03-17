@@ -48,7 +48,7 @@ function Modal({ isShowing, hide }) {
                 className={classes.Numbers_Logo}
                 src={modalData[activeStep].imgPath}
               />
-              <div >
+              <div>
                 <img
                   className={classes.groupProfile_Logo}
                   src={modalData[activeStep].logo}
@@ -74,6 +74,7 @@ function Modal({ isShowing, hide }) {
                 activeStep={activeStep}
                 nextButton={
                   <Button
+                    className={{ label: classes.viewButtonLabel }}
                     size="small"
                     onClick={handleNext}
                     disabled={activeStep === maxSteps - 1}
@@ -84,6 +85,7 @@ function Modal({ isShowing, hide }) {
                 }
                 backButton={
                   <Button
+                    className={{ label: classes.viewButtonLabel }}
                     size="small"
                     onClick={handleBack}
                     disabled={activeStep === 0}

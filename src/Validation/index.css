@@ -70,8 +70,8 @@
 }
 
 .enlighten {
-  margin-top: 37.5px;
-  margin-bottom: 36px;
+  margin-top: 27.5px;
+  margin-bottom: 14px;
   width: 373px;
   text-align: center;
   font: Roboto;
@@ -87,7 +87,7 @@
 
 .field-group {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 
 .right-col .form-input-fields {

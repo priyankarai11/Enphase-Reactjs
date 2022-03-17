@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "@mui/material/Table";
 import { useStyles } from "./style";
-import { TableBody, TableContainer } from "@material-ui/core";
+import { TableBody } from "@material-ui/core";
 import { TableCell } from "@material-ui/core";
 import { TableHead } from "@material-ui/core";
 import { TablePagination } from "@material-ui/core";
@@ -9,7 +9,7 @@ import { TableRow } from "@material-ui/core";
 import Paper from "@mui/material/Paper";
 import { stockData } from "./data";
 import { FaSlidersH } from "react-icons/fa";
-import ChipItem from "../Chip";
+import Chip from "@mui/material/Chip";
 
 function ApplicationformTable({ open, handleClick }) {
   const classes = useStyles();
@@ -76,7 +76,22 @@ function ApplicationformTable({ open, handleClick }) {
                       {data.installerName}
                     </TableCell>
                     <TableCell className={classes.tableRow}>
-                      {data.applicationStatus}
+                      <Chip
+                        className={classes.root}
+                        avatar={
+                          <div
+                            className={classes.roundIcon}
+                            style={{ background: data.color }}
+                          ></div>
+                        }
+                        label={
+                          <div className={classes.labelStyle}>
+                            {data.applicationStatus}
+                          </div>
+                        }
+                        size="small"
+                        variant="outlined"
+                      />
                     </TableCell>
                   </TableRow>
                 );

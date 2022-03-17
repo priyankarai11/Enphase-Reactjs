@@ -1,3 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+* {
+  font-size: roboto;
+}
 .centered {
   position: relative;
   padding-right: 100px;
@@ -11,6 +15,7 @@
   margin-top: 20px;
   color: white;
   padding-left: 10px;
+  font: normal normal normal 14px/19px Roboto;
 }
 .profile_img {
   margin-top: 13px;

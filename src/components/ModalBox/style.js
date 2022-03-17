@@ -74,6 +74,9 @@ const useStyles = makeStyles({
     marginTop: 10,
     backgroundColor: "white",
     fontWeight: 500,
+    "&.MuiMobileStepper-root": {
+      backgroundColor: "white",
+    },
   },
   tagLine: {
     color: "grey",
@@ -84,6 +87,11 @@ const useStyles = makeStyles({
     width: 150,
     marginLeft: 170,
     // marginTop:50,
+  },
+  viewButtonLabel: {
+    // ".MuiButton-label": {
+      fontSize: 20,
+    // },
   },
 });
 export { useStyles };
