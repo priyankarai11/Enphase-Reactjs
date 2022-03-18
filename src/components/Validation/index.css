@@ -105,36 +105,6 @@
   background-color: white;
 }
 
-.form-input-fields:required:invalid {
-  border-color: red;
-}
-
-
-.errorMessage {
-  color: red;
-  font-size: 16px;
-  height: 15px;
-  float: left;
-  margin-top: 10px;
-  margin-left: 5px;
-}
-
-.form-input-fields:required:valid {
-  border-color: green;
-}
-
-.form-input-fields:focus:invalid {
-  border-color: red;
-}
-
-.form-input-fields:required:hover {
-  border-color: black;
-}
-
-.form-input-fields label {
-  left: 10px;
-}
-
 .right-col button[type="submit"] {
   width: 100%;
   height: 48px;

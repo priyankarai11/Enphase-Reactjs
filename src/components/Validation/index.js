@@ -14,15 +14,6 @@ const passwordRegex = RegExp(
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/
 );
 
-let formValid = (formErrors) => {
-  let valid = true;
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
-
-  return valid;
-};
-
 function Login() {
   let textRef = useRef();
   let passwordRef = useRef();
@@ -35,82 +26,80 @@ function Login() {
   const [errorEmail, setErrorEmail] = useState(false);
   const [helperTextEmail, setHelperTextEmail] = useState("");
 
-  let [formErrors] = useState({
-    email: "",
-    password: "",
-  });
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const key = textRef.value;
     const value = passwordRef.value;
 
-    if (formValid(formErrors)) {
-      const data = { name: key, password: value };
-      fetch(
-        "https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/admin/signin/",
-        {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          for (let i in data) {
-            if ("GS-Authorization" === i) {
-              let data1 = data[i];
-              sessionStorage.setItem("token", data1);
-            }
-            if ("user_name" === i) {
-              let data1 = data[i];
-              sessionStorage.setItem("user_name", data1);
-            }
-            if ("account_company_name" === i) {
-              let data1 = data[i];
-              sessionStorage.setItem("account_company_name", data1);
-            }
-
-            if ("account_time_zone" === i) {
-              let data1 = data[i];
-              sessionStorage.setItem("account_time_zone", data1);
-            }
-            if ("roles" === i) {
-              let data1 = data[i];
-              sessionStorage.setItem("roles", data1);
-            }
-            if ("Success" === data[i]) {
-              // setIsOpen(false);
-              window.location.href = "/home";
-            }
-            // else {
-            //   setIsOpen(true);
-            // }
+    const data = { name: key, password: value };
+    fetch(
+      "https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/admin/signin/",
+      {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        for (let i in data) {
+          if ("GS-Authorization" === i) {
+            let data1 = data[i];
+            sessionStorage.setItem("token", data1);
           }
-        });
-    }
+          if ("user_name" === i) {
+            let data1 = data[i];
+            sessionStorage.setItem("user_name", data1);
+          }
+          if ("account_company_name" === i) {
+            let data1 = data[i];
+            sessionStorage.setItem("account_company_name", data1);
+          }
+
+          if ("account_time_zone" === i) {
+            let data1 = data[i];
+            sessionStorage.setItem("account_time_zone", data1);
+          }
+          if ("roles" === i) {
+            let data1 = data[i];
+            sessionStorage.setItem("roles", data1);
+          }
+          if ("Success" === data[i]) {
+            // setIsOpen(false);
+            window.location.href = "/home";
+          }
+          // else {
+          //   setIsOpen(true);
+          // }
+        }
+      });
   };
 
   const handleChange = (e) => {
     e.preventDefault();
-    const { value } = e.target;
+    const { name, value } = e.target;
+    switch (name) {
+      case "email":
+        if (emailRegex.test(value) && value.length > 0) {
+          setHelperTextEmail(" ");
+          setErrorEmail(false);
+        } else {
+          setHelperTextEmail("Invalid Email");
+          setErrorEmail(true);
+        }
+        break;
 
-    if (passwordRegex.test(value) && value.length > 0) {
-      setHelperTextPassword(" ");
-      setErrorPassword(false);
-    } else {
-      setHelperTextPassword("Invalid Password");
-      setErrorPassword(true);
-    }
-
-    if (emailRegex.test(value) && value.length > 0) {
-      setHelperTextEmail(" ");
-      setErrorEmail(false);
-    } else {
-      setHelperTextEmail("Invalid Email");
-      setErrorEmail(true);
+      case "password":
+        if (passwordRegex.test(value) && value.length > 0) {
+          setHelperTextPassword(" ");
+          setErrorPassword(false);
+        } else {
+          setHelperTextPassword("Invalid Password");
+          setErrorPassword(true);
+        }
+        break;
     }
   };
 
@@ -145,14 +134,9 @@ function Login() {
                     label="Email Address"
                     variant="standard"
                     onChange={handleChange}
-                    // required
                     error={errorEmail}
                     helperText={helperTextEmail}
                   />
-
-                  {formErrors.email.length > 0 && (
-                    <span className="errorMessage">{formErrors.email}</span>
-                  )}
                 </div>
 
                 <div className="field-group">
@@ -165,7 +149,6 @@ function Login() {
                     label="Password"
                     variant="standard"
                     onChange={handleChange}
-                    required
                     error={errorPassword}
                     helperText={helperTextPassword}
                   />
@@ -175,9 +158,6 @@ function Login() {
                   >
                     {isPasswordShown ? <FaEye /> : <FaEyeSlash />}
                   </i>
-                  {formErrors.password.length > 0 && (
-                    <span className="errorMessage">{formErrors.password}</span>
-                  )}
                 </div>
 
                 <div className="formlink">
