@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import "./style";
-import Logo from "../../assets/icons/Logo.png";
-import Profile from "../../assets/icons/profile.svg";
 import { Typography } from "@material-ui/core";
-import { useStyles } from "./style";
 import { Button } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import { Breadcrumbs } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 import ModalBox from "../../components/ModalBox/index";
 import Menu from "../../components/Menu";
 import useModal from "../../components/ModalBox/useModal";
-import Header from "../../components/Header/index"
+import Logo from "../../assets/icons/Logo.png";
+import Profile from "../../assets/icons/profile.svg";
+import { useStyles } from "./style";
 
 function Index() {
   const classes = useStyles();
+  const navigate = useNavigate();
   let name = sessionStorage.getItem("user_name");
   const { isShowing, toggle } = useModal();
 
   const submitNewAppln = () => {
-    window.location.href = "/submit-new-application";
+    navigate("/APS-submit-new-application-1");
   };
 
   return (

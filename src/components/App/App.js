@@ -5,20 +5,21 @@ import LoginPage from "../../pages/LoginPage/index";
 import BatteryProgram from "../../pages/BatteryProgram/index";
 import ApplicationIdTracker from "../../pages/ApplicationIdTracker/index";
 import SubmitNewApplication from "../../pages/SubmitNewApplication/index";
+// import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/application-tracker" element={<BatteryProgram />} />
+        <Route path="/IIC-Dashboard" element={<Home />} />
+        <Route path="/APS-Application-Tracker" element={<BatteryProgram />} />
         <Route
-          path="/application-Id-tracker"
+          path="/BB-rejected-application-1"
           element={<ApplicationIdTracker />}
         />
         <Route
-          path="/submit-new-application"
+          path="/APS-submit-new-application-1"
           element={<SubmitNewApplication />}
         />
       </Routes>

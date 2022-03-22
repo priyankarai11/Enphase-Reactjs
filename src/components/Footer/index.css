@@ -1,5 +1,7 @@
 :root {
   --blue: #026ae3;
+  --white: #ffffff;
+  --grey: #6f6f6f;
 }
 
 .logo_enphase {
@@ -12,8 +14,9 @@
   position: absolute;
   top: 16px;
   margin-left: 135px;
-  font: normal normal normal 14px/16px grey;
-  color: grey;
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--grey);
 }
 
 .footer_part {
@@ -22,7 +25,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: white;
+  background-color: var(--white);
 }
 
 .copyright a:hover {
@@ -40,7 +43,7 @@
 @media only screen and (min-width: 1000px) {
   .footer_part {
     position: fixed;
-    height: 47px;
+    background-color: var(--white);
   }
 
   .logo_enphase {
@@ -53,7 +56,5 @@
     position: absolute;
     top: 15px;
     margin-left: 192px;
-    font: normal normal normal 14px/16px grey;
-    color: grey;
   }
 }

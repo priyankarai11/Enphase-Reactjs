@@ -1,10 +1,5 @@
 import React from "react";
-import Logo from "../../assets/icons/Logo.png";
-import Profile from "../../assets/icons/profile.svg";
 import { CardContent, Typography } from "@material-ui/core";
-import { useStyles } from "./style";
-import pdfIcon from "../../assets/icons/pdf-Icon.svg";
-import pdfDownload from "../../assets/icons/pdfDownload.svg";
 import { Chip } from "@material-ui/core";
 import { Card } from "@material-ui/core";
 import { Stepper } from "@material-ui/core";
@@ -15,40 +10,35 @@ import { ListItem } from "@material-ui/core";
 import { ListItemText } from "@material-ui/core";
 import { Breadcrumbs } from "@material-ui/core";
 import { Link } from "@material-ui/core";
-import Button from "@restart/ui/esm/Button";
-import {saveAs} from "file-saver"
+import { Button } from "@material-ui/core";
+import { KeyboardArrowDown } from "@mui/icons-material";
+import { useNavigate } from "react-router";
+import { saveAs } from "file-saver";
+import Logo from "../../assets/icons/Logo.png";
+import Profile from "../../assets/icons/profile.svg";
+import pdfIcon from "../../assets/icons/pdf-Icon.svg";
+import pdfDownload from "../../assets/icons/pdfDownload.svg";
+import { steps } from "../../components/Stepper/constant";
+import { useStyles } from "./style";
 
 function Index() {
   const classes = useStyles();
+  const navigate = useNavigate();
   let name = sessionStorage.getItem("user_name");
 
   const backtosignInPage = () => {
-    window.location.href = "/";
+    navigate("/");
   };
   const backtoApplicationTracker = () => {
-    window.location.href = "/application-tracker";
+    navigate("/APS-Application-Tracker");
   };
 
-   const saveFile = () => {
-     saveAs(
-       "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-       "example.pdf"
-     );
-   };
-  const pdfGenerate = () => {
-    <a
-      href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-      download
-    />;
+  const saveFile = () => {
+    saveAs(
+      "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "example.pdf"
+    );
   };
-  const steps = [
-    "Download T&C Document",
-    "Application submitted for APS Review",
-    "Approved/Rejected by APS",
-    "Unique Enphase Site ID provided",
-    "Application submitted for Enphase Review",
-    "Approved/Rejected by Enphase",
-  ];
 
   return (
     <>
@@ -70,7 +60,7 @@ function Index() {
         <Link underline="hover" color="inherit" href="/">
           Dashboard
         </Link>
-        <Link underline="hover" color="inherit" href="/home">
+        <Link underline="hover" color="inherit" href="/IIC-Dashboard">
           APS Residential Battery Program
         </Link>
         <Typography className={classes.viewApplication}>
@@ -230,19 +220,18 @@ function Index() {
             </div>
           </div>
         </Card>
-        <Card className={classes.back}>
-          <div className={classes.backtoApplicationTrack}>
-            <div className={classes.nextButton}>
-              <Button
-                onClick={backtoApplicationTracker}
-                className={classes.backtoApplicationTracker}
-              >
-                Back
-              </Button>
-            </div>
-          </div>
-        </Card>
       </div>
+
+      <Card className={classes.back}>
+        <div className={classes.nextButton}>
+          <Button
+            onClick={backtoApplicationTracker}
+            className={classes.backtoApplicationTracker}
+          >
+            Back
+          </Button>
+        </div>
+      </Card>
     </>
   );
 }

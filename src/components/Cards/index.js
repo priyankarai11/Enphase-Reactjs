@@ -7,16 +7,18 @@ import { List } from "@material-ui/core";
 import { ListItem } from "@material-ui/core";
 import { ListItemText } from "@material-ui/core";
 import { CardContent } from "@material-ui/core";
+import { useNavigate } from "react-router";
 import { useStyles } from "./style";
 import { dataItems } from "./data";
 
-const applicationTrack = () => {
-  window.location.href = "/application-tracker";
-};
-
 function Cards() {
   const classes = useStyles();
+  const navigate = useNavigate();
 
+
+  const applicationTrack = () => {
+    navigate("/APS-Application-Tracker");
+  };
   return (
     <div className={classes.cardview}>
       <div className={classes.card_view}>

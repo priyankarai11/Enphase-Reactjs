@@ -3,8 +3,6 @@ import "./index.css";
 import Logo from "../../assets/icons/Logo.png";
 import Profile from "../../assets/icons/profile.svg";
 import Cards from "../../components/Cards";
-import Header from "../../components/Header/index";
-import ProfileName from "../../components/Header/Profile/index";
 
 const backtosignInPage = () => {
   window.location.href = "/";

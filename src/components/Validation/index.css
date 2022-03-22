@@ -1,3 +1,9 @@
+:root {
+  --white: #ffffff;
+  --grey: #6f6f6f;
+  --orange: #f37321;
+  --blue:#026ae3;
+}
 
 * {
   padding: 0;
@@ -37,20 +43,22 @@
   font-size: 65px;
   line-height: 3rem;
   margin-bottom: 2rem;
-  color: white;
+  color: var(--white);
   padding-bottom: 38px;
   border-bottom-style: solid;
   border-bottom-width: 0.1rem;
   width: fit-content;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
+  font-weight: normal;
 }
 
 .left-col p {
-  font-size: 40px;
+  /* font-size: 40px; */
   line-height: 1.9rem;
-  color: white;
+  color: var(--white);
+  font-weight: bold;
   letter-spacing: 1px;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
 }
 
 .right-col {
@@ -58,29 +66,36 @@
 }
 
 .right-col form h1 {
-  color: gray;
+  font-size: 20px;
+  font-weight: normal;
+  color: var(--grey);
   text-align: center;
   margin-bottom: 25px;
+  font-family: Roboto;
 }
 .enphase_installer {
-  color: #f37321;
+  color: var(--orange);
   padding-bottom: 7px;
   border-bottom-style: solid;
   border-bottom-width: 0.2rem;
+  font-size: 16px;
+  font-family: normal;
+  font-family: Roboto;
 }
 
 .enlighten {
   margin-top: 27.5px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   width: 373px;
   text-align: center;
-  font: Roboto;
+  font-weight: normal;
+  font-family: Roboto;
   font-size: 14px;
-  color: #4a4a4a;
+  color: var(--grey);
 }
 
 .right-col .form-container {
-  background-color: white;
+  background-color: var(--white);
   padding: 30px;
   border-radius: 5px;
 }
@@ -97,19 +112,19 @@
   padding-left: 5px;
   outline: 0;
   font-size: 16px;
-  border-radius: grey;
+  border-radius: var(--grey);
 }
 
 .right-col .form-input-fields :focus {
   outline: none;
-  background-color: white;
+  background-color: var(--white);
 }
 
 .right-col button[type="submit"] {
   width: 100%;
   height: 48px;
   color: white;
-  background-color: #f3731f;
+  background-color: var(--orange);
   border: none;
   border-radius: 4px;
   font-size: 17px;
@@ -117,7 +132,7 @@
 }
 
 .right-col button:hover {
-  background-color: #dd7530;
+  background-color: var(--orange);
 }
 
 .right-col .formlink {
@@ -137,7 +152,7 @@
 }
 
 .formlink a:hover {
-  color: #026ae3;
+  color:var(--blue);
 }
 
 .right-col .form__links {

@@ -76,8 +76,8 @@ export const useStyles = makeStyles({
     },
   },
   fileUploader: {
-    width: 255,
-    height: 280,
+    width: 245,
+    height: 255,
     margin: 30,
     borderStyle: "dotted",
     borderColor: "grey",
@@ -124,10 +124,11 @@ export const useStyles = makeStyles({
     height: 32,
     fontSize: 16,
     marginTop: -20,
+    background: "#eeeeee",
   },
   back: {
-    height: 80,
-    width: "100%",
+    height: 100,
+    padding: 10,
   },
   nextButton: {
     margin: 20,

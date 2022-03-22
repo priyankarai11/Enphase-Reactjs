@@ -1,15 +1,15 @@
 import React from "react";
 import Table from "@mui/material/Table";
-import { useStyles } from "./style";
 import { TableBody } from "@material-ui/core";
 import { TableCell } from "@material-ui/core";
 import { TableHead } from "@material-ui/core";
 import { TablePagination } from "@material-ui/core";
 import { TableRow } from "@material-ui/core";
 import Paper from "@mui/material/Paper";
-import { stockData } from "./data";
-import { FaSlidersH } from "react-icons/fa";
 import Chip from "@mui/material/Chip";
+import { FaSlidersH } from "react-icons/fa";
+import { useStyles } from "./style";
+import { stockData } from "./data";
 
 function ApplicationformTable({ open, handleClick }) {
   const classes = useStyles();
@@ -64,7 +64,7 @@ function ApplicationformTable({ open, handleClick }) {
                 return (
                   <TableRow>
                     <TableCell className={classes.tableRow}>
-                      <a href="/application-Id-tracker">{data.id}</a>
+                      <a href="/BB-rejected-application-1">{data.id}</a>
                     </TableCell>
                     <TableCell className={classes.tableRow}>
                       {data.siteId}
