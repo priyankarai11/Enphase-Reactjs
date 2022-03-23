@@ -14,8 +14,7 @@ import { Button } from "@material-ui/core";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import { saveAs } from "file-saver";
-import Logo from "../../assets/icons/Logo.png";
-import Profile from "../../assets/icons/profile.svg";
+import ProfileHeader from "../../components/Profile";
 import pdfIcon from "../../assets/icons/pdf-Icon.svg";
 import pdfDownload from "../../assets/icons/pdfDownload.svg";
 import { steps } from "../../components/Stepper/constant";
@@ -24,11 +23,7 @@ import { useStyles } from "./style";
 function Index() {
   const classes = useStyles();
   const navigate = useNavigate();
-  let name = sessionStorage.getItem("user_name");
 
-  const backtosignInPage = () => {
-    navigate("/");
-  };
   const backtoApplicationTracker = () => {
     navigate("/APS-Application-Tracker");
   };
@@ -42,16 +37,7 @@ function Index() {
 
   return (
     <>
-      <div className="centered">
-        <img onClick={backtosignInPage} src={Logo} className="logo" />
-        <label className="profileName">Hi {name}</label>
-        <img className="profile_img" src={Profile} />
-
-        <h3 onClick={backtosignInPage} className="Grid">
-          Grid Services-Installer Intake Portal
-        </h3>
-      </div>
-
+      <ProfileHeader />
       <Breadcrumbs
         className={classes.dashboardTracker}
         separator="›"

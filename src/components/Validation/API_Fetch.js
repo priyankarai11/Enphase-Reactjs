@@ -87,20 +87,20 @@ function API_Fetch() {
       case "email":
         if (EMAIL_REGEX.test(value) && value.length > 0) {
           setHelperTextEmail(" ");
-          setErrorEmail(false);
+          // setErrorEmail(false);
         } else {
           setHelperTextEmail(EMAIL_ERROR);
-          setErrorEmail(true);
+          // setErrorEmail(true);
         }
         break;
 
       case "password":
         if (PASSWORD_REGEX.test(value) && value.length > 0) {
-          setErrorPassword(false);
+          // setErrorPassword(false);
           setHelperTextPassword(" ");
         } else {
           setHelperTextPassword(PASSWORD_ERROR);
-          setErrorPassword(true);
+          // setErrorPassword(true);
         }
         break;
       default:

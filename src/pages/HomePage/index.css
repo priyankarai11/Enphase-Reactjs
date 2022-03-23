@@ -1,29 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
-* {
-  font-size: roboto;
-}
-.centered {
-  position: relative;
-  padding-right: 100px;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-between; */
-}
 
-.profileName {
-  float: right;
-  margin-top: 20px;
-  color: white;
-  padding-left: 10px;
-  font: normal normal normal 14px/19px Roboto;
+.arrow{
+  margin-top: 30px;
 }
-.profile_img {
-  margin-top: 13px;
-  float: right;
-  width: 32px;
-  height: 32px;
-}
-
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -35,7 +14,9 @@
 
 .dashboardPage span {
   color: grey;
-  font: normal normal normal 16px/29px Roboto;
+  font-size: 16px;
+  font-weight: normal;
+ font-family: Roboto;
   margin-left: 50px;
   top: 20px;
   padding: 0 20px;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import ApplicationformTable from "../ApplicationformTable/index";
+import ProfileHead from "../Menu/ProfileHead";
 
 function MenuItemList() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -41,6 +42,11 @@ function MenuItemList() {
         <MenuItem onClick={handleClose}>Rejected by Enphase</MenuItem>
       </Menu>
       <ApplicationformTable open={open} handleClick={handleClick} />
+      <ProfileHead
+        handleClick={handleClick}
+        handleClose={handleClose}
+        anchorEl={anchorEl}
+      />
     </>
   );
 }

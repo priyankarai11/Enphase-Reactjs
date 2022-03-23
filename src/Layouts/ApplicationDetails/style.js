@@ -12,6 +12,41 @@ const useStyles = makeStyles({
       height: 860,
     },
   },
+  textField: {
+    width: "100%",
+    "&.MuiFormControl-root": {
+      marginLeft: 30,
+    },
+  },
+  textFieldSection: {
+    marginLeft: 50,
+    paddingLeft: 50,
+    "&.MuiFormControl-root": {
+      marginLeft: 30,
+    },
+  },
+  listStyle: {
+    marginLeft: 70,
+    marginBottom: 20,
+    fontSize: 15,
+    fontFamily: "Helvetica Neue",
+    fontWeight: "normal",
+    letterSpacing: 0,
+  },
+  linkRoot: {
+    color: "#f37320",
+  },
+  formControl: {
+    "&.MuiFormControl-root": {
+      marginLeft: 30,
+    },
+  },
+  checkbox: {
+    marginLeft: 30,
+  },
+  listContents: {
+    marginBottom: 50,
+  },
 });
 
 export { useStyles };

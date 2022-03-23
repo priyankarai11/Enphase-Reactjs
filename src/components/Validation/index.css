@@ -2,7 +2,7 @@
   --white: #ffffff;
   --grey: #6f6f6f;
   --orange: #f37321;
-  --blue:#026ae3;
+  --blue: #026ae3;
 }
 
 * {
@@ -53,7 +53,7 @@
 }
 
 .left-col p {
-  /* font-size: 40px; */
+  font-size: 40px;
   line-height: 1.9rem;
   color: var(--white);
   font-weight: bold;
@@ -152,7 +152,7 @@
 }
 
 .formlink a:hover {
-  color:var(--blue);
+  color: var(--blue);
 }
 
 .right-col .form__links {
@@ -170,6 +170,7 @@
   .container {
     flex-direction: row;
   }
+
   .left-col {
     text-align: left;
     padding-right: 50px;
@@ -180,13 +181,16 @@
     font-size: 96px;
     line-height: 5.5rem;
   }
+
   .left-col p {
     font-size: 48px;
   }
+
   .right-col {
     max-width: 550px;
     padding-left: 100px;
   }
+
   .right-col .form-container {
     padding: 40px;
   }
