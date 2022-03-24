@@ -57,10 +57,6 @@ const useStyles = makeStyles({
     },
   },
 
-  checkbox: {
-    marginLeft: 30,
-  },
-
   listStyle: {
     marginLeft: 70,
     marginBottom: 20,
@@ -97,12 +93,6 @@ const useStyles = makeStyles({
     borderRadius: 4,
     height: 36,
     width: 150,
-  },
-
-  formControl: {
-    "&.MuiFormControl-root": {
-      marginLeft: 30,
-    },
   },
 });
 

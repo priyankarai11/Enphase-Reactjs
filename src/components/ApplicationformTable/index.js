@@ -57,7 +57,7 @@ function ApplicationformTable({ open, handleClick }) {
             </TableRow>
           </TableHead>
 
-          <TableBody lassName={classes.tableBody}>
+          <TableBody className={classes.tableBody}>
             {stockData
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((data) => {

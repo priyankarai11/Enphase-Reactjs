@@ -9,9 +9,11 @@ const useStyles = makeStyles({
     marginTop: 30,
     paddingLeft: 50,
   },
+
   batteryTracker: {
     color: "#f37320",
   },
+
   applicationTracker: {
     color: "#335977",
     paddingLeft: 50,
@@ -22,6 +24,7 @@ const useStyles = makeStyles({
       marginTop: 65,
     },
   },
+
   newApplication: {
     float: "right",
     height: 50,
@@ -35,7 +38,6 @@ const useStyles = makeStyles({
     },
   },
 
- 
   labelStyle: {
     width: 160,
   },
@@ -45,10 +47,10 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+
   buttonSections: {
     marginTop: 50,
   },
-
 });
 
 export { useStyles };

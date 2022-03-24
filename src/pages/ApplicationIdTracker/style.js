@@ -5,19 +5,23 @@ export const useStyles = makeStyles({
     marginTop: 30,
     paddingLeft: 50,
   },
+
   viewApplication: {
     color: "#f37320",
   },
+
   applicationTracker: {
     color: "#335977",
     paddingLeft: 50,
     marginTop: 30,
   },
+
   roundIcon: {
     borderRadius: "10px",
     width: "15px",
     height: "15px",
   },
+
   chip: {
     marginLeft: 50,
     marginTop: 20,
@@ -26,6 +30,7 @@ export const useStyles = makeStyles({
       marginTop: -50,
     },
   },
+
   stepIconRoot: {
     "&.MuiStepIcon-root.MuiStepIcon-active": {
       color: "#f37320",
@@ -39,6 +44,7 @@ export const useStyles = makeStyles({
     marginRight: 20,
     marginLeft: 20,
   },
+
   information: {
     height: 1250,
     margin: 20,
@@ -47,6 +53,7 @@ export const useStyles = makeStyles({
       height: 860,
     },
   },
+
   headerofCard: {
     color: "#f37320",
     padding: 20,
@@ -65,9 +72,11 @@ export const useStyles = makeStyles({
       marginLeft: 350,
     },
   },
+
   listItem: {
     display: "flex",
   },
+
   applicationDetails: {
     display: "flex",
     flexDirection: "column",
@@ -75,6 +84,7 @@ export const useStyles = makeStyles({
       flexDirection: "row",
     },
   },
+
   fileUploader: {
     width: 245,
     height: 255,
@@ -87,23 +97,28 @@ export const useStyles = makeStyles({
       marginLeft: 380,
     },
   },
+
   pdfIcon: {
     marginLeft: 80,
   },
+
   scannedCopy: {
     textAlign: "center",
     marginTop: 30,
   },
+
   fileSelected: {
     color: "grey",
     fontSize: 12,
     marginTop: 10,
     marginLeft: 60,
   },
+
   pdfDownload: {
     marginLeft: 30,
     marginTop: 10,
   },
+
   downloadAppln: {
     marginTop: -26,
     marginLeft: 80,
@@ -117,6 +132,7 @@ export const useStyles = makeStyles({
     marginTop: -52,
     marginLeft: 125,
   },
+
   backtoApplicationTracker: {
     float: "right",
     color: "#F37320",
@@ -126,10 +142,12 @@ export const useStyles = makeStyles({
     marginTop: -20,
     background: "#eeeeee",
   },
+
   back: {
     height: 100,
     padding: 10,
   },
+
   nextButton: {
     margin: 20,
   },

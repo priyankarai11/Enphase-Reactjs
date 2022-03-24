@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     backgroundColor: "#000",
     opacity: 0.5,
   },
+
   modalWrapper: {
     position: "fixed",
     top: 0,
@@ -22,6 +23,7 @@ const useStyles = makeStyles({
     overflowY: "auto",
     outline: 0,
   },
+
   modal: {
     zIndex: 100,
     background: "white",
@@ -39,6 +41,7 @@ const useStyles = makeStyles({
       marginRight: 100,
     },
   },
+
   modalCloseButton: {
     fontSize: "1.4rem",
     fontWeight: 700,
@@ -51,25 +54,30 @@ const useStyles = makeStyles({
     marginTop: 10,
     marginRight: 20,
   },
+
   Numbers_Logo: {
     width: 39,
     marginTop: 30,
   },
+
   downloadEneryHub: {
     marginTop: 20,
     textAlign: "center",
     marginBottom: 20,
   },
+
   downloadDocument: {
     color: "#f37320",
     marginLeft: 135,
   },
+
   nextButton: {
     float: "right",
     marginTop: 20,
     borderStyle: "none",
     fontWeight: 700,
   },
+
   mobileStepper: {
     marginTop: 10,
     backgroundColor: "white",
@@ -78,20 +86,24 @@ const useStyles = makeStyles({
       backgroundColor: "white",
     },
   },
+
   tagLine: {
     color: "grey",
     textAlign: "center",
     fontSize: 14,
   },
+
   groupProfile_Logo: {
     width: 150,
     marginLeft: 170,
     // marginTop:50,
   },
+
   viewButtonLabel: {
     // ".MuiButton-label": {
-      fontSize: 20,
+    fontSize: 20,
     // },
   },
 });
+
 export { useStyles };

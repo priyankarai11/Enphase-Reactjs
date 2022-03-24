@@ -1,10 +1,10 @@
 import React from "react";
 import { Card } from "@mui/material";
-import { Typography } from "@mui/material";
+import { Typography } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Link } from "@material-ui/core";
-import { FormGroup } from "@mui/material";
-import { FormControlLabel, Checkbox } from "@mui/material";
+// import { FormGroup } from "@mui/material";
+// import { FormControlLabel, Checkbox } from "@mui/material";
 
 import { useStyles } from "../../pages/ApplicationIdTracker/style";
 
@@ -14,19 +14,22 @@ function Index() {
     <>
       <Card className={classes.information}>
         <div className={classes.applicationDetails}>
-          <Typography className={classes.headerofCard}>
+          <Typography variant="standard" className={classes.headerofCard}>
             Enter the following Details
           </Typography>
         </div>
-        <div className={classes.textFieldSection}>
+
+        <div className={classes.MultipletextFieldSection}>
           <TextField
             className={classes.textField}
+            variant="standard"
             label="Customer First Name"
           />
+
           <br />
+
           <TextField className={classes.textField} label="Customer Last Name" />
         </div>
-
         {/* <div className={classes.checkbox}>
             <FormGroup>
               <FormControlLabel

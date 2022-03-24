@@ -5,6 +5,7 @@ const useStyles = makeStyles({
     marginRight: 20,
     marginLeft: 20,
   },
+
   stepIconRoot: {
     "&.MuiStepIcon-root.MuiStepIcon-active": {
       color: "#f37320",
@@ -13,10 +14,12 @@ const useStyles = makeStyles({
       color: "#f37320",
     },
   },
+
   buttonSection: {
     height: 100,
     float: "right",
   },
+
   previousPage: {
     "&.MuiButton-outlined": {
       borderColor: "grey",
@@ -26,6 +29,7 @@ const useStyles = makeStyles({
     height: 36,
     width: 150,
   },
+
   submitForm: {
     background: "#f37320",
     marginLeft: 40,

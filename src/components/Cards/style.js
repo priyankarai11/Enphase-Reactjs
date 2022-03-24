@@ -6,13 +6,16 @@ const useStyles = makeStyles({
     marginLeft: 20,
     marginTop: 30,
   },
+
   table: {
     minWidth: 100,
   },
+
   arrow: {
     color: "orange",
     float: "right",
   },
+
   card_view: {
     padding: 30,
     display: "flex",

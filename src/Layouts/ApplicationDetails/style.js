@@ -4,6 +4,7 @@ const useStyles = makeStyles({
   listItem: {
     display: "flex",
   },
+
   information: {
     height: 1250,
     margin: 20,
@@ -12,19 +13,23 @@ const useStyles = makeStyles({
       height: 860,
     },
   },
+
   textField: {
     width: "100%",
     "&.MuiFormControl-root": {
       marginLeft: 30,
+      width: "100%",
     },
   },
-  textFieldSection: {
-    marginLeft: 50,
-    paddingLeft: 50,
+
+  MultipletextFieldSection: {
+    marginLeft: 30,
     "&.MuiFormControl-root": {
       marginLeft: 30,
+      width: "100%",
     },
   },
+
   listStyle: {
     marginLeft: 70,
     marginBottom: 20,
@@ -33,19 +38,33 @@ const useStyles = makeStyles({
     fontWeight: "normal",
     letterSpacing: 0,
   },
+
   linkRoot: {
     color: "#f37320",
   },
+
   formControl: {
     "&.MuiFormControl-root": {
       marginLeft: 30,
     },
   },
+
   checkbox: {
     marginLeft: 30,
   },
+
   listContents: {
     marginBottom: 50,
+  },
+
+  formControl: {
+    "&.MuiFormControl-root": {
+      marginLeft: 30,
+    },
+  },
+
+  checkbox: {
+    marginLeft: 30,
   },
 });
 

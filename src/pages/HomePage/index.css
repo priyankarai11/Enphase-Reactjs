@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
-.arrow{
+.arrow {
   margin-top: 30px;
 }
 .dashboard {
@@ -16,10 +16,9 @@
   color: grey;
   font-size: 16px;
   font-weight: normal;
- font-family: Roboto;
+  font-family: Roboto;
   margin-left: 50px;
   top: 20px;
-  padding: 0 20px;
 }
 
 .leftcolumn {
@@ -70,6 +69,7 @@
   padding-top: 48px;
   font: normal normal bold 41px/29px Roboto;
 }
+
 @media only screen and (min-width: 1000px) {
   .cardview {
     flex-direction: row;

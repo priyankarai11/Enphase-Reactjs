@@ -1,15 +1,8 @@
-// import React from "react";
-// import { Route } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router";
 
-// function PrivateRoute({ component: component, isAuthenticated, ...rest }) {
-//   const navigate = useNavigate();
-//   <Route
-//     {...rest}
-//     render={(props) =>
-//       isAuthenticated ? <Component {...props} /> : navigate("/")
-//     }
-//   />;
-// }
+function PrivateRoute({ children }) {
+  const token = sessionStorage.getItem("token");
+  return token ? children : <Navigate replace to="/" />;
+}
 
-// export default PrivateRoute;
+export default PrivateRoute;

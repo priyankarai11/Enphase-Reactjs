@@ -15,7 +15,12 @@ function Home() {
         </h1>
         <br></br>
         <br></br>
-        <span>Choose a program to track or submit homeowner applications.</span>
+        <div classNamae="chooseProgram">
+          {" "}
+          <span>
+            Choose a program to track or submit homeowner applications.
+          </span>
+        </div>
 
         <Cards />
       </div>
