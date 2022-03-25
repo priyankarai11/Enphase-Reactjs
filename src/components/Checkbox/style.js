@@ -25,6 +25,12 @@ const useStyles = makeStyles({
     fontWeight: "bold",
     fontFamily: "Roboto",
   },
+
+  formControlLabel: {
+    fontSize: 16,
+    fontWeight: "bold",
+    fontFamily: "Roboto",
+  },
 });
 
 export { useStyles };

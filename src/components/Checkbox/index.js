@@ -1,7 +1,7 @@
 import React from "react";
 import { FormGroup } from "@mui/material";
 import { FormControlLabel, Checkbox } from "@mui/material";
-import { Link } from "@material-ui/core";
+import { Link , Typography} from "@material-ui/core";
 import { useStyles } from "./style";
 
 function CheckboxContent() {
@@ -11,9 +11,12 @@ function CheckboxContent() {
       <div className={classes.checkbox}>
         <FormGroup>
           <FormControlLabel
-            className={classes.formControl}
             control={<Checkbox defaultChecked />}
-            label="I confirm the following: "
+            label={
+              <Typography className={classes.formControlLabel}>
+                I confirm the following:
+              </Typography>
+            }
           />
         </FormGroup>
       </div>

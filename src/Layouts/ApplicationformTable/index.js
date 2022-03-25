@@ -8,8 +8,8 @@ import { TableRow } from "@material-ui/core";
 import Paper from "@mui/material/Paper";
 import Chip from "@mui/material/Chip";
 import { FaSlidersH } from "react-icons/fa";
-import { useStyles } from "./style";
 import { stockData } from "./data";
+import { useStyles } from "./style";
 
 function ApplicationformTable({ open, handleClick }) {
   const classes = useStyles();

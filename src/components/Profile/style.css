@@ -1,7 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
-* {
-  font-size: roboto;
-}
 
 :root {
   --white: #ffffff;
@@ -21,6 +18,7 @@
   font-family: Roboto;
   font-weight: normal;
 }
+
 .profile_img {
   margin-top: 13px;
   float: right;

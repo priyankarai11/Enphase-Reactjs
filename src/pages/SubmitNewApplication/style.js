@@ -35,7 +35,6 @@ const useStyles = makeStyles({
     marginTop: 10,
     marginBottom: 20,
     width: 270,
-
     "&.MuiButton-outlined": {
       color: "#f37320",
       borderColor: "#f37320",
@@ -45,7 +44,6 @@ const useStyles = makeStyles({
   submitNewApplnSection: {
     display: "flex",
     flexDirection: "column",
-
     "@media (min-width: 1000px)": {
       flexDirection: "row",
       justifyContent: "space-between",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
-import ApplicationformTable from "../ApplicationformTable/index";
+import ApplicationformTable from "../../Layouts/ApplicationformTable";
 import ProfileHead from "../Menu/ProfileHead";
 
 function MenuItemList() {
