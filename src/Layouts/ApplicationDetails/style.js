@@ -15,56 +15,107 @@ const useStyles = makeStyles({
   },
 
   textField: {
-    width: "100%",
-    "&.MuiFormControl-root": {
-      marginLeft: 30,
-      width: "100%",
-    },
-  },
-
-  MultipletextFieldSection: {
+    width: "90%",
     marginLeft: 30,
-    "&.MuiFormControl-root": {
-      marginLeft: 30,
-      width: "100%",
+    marginTop: 20,
+    color: "#757575",
+    "@media (min-width: 1000px)": {
+      width: "85%",
     },
   },
 
-  listStyle: {
-    marginLeft: 70,
-    marginBottom: 20,
-    fontSize: 15,
-    fontFamily: "Helvetica Neue",
-    fontWeight: "normal",
-    letterSpacing: 0,
+  enterTheDetail: {
+    height: 1100,
+    margin: 20,
+    flexDirection: "column",
+    "@media (min-width: 1000px)": {
+      height: 720,
+    },
   },
 
-  linkRoot: {
+  tableContainer: {
+    maxHeight: 450,
+  },
+
+  decrementButton: {
+    borderRadius: 1,
+  },
+
+  IncrementCount: {
+    borderRadius: 1,
+  },
+
+  countNumber: {
+    padding: 20,
+  },
+
+  detailInformation: {
+    display: "flex",
+    flexDirection: "column",
+    "@media (min-width: 1000px)": {
+      flexDirection: "row",
+    },
+  },
+
+  topContents: {
     color: "#f37320",
-  },
-
-  formControl: {
-    "&.MuiFormControl-root": {
-      marginLeft: 30,
+    padding: 20,
+    backgroundColor: "#0000001A",
+    "@media (min-width: 1000px)": {
+      width: "95%",
     },
   },
 
-  checkbox: {
-    marginLeft: 30,
-  },
-
-  listContents: {
-    marginBottom: 50,
-  },
-
-  formControl: {
-    "&.MuiFormControl-root": {
-      marginLeft: 30,
+  fileuploaderContent: {
+    color: "#f37320",
+    padding: 20,
+    backgroundColor: "#0000001A",
+    marginTop: 30,
+    "@media (min-width: 1000px)": {
+      marginTop: 0,
     },
   },
 
-  checkbox: {
+  uploadFile: {
+    width: 245,
+    height: 255,
     marginLeft: 30,
+    marginTop: 30,
+    borderStyle: "dotted",
+    borderColor: "#70707089",
+    paddingBottom: 20,
+  },
+
+  fileCardContent: {
+    background: "#F5F5F5",
+  },
+
+  scannedCopy: {
+    textAlign: "center",
+  },
+
+  upload: {
+    "&.MuiButton-outlined": {
+      color: "#f37320",
+      borderColor: "#f37320",
+      marginTop: 10,
+      marginLeft: 16,
+      width: 171,
+    },
+  },
+
+  fileConditions: {
+    color: "#545456",
+    textAlign: "center",
+    marginTop: 5,
+  },
+
+  uploadingFile: {
+    width: "100%",
+  },
+
+  UpArrow: {
+    marginLeft: 80,
   },
 });
 

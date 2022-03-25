@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../../pages/HomePage/index.js";
 import LoginPage from "../../pages/LoginPage/index";
 import BatteryProgram from "../../pages/BatteryProgram/index";

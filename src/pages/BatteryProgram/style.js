@@ -19,7 +19,9 @@ const useStyles = makeStyles({
     paddingLeft: 50,
     marginTop: 70,
     marginRight: 50,
-    font: "normal normal bold 29px/29px Roboto",
+    fontWeight: "bold",
+    fontSize: 29,
+    fontFamily: "Roboto",
     "@media (min-width: 1000px)": {
       marginTop: 65,
     },

@@ -93,6 +93,8 @@ function Index() {
           </Stepper>
         </Card>
       </div>
+
+      
       <div>
         <Card className={classes.information}>
           <div className={classes.applicationDetails}>

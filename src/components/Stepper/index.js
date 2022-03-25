@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepButton from "@material-ui/core/StepButton";
 import { StepLabel } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { Card } from "@material-ui/core";
+import { useNavigate } from "react-router";
 import ApplicationForm from "../../Layouts/ApplicationDetails/index";
 import { steps } from "./constant";
 import { useStyles } from "./style";
@@ -29,12 +30,16 @@ function getStepContent(step) {
 }
 
 export default function App() {
+  const navigate = useNavigate();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState(new Set());
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    console.log(activeStep);
+    if (activeStep === 0) {
+      navigate("/APS-Application-Tracker");
+    } else setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleStep = (step) => () => {
@@ -79,7 +84,6 @@ export default function App() {
           <div className={classes.buttonSection}>
             <Button
               variant="outlined"
-              disabled={activeStep === 0}
               className={classes.previousPage}
               onClick={handleBack}
             >

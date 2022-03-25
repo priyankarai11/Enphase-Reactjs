@@ -1,15 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
-.arrow {
-  margin-top: 30px;
-}
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 0 30px;
-  max-width: 1600px;
-  margin: 0 auto;
+.dashboardPage {
+  padding: 10px;
 }
 
 .dashboardPage span {
@@ -17,51 +9,8 @@
   font-size: 16px;
   font-weight: normal;
   font-family: Roboto;
-  margin-left: 50px;
+  margin-left: 20px;
   top: 20px;
-}
-
-.leftcolumn {
-  padding-left: 30px;
-  flex: 1;
-  margin-bottom: 50px;
-  top: 262px;
-  left: 90px;
-  width: 431px;
-  height: 235px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 10px 30px #00000010;
-  border-radius: 8px;
-  opacity: 1;
-}
-
-.leftcolumn .dashboardForm h1 {
-  font-size: 30px;
-  margin-left: 80px;
-  /* line-height: 3rem; */
-  margin-bottom: 2rem;
-  padding-bottom: 38px;
-  border-bottom-style: solid;
-  border-bottom-width: 0.1rem;
-  width: fit-content;
-  font-family: Roboto, sans-serif;
-}
-
-.leftcolumn .dashboardForm {
-  margin-top: 10%;
-  background-color: white;
-  padding: 40px;
-  border-radius: 5px;
-}
-
-.cardview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5px;
-}
-.card-view {
-  padding: 30px;
 }
 
 .welcome {
@@ -71,7 +20,7 @@
 }
 
 @media only screen and (min-width: 1000px) {
-  .cardview {
-    flex-direction: row;
+  .dashboardPage span {
+    margin-left: 80px;
   }
 }

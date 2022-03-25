@@ -12,10 +12,8 @@ toast.configure();
 function Login({
   input,
   handleChange,
-  errorEmail,
   helperTextEmail,
   helperTextPassword,
-  errorPassword,
   handleSubmit,
 }) {
   let [isOpen, setIsOpen] = useState(false);
@@ -48,7 +46,7 @@ function Login({
                     label="Email Address"
                     variant="standard"
                     onChange={handleChange}
-                    error={errorEmail}
+                    error={helperTextEmail === " " ? false : true}
                     helperText={helperTextEmail}
                   />
                 </div>
@@ -63,7 +61,7 @@ function Login({
                     label="Password"
                     variant="standard"
                     onChange={handleChange}
-                    error={errorPassword}
+                    error={helperTextPassword === " " ? false : true}
                     helperText={helperTextPassword}
                   />
                   <i

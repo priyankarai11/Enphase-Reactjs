@@ -15,7 +15,7 @@ function Home() {
         </h1>
         <br></br>
         <br></br>
-        <div classNamae="chooseProgram">
+        <div classNama="chooseProgram">
           {" "}
           <span>
             Choose a program to track or submit homeowner applications.

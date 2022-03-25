@@ -22,12 +22,8 @@ function API_Fetch() {
     password: "",
   });
 
-  const [errorPassword, setErrorPassword] = useState(false);
   const [helperTextPassword, setHelperTextPassword] = useState("");
-
-  const [errorEmail, setErrorEmail] = useState(false);
   const [helperTextEmail, setHelperTextEmail] = useState("");
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input.email);
@@ -82,25 +78,23 @@ function API_Fetch() {
 
   const handleChange = (e) => {
     e.preventDefault();
+
     const { name, value } = e.target;
     switch (name) {
       case "email":
         if (EMAIL_REGEX.test(value) && value.length > 0) {
           setHelperTextEmail(" ");
-          // setErrorEmail(false);
         } else {
           setHelperTextEmail(EMAIL_ERROR);
-          // setErrorEmail(true);
         }
+
         break;
 
       case "password":
         if (PASSWORD_REGEX.test(value) && value.length > 0) {
-          // setErrorPassword(false);
           setHelperTextPassword(" ");
         } else {
           setHelperTextPassword(PASSWORD_ERROR);
-          // setErrorPassword(true);
         }
         break;
       default:
@@ -108,13 +102,12 @@ function API_Fetch() {
     }
     setInput({ ...input, [name]: value });
   };
+
   return (
     <Validation
       handleSubmit={handleSubmit}
       handleChange={handleChange}
-      errorEmail={errorEmail}
       helperTextEmail={helperTextEmail}
-      errorPassword={errorPassword}
       helperTextPassword={helperTextPassword}
       input={input}
     />
