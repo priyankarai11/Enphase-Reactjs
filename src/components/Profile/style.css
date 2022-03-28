@@ -7,6 +7,11 @@
 .centered {
   position: relative;
   padding-right: 100px;
+  background-color: #f37320;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .profileName {
@@ -17,6 +22,17 @@
   font-size: 14px;
   font-family: Roboto;
   font-weight: normal;
+}
+
+.logoSection {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: row;
 }
 
 .profile_img {

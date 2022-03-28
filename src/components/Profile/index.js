@@ -15,12 +15,16 @@ function ProfileHeader({ open, handleClick }) {
   return (
     <>
       <div className="centered">
-        <img onClick={backtosignInPage} src={Logo} className="logo" />
-        <MenuName />
-        <img className="profile_img" src={Profile} />
-        <h3 onClick={backtosignInPage} className="Grid">
-          Grid Services-Installer Intake Portal
-        </h3>
+        <div className="logoSection">
+          <img onClick={backtosignInPage} src={Logo} className="logo" />
+          <h3 onClick={backtosignInPage} className="Grid">
+            Grid Services-Installer Intake Portal
+          </h3>
+        </div>
+        <div className="profileSection">
+          <img className="profile_img" src={Profile} />
+          <MenuName />
+        </div>
       </div>
     </>
   );
