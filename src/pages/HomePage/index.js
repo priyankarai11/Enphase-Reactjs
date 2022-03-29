@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Cards from "../../components/Cards";
 import ProfileHeader from "../../components/Profile/index";
 import "./index.css";
 
 function Home() {
   let name = sessionStorage.getItem("user_name");
+  // const [items, setItems] = useState([]);
+  // const [dataisLoaded, setDataisLoaded] = useState(false);
+ 
+
   return (
     <>
       <ProfileHeader />
@@ -15,7 +19,7 @@ function Home() {
         </h1>
         <br></br>
         <br></br>
-        <div classNama="chooseProgram">
+        <div className="chooseProgram">
           {" "}
           <span>
             Choose a program to track or submit homeowner applications.

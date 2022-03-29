@@ -6,7 +6,7 @@ import Profile from "../../assets/icons/profile.svg";
 import MenuName from "../../components/Menu/ProfileHead";
 import "./style.css";
 
-function ProfileHeader({ open, handleClick }) {
+function ProfileHeader() {
   const navigate = useNavigate();
 
   const backtosignInPage = () => {

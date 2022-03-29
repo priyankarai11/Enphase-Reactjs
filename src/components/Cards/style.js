@@ -33,6 +33,25 @@ const useStyles = makeStyles({
       flexDirection: "row",
     },
   },
+
+  cardItems: {
+    "&.MuiTypography-root": {
+      fontFamily: "Segoe UI",
+    },
+  },
+
+  cardsDisplay: {
+    "&.MuiCardContent-root:last-child": {
+      paddingBottom: 5,
+    },
+  },
+
+  residental: {
+    lineHeight: 1.6,
+    fontFamily: "Segoe UI",
+    fontWeight: 600,
+    fontSize: 25,
+  },
 });
 
 export { useStyles };

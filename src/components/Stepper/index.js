@@ -38,7 +38,7 @@ export default function App() {
   const handleBack = () => {
     console.log(activeStep);
     if (activeStep === 0) {
-      navigate("/APS-Application-Tracker");
+      navigate("/aps-application-tracker");
     } else setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 

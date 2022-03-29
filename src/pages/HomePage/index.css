@@ -1,26 +1,28 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
 .dashboardPage {
-  padding: 10px;
+  padding: 5px;
 }
 
 .dashboardPage span {
   color: grey;
   font-size: 16px;
   font-weight: normal;
-  font-family: Roboto;
+  font-family: Segoe UI;
   margin-left: 20px;
   top: 20px;
 }
 
 .welcome {
-  padding-left: 70px;
-  padding-top: 48px;
-  font: normal normal bold 41px/29px Roboto;
+  padding-left: 40px;
+  padding-top: 24px;
+  font-size: 40px;
+  font-family: Segoe UI;
+  font-weight: 700;
 }
 
 @media only screen and (min-width: 1000px) {
   .dashboardPage span {
-    margin-left: 80px;
+       margin: 20px 40px ;
   }
 }

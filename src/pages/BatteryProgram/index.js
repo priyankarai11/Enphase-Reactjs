@@ -16,7 +16,7 @@ function Index() {
   const { isShowing, toggle } = useModal();
 
   const submitNewAppln = () => {
-    navigate("/APS-submit-new-application-1");
+    navigate("/aps-submit-new-application-1");
   };
 
   return (
@@ -28,7 +28,7 @@ function Index() {
           separator="›"
           aria-label="breadcrumb"
         >
-          <Link underline="hover" color="inherit" href="/">
+          <Link underline="hover" color="inherit" href="/iic-dashboard">
             Dashboard
           </Link>
           <Typography className={classes.batteryTracker}>

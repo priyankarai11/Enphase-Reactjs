@@ -26,6 +26,7 @@
   bottom: 0;
   width: 100%;
   background-color: var(--white);
+  box-shadow: 0px -3px 6px #00000029;
 }
 
 .copyright a:hover {
@@ -48,14 +49,14 @@
   }
 
   .logo_enphase {
-    margin-top: 8px;
+    margin-top: 4px;
     margin-left: 41px;
     height: 28px;
   }
 
   .copyright {
     position: absolute;
-    top: 15px;
+    top: 12px;
     margin-left: 192px;
   }
 }

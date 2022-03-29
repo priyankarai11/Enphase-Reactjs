@@ -25,7 +25,7 @@ function Index() {
   const navigate = useNavigate();
 
   const backtoApplicationTracker = () => {
-    navigate("/APS-Application-Tracker");
+    navigate("/aps-application-tracker");
   };
 
   const saveFile = () => {
@@ -43,10 +43,10 @@ function Index() {
         separator="›"
         aria-label="breadcrumb"
       >
-        <Link underline="hover" color="inherit" href="/">
+        <Link underline="hover" color="inherit" href="/iic-dashboard">
           Dashboard
         </Link>
-        <Link underline="hover" color="inherit" href="/IIC-Dashboard">
+        <Link underline="hover" color="inherit" href="/aps-application-tracker">
           APS Residential Battery Program
         </Link>
         <Typography className={classes.viewApplication}>
@@ -94,7 +94,6 @@ function Index() {
         </Card>
       </div>
 
-      
       <div>
         <Card className={classes.information}>
           <div className={classes.applicationDetails}>

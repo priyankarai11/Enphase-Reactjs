@@ -6,14 +6,32 @@ import BatteryProgram from "../../pages/BatteryProgram/index";
 import ApplicationIdTracker from "../../pages/ApplicationIdTracker/index";
 import SubmitNewApplication from "../../pages/SubmitNewApplication/index";
 import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
         <Route
-          path="/IIC-Dashboard"
+          path="/"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <LoginPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/iic-dashboard"
           element={
             <PrivateRoute>
               <Home />
@@ -21,7 +39,7 @@ function App() {
           }
         />
         <Route
-          path="/APS-Application-Tracker"
+          path="/aps-application-tracker"
           element={
             <PrivateRoute>
               <BatteryProgram />
@@ -29,7 +47,7 @@ function App() {
           }
         />
         <Route
-          path="/BB-rejected-application-1"
+          path="/bb-rejected-application-1"
           element={
             <PrivateRoute>
               <ApplicationIdTracker />
@@ -37,7 +55,7 @@ function App() {
           }
         />
         <Route
-          path="/APS-submit-new-application-1"
+          path="/aps-submit-new-application-1"
           element={
             <PrivateRoute>
               <SubmitNewApplication />

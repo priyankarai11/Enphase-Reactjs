@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Divider } from "@material-ui/core";
@@ -15,17 +15,48 @@ function Cards() {
   const classes = useStyles();
   const navigate = useNavigate();
 
-
   const applicationTrack = () => {
-    navigate("/APS-Application-Tracker");
+    navigate("/aps-application-tracker");
   };
+
+  const token = sessionStorage.getItem("auth");
+
+  const getData = () => {
+    fetch(
+      "https://gs-dev.qa-enphaseenergy.com/programs-mgr/api/v1/application/programs",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          auth: JSON.stringify(token),
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className={classes.cardview}>
       <div className={classes.card_view}>
         {dataItems.map((person) => (
-          <Card className={classes.root} onClick={applicationTrack}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
+          <Card
+            key={person.id}
+            className={classes.root}
+            onClick={applicationTrack}
+          >
+            <CardContent className={classes.cardsDisplay}>
+              <Typography
+                className={classes.residental}
+                variant="h5"
+                component="h2"
+              >
                 {person.title}{" "}
                 <KeyboardArrowRightIcon className={classes.arrow} />
               </Typography>
@@ -33,7 +64,10 @@ function Cards() {
               <Divider />
               <List>
                 <ListItem>
-                  <ListItemText secondary="Utility" />
+                  <ListItemText
+                    className={classes.cardItems}
+                    secondary="Utility"
+                  />
                   {person.utility}
                 </ListItem>
                 <Divider />

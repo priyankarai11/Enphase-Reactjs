@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -22,15 +22,17 @@ function API_Fetch() {
     password: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const [helperTextPassword, setHelperTextPassword] = useState("");
   const [helperTextEmail, setHelperTextEmail] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input.email);
     const key = input.email;
     const value = input.password;
-
+    setIsLoading(true);
     const data = { name: key, password: value };
+
     fetch(
       "https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/admin/signin/",
       {
@@ -40,12 +42,12 @@ function API_Fetch() {
       }
     )
       .then((response) => response.json())
+
       .then((data) => {
-        console.log(data);
         for (let i in data) {
           switch (i) {
             case "GS-Authorization":
-              sessionStorage.setItem("token", data[i]);
+              sessionStorage.setItem("auth", data[i]);
               break;
             case "user_name":
               sessionStorage.setItem("user_name", data[i]);
@@ -64,10 +66,18 @@ function API_Fetch() {
           }
           switch (data[i]) {
             case "Success":
-              navigate("/IIC-Dashboard");
+              setIsLoading(false);
+              navigate("/iic-dashboard");
               break;
             case "Fail":
-              toast(TOAST);
+              setTimeout(() => {
+                setIsLoading(false);
+                toast.error(TOAST, {
+                  className: "toast",
+                  position: toast.POSITION.BOTTOM_CENTER,
+                });
+              }, 1000);
+
               break;
             default:
               break;
@@ -110,6 +120,7 @@ function API_Fetch() {
       helperTextEmail={helperTextEmail}
       helperTextPassword={helperTextPassword}
       input={input}
+      isLoading={isLoading}
     />
   );
 }

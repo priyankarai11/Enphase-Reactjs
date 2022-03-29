@@ -18,10 +18,14 @@ function Index() {
           separator="›"
           aria-label="breadcrumb"
         >
-          <Link underline="hover" color="inherit" href="/">
+          <Link underline="hover" color="inherit" href="/iic-dashboard">
             Dashboard
           </Link>
-          <Link underline="hover" color="inherit" href="/home">
+          <Link
+            underline="hover"
+            color="inherit"
+            href="/aps-application-tracker"
+          >
             APS Residential Battery Program
           </Link>
           <Typography className={classes.submitNewApplication}>

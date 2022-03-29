@@ -20,9 +20,9 @@
   position: absolute;
   bottom: 12px;
   left: 71px;
-  font-family: Roboto, sans-serif;
+  font-family: sans-serif;
   font-size: 14px;
+  font-weight: 700px;
   height: 24px;
   color: var(--white);
 }
-

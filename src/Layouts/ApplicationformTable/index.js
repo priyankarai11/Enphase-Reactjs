@@ -64,7 +64,7 @@ function ApplicationformTable({ open, handleClick }) {
                 return (
                   <TableRow>
                     <TableCell className={classes.tableRow}>
-                      <a href="/BB-rejected-application-1">{data.id}</a>
+                      <a href="/bb-rejected-application-1">{data.id}</a>
                     </TableCell>
                     <TableCell className={classes.tableRow}>
                       {data.siteId}

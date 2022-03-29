@@ -5,7 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import Dialog from "../DialogBox";
+import { useStyles } from "./style";
 import "./index.css";
+import { CircularProgress } from "@material-ui/core";
 
 toast.configure();
 
@@ -15,7 +17,9 @@ function Login({
   helperTextEmail,
   helperTextPassword,
   handleSubmit,
+  isLoading,
 }) {
+  const classes = useStyles();
   let [isOpen, setIsOpen] = useState(false);
   const [isPasswordShown, setPasswordShown] = useState(false);
 
@@ -39,7 +43,7 @@ function Login({
                 <div className="field-group">
                   <TextField
                     value={input.email}
-                    className="form-input-fields"
+                    className={classes.formInputFields}
                     id="email"
                     type="email"
                     name="email"
@@ -50,11 +54,10 @@ function Login({
                     helperText={helperTextEmail}
                   />
                 </div>
-
                 <div className="field-group">
                   <TextField
                     value={input.password}
-                    className="form-input-fields"
+                    className={classes.formInputFields}
                     id="password"
                     name="password"
                     type={isPasswordShown ? "text" : "password"}
@@ -81,6 +84,7 @@ function Login({
                   >
                     Sign Up
                   </a>
+
                   <a
                     className="form__links"
                     href="https://enlighten-qa4.enphaseenergy.com/forgot_password"
@@ -96,7 +100,7 @@ function Login({
                   id="submit"
                   onClick={handleSubmit}
                 >
-                  SIGN IN
+                  SIGN IN {isLoading && <CircularProgress />}
                 </Button>
                 <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
                   Invalid Email Address and Password !!!
