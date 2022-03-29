@@ -40,7 +40,7 @@ function Cards() {
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   return (
     <div className={classes.cardview}>
