@@ -22,7 +22,7 @@ function Login({
   const classes = useStyles();
   let [isOpen, setIsOpen] = useState(false);
   const [isPasswordShown, setPasswordShown] = useState(false);
-
+  
   return (
     <>
       <section id="intro">
@@ -32,6 +32,7 @@ function Login({
             <p>Intake Portal</p>
           </div>
           <div className="right-col">
+            {isLoading && <CircularProgress className={classes.loader} />}
             <div className="form-container">
               <form>
                 <h1>Sign In</h1>
@@ -40,6 +41,7 @@ function Login({
                   Use your Enlighten Manager credentials to submit applications
                   on behalf of homeowners
                 </p>
+
                 <div className="field-group">
                   <TextField
                     value={input.email}
@@ -100,7 +102,7 @@ function Login({
                   id="submit"
                   onClick={handleSubmit}
                 >
-                  SIGN IN {isLoading && <CircularProgress />}
+                  SIGN IN
                 </Button>
                 <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
                   Invalid Email Address and Password !!!

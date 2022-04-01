@@ -50,7 +50,7 @@ export const useStyles = makeStyles({
     margin: 20,
     flexDirection: "column",
     "@media (min-width: 1000px)": {
-      height: 860,
+      height: 900,
     },
   },
 
@@ -150,5 +150,21 @@ export const useStyles = makeStyles({
 
   nextButton: {
     margin: 20,
+  },
+
+  address: {
+    "&.MuiListItem-gutters ": {
+      width: 200,
+    },
+  },
+
+  loaderShow: {
+    position: "fixed",
+    color: "#f37321",
+    marginLeft: 300,
+    marginTop: 100,
+    "@media (min-width: 1000px)": {
+      marginLeft: 800,
+    },
   },
 });

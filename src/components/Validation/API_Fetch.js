@@ -34,7 +34,7 @@ function API_Fetch() {
     const data = { name: key, password: value };
 
     fetch(
-      "https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/admin/signin/",
+      ` https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${key}&password=${value}`,
       {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -43,41 +43,33 @@ function API_Fetch() {
     )
       .then((response) => response.json())
 
-      .then((data) => {
-        for (let i in data) {
+      .then((res) => {
+        for (let i in res.data) {
           switch (i) {
-            case "GS-Authorization":
-              sessionStorage.setItem("auth", data[i]);
+            case "token":
+              sessionStorage.setItem("auth", res.data[i]);
+              setIsLoading(false);
+              navigate("/iic-dashboard");
               break;
-            case "user_name":
-              sessionStorage.setItem("user_name", data[i]);
-              break;
-            case "account_company_name":
-              sessionStorage.setItem("account_company_name", data[i]);
-              break;
-            case "account_time_zone":
-              sessionStorage.setItem("account_time_zone", data[i]);
-              break;
-            case "roles":
-              sessionStorage.setItem("roles", data[i]);
+            case "first_name":
+              sessionStorage.setItem("user_name", res.data[i]);
               break;
             default:
               break;
           }
-          switch (data[i]) {
-            case "Success":
-              setIsLoading(false);
-              navigate("/iic-dashboard");
-              break;
-            case "Fail":
-              setTimeout(() => {
-                setIsLoading(false);
-                toast.error(TOAST, {
-                  className: "toast",
-                  position: toast.POSITION.BOTTOM_CENTER,
-                });
-              }, 1000);
-
+        }
+        for (let i in res.error) {
+          switch (i) {
+            case "code":
+              if (res.error.code === "400" || res.error.code==="401") {
+                setTimeout(() => {
+                  setIsLoading(false);
+                  toast.error(TOAST, {
+                    className: "toast",
+                    position: toast.POSITION.BOTTOM_CENTER,
+                  });
+                }, 1000);
+              }
               break;
             default:
               break;

@@ -28,6 +28,29 @@ function Index() {
   };
 
   const [counter, setCounter] = useState(count);
+  const [helperTextemail, setHelperTextEmail] = useState("");
+  const [helperTextfirstName, setHelperTextFirstName] = useState("");
+  const [helperTextlastName, setHelperLastName] = useState("");
+  const [helperTextaddress1, setHelperTextAddress1] = useState("");
+  const [helperTextaddress2, setHelperTextAddress2] = useState("");
+  const [helperTextcity, setHelperTextCity] = useState("");
+  const [helperTextzip, setHelperTextZip] = useState("");
+  const [helperTextstate, setHelperTextState] = useState("");
+  const [helperTextpn, setHelperTextPN] = useState("");
+  const [helperTextac, setHelperAC] = useState("");
+  const [input, setInput] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+    address1: "",
+    address2: "",
+    city: "",
+    state: "",
+    zip: "",
+    phoneNumber: "",
+    accountNumner: "",
+  });
+
   const [option, setOption] = useState("Data and Dispatch");
 
   const increment = (id) => {
@@ -42,10 +65,28 @@ function Index() {
     }
   };
 
-  const handleChange = (e) => {
+  const handleTextField = (e) => {
     setOption(e.target.value);
   };
 
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    const { name, value } = e.target;
+    switch (name) {
+      // case "email":
+      //   if (.test(value) && value.length > 0) {
+      //     setHelperTextEmail(" ");
+      //   } else {
+      //     setHelperTextEmail(EMAIL_ERROR);
+      //   }
+
+      //   break;
+      default:
+        break;
+    }
+    setInput({ ...input, [name]: value });
+  };
   return (
     <>
       <Card className={classes.enterTheDetail}>
@@ -60,6 +101,9 @@ function Index() {
                   className={classes.textField}
                   variant="standard"
                   label="Customer First Name"
+                  value={input.firstName}
+                  name="firstName"
+                  onChange={handleChange}
                 />
                 <br />
                 <TextField
@@ -176,7 +220,7 @@ function Index() {
                   select
                   label="Program Option"
                   value={option}
-                  onChange={handleChange}
+                  onChange={handleTextField}
                   SelectProps={{
                     native: true,
                   }}
@@ -194,7 +238,6 @@ function Index() {
                   label="Electric Account Number"
                   variant="standard"
                 />
-                <Checkbox />
               </TableContainer>
             </Table>
           </div>

@@ -8,10 +8,10 @@ export const dataItems = [
     utility: "Arizona Public Service",
     state: "America/Los_Angles",
   },
-  {
-    id: 2,
-    title: "HECO SDP Battery Bonus Program",
-    utility: "Arizona Public Service",
-    state: "America/Los_Angles",
-  },
+  // {
+  //   id: 2,
+  //   title: "HECO SDP Battery Bonus Program",
+  //   utility: "Arizona Public Service",
+  //   state: "America/Los_Angles",
+  // },
 ];

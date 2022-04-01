@@ -3,14 +3,14 @@ import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles({
   tabelCell: {
     "&.MuiTableCell-head": {
-      color: "yellow",
+      color: "#F0D852",
       textAlign: "center",
     },
   },
 
   paper: {
     width: "100%",
-    padding: 30,
+    padding: 50,
   },
 
   tableRow: {
@@ -36,12 +36,28 @@ const useStyles = makeStyles({
   },
 
   labelStyle: {
-    width: 180,
+    width: 150,
   },
 
   root: {
     "&.MuiChip-root": {
-      borderRadius: 0,
+      borderRadius: 15,
+    },
+  },
+
+  tableContainer: {
+    maxHeight: 450,
+  },
+  tableTop: {
+    position: "sticky",
+    top: 0,
+  },
+  loaderShow: {
+    color: "#f37321",
+    marginLeft: 300,
+    marginTop: 100,
+    "@media (min-width: 1000px)": {
+      marginLeft: 800,
     },
   },
 });

@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Cards from "../../components/Cards";
+import {NAME} from "../../components/sessionStorage/index"
 import ProfileHeader from "../../components/Profile/index";
 import "./index.css";
 
 function Home() {
-  let name = sessionStorage.getItem("user_name");
-  // const [items, setItems] = useState([]);
-  // const [dataisLoaded, setDataisLoaded] = useState(false);
- 
+  // let name = sessionStorage.getItem("user_name");
 
   return (
     <>
       <ProfileHeader />
       <div className="dashboardPage">
         <h1 className="welcome" id="welcome">
-          Welcome {name}
+          Welcome {NAME}
           {" !"}
         </h1>
         <br></br>

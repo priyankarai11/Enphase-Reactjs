@@ -39,7 +39,7 @@ function App() {
           }
         />
         <Route
-          path="/aps-application-tracker"
+          path="/aps-application-tracker/:id"
           element={
             <PrivateRoute>
               <BatteryProgram />
@@ -47,7 +47,7 @@ function App() {
           }
         />
         <Route
-          path="/bb-rejected-application-1"
+          path="/bb-rejected-application-1/:id"
           element={
             <PrivateRoute>
               <ApplicationIdTracker />

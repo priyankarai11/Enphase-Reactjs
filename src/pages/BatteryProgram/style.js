@@ -28,7 +28,6 @@ const useStyles = makeStyles({
   },
 
   newApplication: {
-    float: "right",
     height: 50,
     marginRight: 30,
     marginTop: 10,
@@ -46,12 +45,20 @@ const useStyles = makeStyles({
 
   batteryProgramHeader: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
+    "@media (min-width: 1000px)": {
+      flexDirection: "row",
+    },
   },
 
   buttonSections: {
-    marginTop: 50,
+    marginTop: 30,
+    marginLeft: 50,
+    "@media (min-width: 1000px)": {
+      marginTop: 50,
+      marginRight: 50,
+    },
   },
 });
 

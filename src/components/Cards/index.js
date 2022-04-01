@@ -7,57 +7,62 @@ import { List } from "@material-ui/core";
 import { ListItem } from "@material-ui/core";
 import { ListItemText } from "@material-ui/core";
 import { CardContent } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { TOKEN } from "../../components/sessionStorage/index";
 import { useNavigate } from "react-router";
 import { useStyles } from "./style";
-import { dataItems } from "./data";
 
 function Cards() {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+  const [cardItem, setCardItem] = useState([]);
 
-  const applicationTrack = () => {
-    navigate("/aps-application-tracker");
-  };
-
-  const token = sessionStorage.getItem("auth");
-
-  const getData = () => {
-    fetch(
+  const getData = async () => {
+    const myHeaders = new Headers({
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "GS-Enphase-Auth": TOKEN,
+    });
+    await fetch(
       "https://gs-dev.qa-enphaseenergy.com/programs-mgr/api/v1/application/programs",
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          auth: JSON.stringify(token),
-        },
+        headers: myHeaders,
       }
     )
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+      .then((res) => {
+        setIsLoading(false);
+
+        const set = res.data.map((ele) => ele);
+
+        setCardItem(set);
       });
   };
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <div className={classes.cardview}>
       <div className={classes.card_view}>
-        {dataItems.map((person) => (
+        {isLoading && <CircularProgress className={classes.loaderShow} />}
+        {cardItem.map((person) => (
           <Card
             key={person.id}
             className={classes.root}
-            onClick={applicationTrack}
+            onClick={() => navigate(`/aps-application-tracker/${person.id}`)}
           >
+            {" "}
             <CardContent className={classes.cardsDisplay}>
               <Typography
                 className={classes.residental}
                 variant="h5"
                 component="h2"
               >
-                {person.title}{" "}
+                {person.name}
                 <KeyboardArrowRightIcon className={classes.arrow} />
               </Typography>
 
@@ -68,17 +73,20 @@ function Cards() {
                     className={classes.cardItems}
                     secondary="Utility"
                   />
-                  {person.utility}
+                  {person.utility_name}
                 </ListItem>
                 <Divider />
                 <ListItem>
                   <ListItemText secondary="State" />
-                  {person.state}
+                  {person.state_name}
                 </ListItem>
               </List>
             </CardContent>
           </Card>
         ))}
+        {cardItem.map((ele) => {
+          const val = ele.account_id;
+        })}
       </div>
     </div>
   );

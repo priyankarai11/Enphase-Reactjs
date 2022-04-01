@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 370,
-    marginLeft: 20,
+    width: 400,
+    marginLeft: 50,
     marginTop: 30,
   },
 
@@ -14,6 +14,7 @@ const useStyles = makeStyles({
   arrow: {
     color: "orange",
     float: "right",
+    marginTop: 10,
   },
 
   card_view: {
@@ -28,7 +29,8 @@ const useStyles = makeStyles({
   cardview: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "left",
+    marginTop: 10,
     "@media (min-width: 1000px)": {
       flexDirection: "row",
     },
@@ -47,10 +49,19 @@ const useStyles = makeStyles({
   },
 
   residental: {
-    lineHeight: 1.6,
+    paddingBottom: 20,
     fontFamily: "Segoe UI",
     fontWeight: 600,
     fontSize: 25,
+    width: 370,
+  },
+  loaderShow: {
+    color: "#f37321",
+    marginLeft: 300,
+    marginTop: 100,
+    "@media (min-width: 1000px)": {
+      marginLeft: 800,
+    },
   },
 });
 
