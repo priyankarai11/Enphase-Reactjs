@@ -4,15 +4,18 @@ import { MenuItem } from "@mui/material";
 import { Button } from "@mui/material";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { NAME } from "../sessionStorage/index";
+import { useStyles } from "./style";
 
 function ProfileHead() {
   const navigate = useNavigate();
+  const classes = useStyles();
 
   const goBacktoSignIn = () => {
     navigate("/");
     sessionStorage.clear();
   };
-  let name = sessionStorage.getItem("user_name");
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -36,6 +39,7 @@ function ProfileHead() {
       />
 
       <Menu
+        className={classes.menu}
         id="menu"
         aria-labelledby="demo-positioned-button"
         anchorEl={anchorEl}
@@ -50,9 +54,13 @@ function ProfileHead() {
           horizontal: "left",
         }}
       >
-        <MenuItem onClick={handleClose}>{name}</MenuItem>
+        <MenuItem className={classes.menuItem} onClick={handleClose}>
+          {NAME}
+        </MenuItem>
         <MenuItem>
-          <Button onClick={goBacktoSignIn}>Log Out</Button>
+          <Button className={classes.logOut} onClick={goBacktoSignIn}>
+            Log Out
+          </Button>
         </MenuItem>
       </Menu>
     </>

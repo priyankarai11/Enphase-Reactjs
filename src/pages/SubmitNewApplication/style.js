@@ -41,6 +41,10 @@ const useStyles = makeStyles({
     },
   },
 
+  link: {
+    cursor: "pointer",
+  },
+
   submitNewApplnSection: {
     display: "flex",
     flexDirection: "column",

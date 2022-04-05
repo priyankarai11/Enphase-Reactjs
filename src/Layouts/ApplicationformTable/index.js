@@ -17,12 +17,13 @@ import { useStyles } from "./style";
 
 function ApplicationformTable({ open, handleClick }) {
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { id } = useParams();
+  sessionStorage.setItem("person_id", id);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -41,7 +42,7 @@ function ApplicationformTable({ open, handleClick }) {
     });
 
     await fetch(
-      `https://gs-dev.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/all/view/${id}?page_no=0&page_size=10&filter_status=`,
+      `https://gs-dev.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/all/view/${id}?page=0&page_size=26&filter_status=`,
       {
         method: "GET",
         headers: myHeaders,
@@ -53,8 +54,8 @@ function ApplicationformTable({ open, handleClick }) {
 
         for (let i in res.data) {
           let set = res.data[i].map((ele) => ele);
-
           setItems(set);
+          console.log(set.length);
         }
       });
   };
@@ -107,6 +108,7 @@ function ApplicationformTable({ open, handleClick }) {
                     <TableRow>
                       <TableCell className={classes.tableRow}>
                         <Link
+                          className={classes.link}
                           onClick={() =>
                             navigate(
                               `/bb-rejected-application-1/${data.application_id}`
@@ -167,7 +169,7 @@ function ApplicationformTable({ open, handleClick }) {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
+          rowsPerPageOptions={[5, 10, 25, 100]}
           component="div"
           count={items.length}
           rowsPerPage={rowsPerPage}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -28,13 +28,16 @@ function API_Fetch() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const key = input.email;
-    const value = input.password;
+    const { email, password } = input;
+    const isValidEmail = validateForm("email", email);
+    const isValidPassword = validateForm("password", password);
+    if (isValidEmail || isValidPassword) {
+      return;
+    }
     setIsLoading(true);
-    const data = { name: key, password: value };
-
+    const data = { email, password };
     fetch(
-      ` https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${key}&password=${value}`,
+      ` https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}`,
       {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -61,7 +64,7 @@ function API_Fetch() {
         for (let i in res.error) {
           switch (i) {
             case "code":
-              if (res.error.code === "400" || res.error.code==="401") {
+              if (res.error.code === "400" || res.error.code === "401") {
                 setTimeout(() => {
                   setIsLoading(false);
                   toast.error(TOAST, {
@@ -78,30 +81,37 @@ function API_Fetch() {
       });
   };
 
-  const handleChange = (e) => {
-    e.preventDefault();
-
-    const { name, value } = e.target;
+  const validateForm = (name, value) => {
+    let hasError = false;
     switch (name) {
       case "email":
         if (EMAIL_REGEX.test(value) && value.length > 0) {
-          setHelperTextEmail(" ");
+          setHelperTextEmail("");
         } else {
           setHelperTextEmail(EMAIL_ERROR);
+          hasError = true;
         }
-
         break;
 
       case "password":
-        if (PASSWORD_REGEX.test(value) && value.length > 0) {
-          setHelperTextPassword(" ");
+        if (value.length > 7) {
+          setHelperTextPassword("");
         } else {
           setHelperTextPassword(PASSWORD_ERROR);
+          hasError = true;
         }
         break;
       default:
         break;
     }
+    setInput({ ...input, [name]: value });
+    return hasError;
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
 

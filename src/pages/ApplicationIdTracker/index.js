@@ -12,10 +12,10 @@ import { Breadcrumbs } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import { TOKEN, CARD_NAME, PERSON_ID } from "../../components/sessionStorage";
 import { CircularProgress } from "@material-ui/core";
 import { useNavigate, useParams } from "react-router";
 import { saveAs } from "file-saver";
-import { TOKEN } from "../../components/sessionStorage";
 import ProfileHeader from "../../components/Profile";
 import pdfIcon from "../../assets/icons/pdf-Icon.svg";
 import pdfDownload from "../../assets/icons/pdfDownload.svg";
@@ -28,9 +28,8 @@ function Index() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
-
   const backtoApplicationTracker = () => {
-    navigate("/aps-application-tracker");
+    navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
   };
 
   const saveFile = () => {
@@ -80,8 +79,15 @@ function Index() {
         <Link underline="hover" color="inherit" href="/iic-dashboard">
           Dashboard
         </Link>
-        <Link underline="hover" color="inherit" href="/aps-application-tracker">
-          APS Residential Battery Program
+        <Link
+          underline="hover"
+          color="inherit"
+          className={classes.link}
+          onClick={() =>
+            navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`)
+          }
+        >
+          {CARD_NAME}
         </Link>
         <Typography className={classes.viewApplication}>
           View Application
@@ -93,9 +99,9 @@ function Index() {
           variant="h5"
           component="h2"
         >
-          Applications ID: 40603
+          Applications ID: {id}
         </Typography>
-        <Typography>
+        {/* <Typography>
           <Chip
             className={classes.chip}
             avatar={
@@ -108,7 +114,7 @@ function Index() {
             size="small"
             variant="outlined"
           />
-        </Typography>
+        </Typography> */}
       </Typography>
       <div>
         <Card className={classes.box}>

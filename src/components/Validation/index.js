@@ -22,7 +22,7 @@ function Login({
   const classes = useStyles();
   let [isOpen, setIsOpen] = useState(false);
   const [isPasswordShown, setPasswordShown] = useState(false);
-  
+
   return (
     <>
       <section id="intro">
@@ -52,7 +52,7 @@ function Login({
                     label="Email Address"
                     variant="standard"
                     onChange={handleChange}
-                    error={helperTextEmail === " " ? false : true}
+                    error={helperTextEmail === "" ? false : true}
                     helperText={helperTextEmail}
                   />
                 </div>
@@ -66,8 +66,8 @@ function Login({
                     label="Password"
                     variant="standard"
                     onChange={handleChange}
-                    error={helperTextPassword === " " ? false : true}
-                    helperText={helperTextPassword}
+                    error={helperTextPassword === "" ? false : true}
+                    helperText={ helperTextPassword}
                   />
                   <i
                     className="password-icon"
@@ -101,6 +101,7 @@ function Login({
                   type="submit"
                   id="submit"
                   onClick={handleSubmit}
+                  disabled={isLoading}
                 >
                   SIGN IN
                 </Button>

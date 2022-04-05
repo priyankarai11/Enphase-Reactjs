@@ -5,7 +5,9 @@ import StepButton from "@material-ui/core/StepButton";
 import { StepLabel } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { Card } from "@material-ui/core";
+import { PERSON_ID, CARD_NAME } from "../sessionStorage";
 import { useNavigate } from "react-router";
+import Dialog from "../../components/DialogBox/DialogAlert/index";
 import ApplicationForm from "../../Layouts/ApplicationDetails/index";
 import { steps } from "./constant";
 import { useStyles } from "./style";
@@ -29,16 +31,16 @@ function getStepContent(step) {
   }
 }
 
-export default function App() {
+export default function App({ handleClickOpen }) {
   const navigate = useNavigate();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState(new Set());
-
+  const [isOpen, setisOpen] = useState(false);
   const handleBack = () => {
     console.log(activeStep);
     if (activeStep === 0) {
-      navigate("/aps-application-tracker");
+      navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
     } else setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -91,7 +93,7 @@ export default function App() {
             </Button>
             <Button
               variant="contained"
-              onClick={handleComplete}
+              onClick={handleClickOpen}
               className={classes.submitForm}
             >
               Submit

@@ -45,6 +45,11 @@ const useStyles = makeStyles({
     },
   },
 
+  link: {
+    color: "#026ae3",
+    cursor: "pointer",
+  },
+
   tableContainer: {
     maxHeight: 450,
   },

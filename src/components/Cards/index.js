@@ -53,7 +53,9 @@ function Cards() {
           <Card
             key={person.id}
             className={classes.root}
-            onClick={() => navigate(`/aps-application-tracker/${person.id}`)}
+            onClick={() =>
+              navigate(`/aps-application-tracker/${person.id}/${person.name}`)
+            }
           >
             {" "}
             <CardContent className={classes.cardsDisplay}>
@@ -84,9 +86,6 @@ function Cards() {
             </CardContent>
           </Card>
         ))}
-        {cardItem.map((ele) => {
-          const val = ele.account_id;
-        })}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import { Breadcrumbs } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ModalBox from "../../components/ModalBox/index";
 import Menu from "../../components/Menu/index";
 import useModal from "../../components/ModalBox/useModal";
@@ -13,8 +13,9 @@ import { useStyles } from "./style";
 function Index() {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { name } = useParams();
+  sessionStorage.setItem("card_name", name);
   const { isShowing, toggle } = useModal();
-
   const submitNewAppln = () => {
     navigate("/aps-submit-new-application-1");
   };
@@ -31,9 +32,7 @@ function Index() {
           <Link underline="hover" color="inherit" href="/iic-dashboard">
             Dashboard
           </Link>
-          <Typography className={classes.batteryTracker}>
-            APS Residential Battery Program
-          </Typography>
+          <Typography className={classes.batteryTracker}>{name}</Typography>
         </Breadcrumbs>
       </div>
 
@@ -51,16 +50,17 @@ function Index() {
           <Button
             variant="outlined"
             className={classes.newApplication}
-            onClick={toggle}
+            onClick={submitNewAppln}
           >
-            SEE HOW APPLICATION PROCESS WORKS
+            {" "}
+            SUBMIT NEW APPLICATION{" "}
           </Button>
           <Button
             variant="outlined"
             className={classes.newApplication}
-            onClick={submitNewAppln}
+            onClick={toggle}
           >
-            SUBMIT NEW APPLICATION
+            SEE HOW APPLICATION PROCESS WORKS
           </Button>
           <ModalBox isShowing={isShowing} hide={toggle} />
         </div>

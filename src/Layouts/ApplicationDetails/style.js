@@ -17,10 +17,39 @@ const useStyles = makeStyles({
   textField: {
     width: "90%",
     marginLeft: 30,
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 20,
     color: "#757575",
     "@media (min-width: 1000px)": {
       width: "85%",
+    },
+  },
+
+  textFieldEnphase: {
+    marginTop: 10,
+    marginBottom: 20,
+  },
+
+  textFieldDetails: {
+    marginLeft: 30,
+    marginTop: 10,
+    marginBottom: 20,
+    color: "#757575",
+    fontSize: 12,
+    fontFamily: "Roboto, sans-serif",
+  },
+
+  enphaseField: {
+    fontSize: "1rem",
+    fontFamily: "Roboto",
+    marginLeft: 30,
+  },
+
+  enphaseBattery: {
+    float: "right",
+    marginRight: 50,
+    "@media (min-width: 1000px)": {
+      marginRight: 90,
     },
   },
 
@@ -39,10 +68,18 @@ const useStyles = makeStyles({
 
   decrementButton: {
     borderRadius: 1,
+    marginRight: 30,
+    "@media (min-width: 1000px)": {
+      marginRight: 50,
+    },
   },
 
   IncrementCount: {
     borderRadius: 1,
+    marginLeft: 30,
+    "@media (min-width: 1000px)": {
+      marginLeft: 50,
+    },
   },
 
   countNumber: {

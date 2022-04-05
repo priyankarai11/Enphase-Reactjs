@@ -63,6 +63,10 @@ export const useStyles = makeStyles({
     },
   },
 
+  link: {
+    cursor: "pointer",
+  },
+
   secondheaderofCard: {
     color: "#f37320",
     padding: 20,
