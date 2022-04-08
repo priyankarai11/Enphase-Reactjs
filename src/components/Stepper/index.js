@@ -95,6 +95,7 @@ export default function App({ handleClickOpen }) {
               variant="contained"
               onClick={handleClickOpen}
               className={classes.submitForm}
+              disabled
             >
               Submit
             </Button>

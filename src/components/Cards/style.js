@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     padding: 30,
     display: "flex",
     flexDirection: "column",
+    marginBottom: 50,
     "@media (min-width: 1000px)": {
       flexDirection: "row",
     },
@@ -55,6 +56,7 @@ const useStyles = makeStyles({
     fontSize: 25,
     width: 370,
   },
+
   loaderShow: {
     color: "#f37321",
     marginLeft: 300,

@@ -105,17 +105,20 @@ const useStyles = makeStyles({
 
   fileuploaderContent: {
     color: "#f37320",
-    padding: 20,
+    padding: 26,
     backgroundColor: "#0000001A",
     marginTop: 30,
+    "&.MuiCardContent-root": {
+      padding: 36,
+    },
     "@media (min-width: 1000px)": {
       marginTop: 0,
     },
   },
 
   uploadFile: {
-    width: 245,
-    height: 255,
+    width: 240,
+    height: 260,
     marginLeft: 30,
     marginTop: 30,
     borderStyle: "dotted",
@@ -129,22 +132,14 @@ const useStyles = makeStyles({
 
   scannedCopy: {
     textAlign: "center",
-  },
-
-  upload: {
-    "&.MuiButton-outlined": {
-      color: "#f37320",
-      borderColor: "#f37320",
-      marginTop: 10,
-      marginLeft: 16,
-      width: 171,
-    },
+    fontSize: 14,
   },
 
   fileConditions: {
     color: "#545456",
     textAlign: "center",
     marginTop: 5,
+    fontSize: 12,
   },
 
   uploadingFile: {

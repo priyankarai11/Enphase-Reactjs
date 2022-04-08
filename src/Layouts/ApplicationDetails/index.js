@@ -24,6 +24,8 @@ import {
 } from "../../components/Utils/RegularExpression/constant";
 import Checkbox from "../../components/Checkbox/index";
 import UpArrow from "../../assets/icons/upArrow.svg";
+import StepperContent from "../../components/Stepper/index";
+import "./index.css";
 import { useStyles } from "./style";
 
 const values = [
@@ -44,6 +46,8 @@ function Index() {
     2: 0,
   };
 
+  const [img, setImg] = useState();
+  const [upload, setUpload] = useState("UPLOAD");
   const [counter, setCounter] = useState(count);
   const [helperTextemail, setHelperTextEmail] = useState("");
   const [helperTextfirstName, setHelperTextFirstName] = useState("");
@@ -64,11 +68,11 @@ function Index() {
     city: "",
     state: "",
     zip: "",
-    phoneNumber: "",
+    phone: "",
     accountNumner: "",
+    option: "",
+    electric: "",
   });
-
-  const [option, setOption] = useState("Data and Dispatch");
 
   const increment = (id) => {
     setCounter({ ...counter, [id]: counter[id] + 1 });
@@ -82,8 +86,9 @@ function Index() {
     }
   };
 
-  const handleTextField = (e) => {
-    setOption(e.target.value);
+  const onImageChange = (e) => {
+    setImg(`${e.target.files[0].name}`);
+    setUpload("RE-UPLOAD");
   };
 
   const handleChange = (e) => {
@@ -154,6 +159,9 @@ function Index() {
           setHelperTextPN(PHONENUMBER);
         }
         break;
+      case "option":
+        setInput({ option: e.target.value });
+        break;
       case "electric":
         if (PHONE_NUMBER_REGEX.test(value) && value.length >= 8) {
           setHelperTextAC("");
@@ -164,8 +172,8 @@ function Index() {
       default:
         break;
     }
-    console.log(setInput({ ...input, [name]: value }));
-    // setInput({ ...input, [name]: value });
+    setInput({ ...input, [name]: value });
+    console.log({ ...input, [name]: value });
   };
   return (
     <>
@@ -328,15 +336,16 @@ function Index() {
                   className={classes.textField}
                   select
                   label="Program Option"
-                  value={option}
-                  onChange={handleTextField}
+                  value={input.option}
+                  name="option"
+                  onChange={handleChange}
                   SelectProps={{
                     native: true,
                   }}
                   variant="standard"
                 >
                   {values.map((ele) => (
-                    <option key={ele.value} value={ele.value}>
+                    <option key={ele.value} value={ele.label}>
                       {ele.label}
                     </option>
                   ))}
@@ -366,9 +375,16 @@ function Index() {
                 <Typography className={classes.scannedCopy}>
                   Scanned Copy of Program T&C Document
                 </Typography>
-                <Button variant="outlined" className={classes.upload}>
-                  Upload
-                </Button>
+                <d className="fileUploader">
+                  {upload}
+                  <input
+                    type="file"
+                    className="hide_file"
+                    accept="application/pdf"
+                    onChange={onImageChange}
+                  />
+                </d>
+                <span className="selectedFile">{img}</span>
                 <Typography className={classes.fileConditions}>
                   File number limit: 1
                 </Typography>
@@ -376,7 +392,7 @@ function Index() {
                   Size limit:10GB
                 </Typography>
                 <Typography className={classes.fileConditions}>
-                  Download Application Form
+                  Allowed file types:PDF
                 </Typography>
               </CardContent>
             </Card>
@@ -384,6 +400,7 @@ function Index() {
         </div>
         <Checkbox />
       </Card>
+      {/* <StepperContent input={input} /> */}
     </>
   );
 }

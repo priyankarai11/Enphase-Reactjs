@@ -33,7 +33,7 @@ export const useStyles = makeStyles({
 
   stepIconRoot: {
     "&.MuiStepIcon-root.MuiStepIcon-active": {
-      color: "#f37320",
+      color: "rgba(0, 0, 0, 0.38)",
     },
     "&.MuiStepIcon-root.MuiStepIcon-completed": {
       color: "#f37320",

@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     paddingLeft: 50,
     marginTop: 45,
     marginRight: 50,
-    textAlign: "center",
+    textAlign: "left",
     fontWeight: "bold",
     fontSize: 29,
     fontFamily: "Roboto",
@@ -29,12 +29,13 @@ const useStyles = makeStyles({
   },
 
   document: {
-    float: "right",
+    float: "left",
     height: 50,
     marginRight: 100,
     marginTop: 10,
     marginBottom: 20,
     width: 270,
+    marginLeft:50,
     "&.MuiButton-outlined": {
       color: "#f37320",
       borderColor: "#f37320",

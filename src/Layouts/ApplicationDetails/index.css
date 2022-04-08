@@ -1,0 +1,42 @@
+:root {
+  --white: #ffffff;
+  --orange: #f37321;
+}
+
+d {
+  border: 1px solid var(--orange);
+  position: relative;
+  color: var(--orange);
+  background-color: var(--white);
+  border-radius: 2px;
+  text-align: center;
+  float: left;
+  cursor: pointer;
+  width: 180px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.hide_file {
+  position: absolute;
+  z-index: 1000;
+  opacity: 0;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  height: 40px;
+  font-size: 24px;
+  width: 100%;
+}
+
+.fileUploader {
+  height: 40px;
+}
+
+.selectedFile {
+  color: var(--orange);
+  margin-left: 60px;
+  font-size: 14px;
+}

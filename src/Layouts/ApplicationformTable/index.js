@@ -18,6 +18,7 @@ import { useStyles } from "./style";
 function ApplicationformTable({ open, handleClick }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
+  const [pages, setPages] = useState([5, 10, 25, 100]);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +28,7 @@ function ApplicationformTable({ open, handleClick }) {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+    console.log(page, rowsPerPage, items.length);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -42,7 +44,7 @@ function ApplicationformTable({ open, handleClick }) {
     });
 
     await fetch(
-      `https://gs-dev.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/all/view/${id}?page=0&page_size=26&filter_status=`,
+      `https://gs-dev.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/all/view/${id}?page=0&page_size=100&filter_status=`,
       {
         method: "GET",
         headers: myHeaders,
@@ -54,8 +56,9 @@ function ApplicationformTable({ open, handleClick }) {
 
         for (let i in res.data) {
           let set = res.data[i].map((ele) => ele);
-          setItems(set);
-          console.log(set.length);
+          if (set.length === 0) {
+            setItems([]);
+          } else setItems(set);
         }
       });
   };
@@ -169,7 +172,7 @@ function ApplicationformTable({ open, handleClick }) {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 100]}
+          rowsPerPageOptions={pages}
           component="div"
           count={items.length}
           rowsPerPage={rowsPerPage}

@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./components/App/App";
 import Footer from "./components/Footer/index.js";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
   <div>

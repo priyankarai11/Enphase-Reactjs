@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -64,7 +64,11 @@ function API_Fetch() {
         for (let i in res.error) {
           switch (i) {
             case "code":
-              if (res.error.code === "400" || res.error.code === "401") {
+              if (
+                res.error.code === "400" ||
+                res.error.code === "401" ||
+                res.error.code === "503"
+              ) {
                 setTimeout(() => {
                   setIsLoading(false);
                   toast.error(TOAST, {
@@ -80,6 +84,8 @@ function API_Fetch() {
         }
       });
   };
+
+ 
 
   const validateForm = (name, value) => {
     let hasError = false;
@@ -104,7 +110,6 @@ function API_Fetch() {
       default:
         break;
     }
-    setInput({ ...input, [name]: value });
     return hasError;
   };
 

@@ -53,10 +53,12 @@ const useStyles = makeStyles({
   tableContainer: {
     maxHeight: 450,
   },
+
   tableTop: {
     position: "sticky",
     top: 0,
   },
+
   loaderShow: {
     color: "#f37321",
     marginLeft: 300,
