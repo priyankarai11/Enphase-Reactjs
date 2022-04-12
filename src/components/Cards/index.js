@@ -8,7 +8,6 @@ import { ListItem } from "@material-ui/core";
 import { ListItemText } from "@material-ui/core";
 import { CardContent } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { TOKEN } from "../../components/sessionStorage/index";
 import { useNavigate } from "react-router";
 import { useStyles } from "./style";
 
@@ -17,7 +16,7 @@ function Cards() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [cardItem, setCardItem] = useState([]);
-
+  const TOKEN = sessionStorage.getItem("auth");
   const getData = async () => {
     const myHeaders = new Headers({
       "Content-Type": "application/json",

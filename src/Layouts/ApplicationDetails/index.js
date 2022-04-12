@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "@mui/material";
-import { FormGroup } from "@mui/material";
-import { FormControlLabel } from "@mui/material";
 import { CardContent, Button } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { ListItem, Typography, Link } from "@material-ui/core";
 import { Chip } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
@@ -53,6 +52,8 @@ function Index() {
 
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const [enphase3, setEnphase3] = useState(0);
+  const [enphase10, setEnphase10] = useState(0);
   const [img, setImg] = useState(null);
   const [checked, setChecked] = useState(false);
   const [isEnabled, setIsEnabled] = useState(true);
@@ -92,16 +93,25 @@ function Index() {
 
   const increment = (id) => {
     setCounter({ ...counter, [id]: counter[id] + 1 });
+    if (id === 1) {
+      setEnphase3(counter[1]);
+    } else setEnphase10(counter[2]);
   };
 
   const decrement = (id) => {
     if (counter[id] < 1) {
-      setCounter[id] = 0;
+      if (id === 1) {
+        setEnphase3(0);
+      } else setEnphase10(0);
     } else {
       setCounter({ ...counter, [id]: counter[id] - 1 });
+      if (id === 1) {
+        setEnphase3(counter[1]);
+      } else setEnphase10(counter[2]);
     }
   };
 
+  console.log(enphase3, enphase10);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -209,6 +219,8 @@ function Index() {
       city,
       phone,
       electric,
+      counter,
+      option,
     } = input;
     if (
       firstName === "" ||
@@ -222,6 +234,9 @@ function Index() {
       address2 === "" ||
       city === "" ||
       img === null ||
+      enphase3 === 0 ||
+      enphase10 === 0 ||
+      option === "" ||
       checked === false
     ) {
       setIsEnabled(true);
@@ -233,7 +248,7 @@ function Index() {
   useEffect(() => {
     disableButton();
   });
-  console.log(checked);
+
   return (
     <>
       <Card className={classes.enterTheDetail}>
@@ -352,7 +367,7 @@ function Index() {
                       label="-"
                       value={counter}
                     />
-                    {counter[1]}
+                    {enphase3}
                     <Chip
                       id="1"
                       className={classes.IncrementCount}
@@ -376,7 +391,7 @@ function Index() {
                       label="-"
                       value={counter}
                     />
-                    {counter[2]}
+                    {enphase10}
                     <Chip
                       id="2"
                       className={classes.IncrementCount}
@@ -395,24 +410,26 @@ function Index() {
                 <ListItem className={classes.enphaseField}>
                   {getCapacity}
                 </ListItem>
-                <TextField
-                  className={classes.textField}
-                  select
-                  label="Program Option"
-                  value={input.option}
-                  name="option"
-                  onChange={handleChange}
-                  SelectProps={{
-                    native: true,
-                  }}
-                  variant="standard"
-                >
-                  {values.map((ele) => (
-                    <option key={ele.value} value={ele.label}>
-                      {ele.label}
-                    </option>
-                  ))}
-                </TextField>
+
+                <FormControl className={classes.textField} variant="standard">
+                  <InputLabel id="demo-simple-select-standard-label">
+                    Program Option
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={input.option}
+                    onChange={handleChange}
+                    label="Program Option"
+                    name="option"
+                  >
+                    {values.map((ele) => (
+                      <MenuItem key={ele.value} value={ele.label}>
+                        {ele.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
 
                 <TextField
                   className={classes.textField}
@@ -462,38 +479,6 @@ function Index() {
           </div>
         </div>
         <Checkbox checked={checked} setChecked={setChecked} />
-        {/* <div className={classes.checkbox}>
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox onClick={() => setChecked(!checked)} />}
-              label={
-                <Typography className={classes.formControlLabel}>
-                  I confirm the following:
-                </Typography>
-              }
-            />
-          </FormGroup>
-        </div>
-
-        <div>
-          <ul className={classes.listStyle}>
-            <li className={classes.listItems}>
-              I am authorised to submit the documents that I have uploaded using
-              this site, and have received permission from the applicant to
-              submit this information to Enphase on the applicant’s behalf.
-            </li>
-            <li className={classes.listItems}>
-              I have read and understand{" "}
-              <Link className={classes.linkRoot}>Enphase’s Privacy Policy</Link>{" "}
-              and <Link className={classes.linkRoot}> Terms of Service </Link>
-              (the “Policies”).
-            </li>
-            <li className={classes.listItems}>
-              The applicant has acknowledged that they have read and understand
-              the Policies.
-            </li>
-          </ul>
-        </div> */}
       </Card>
 
       <div className={classes.buttonSection}>
@@ -508,7 +493,7 @@ function Index() {
           variant="contained"
           onClick={handleClickOpen}
           className={classes.submitForm}
-          // disabled={isEnabled}
+          disabled={isEnabled}
         >
           Submit
         </Button>

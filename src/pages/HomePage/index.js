@@ -1,11 +1,10 @@
 import React from "react";
 import Cards from "../../components/Cards";
-import {NAME} from "../../components/sessionStorage/index"
 import ProfileHeader from "../../components/Profile/index";
 import "./index.css";
 
 function Home() {
-  // let name = sessionStorage.getItem("user_name");
+  let NAME = sessionStorage.getItem("user_name");
 
   return (
     <>

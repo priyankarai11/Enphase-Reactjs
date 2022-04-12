@@ -163,7 +163,7 @@ const useStyles = makeStyles({
 
   submitForm: {
     "&.MuiButton-root": {
-      background: "#f37320",
+      background: "#ff4800",
       marginLeft: 40,
       marginRight: 40,
       color: "#ffffff",
@@ -173,8 +173,11 @@ const useStyles = makeStyles({
     },
     "&.MuiButton-root.Mui-disabled": {
       opacity: 0.7,
-      background: "#f37320",
+      background: "#ff4800",
       color: "#ffffff",
+    },
+    "&.MuiButton-root:hover": {
+      background: "#f37320",
     },
   },
 
@@ -185,7 +188,7 @@ const useStyles = makeStyles({
 
   previousPage: {
     "&.MuiButton-outlined": {
-      borderColor: "grey",
+      borderColor: "#f37320",
       color: "#f37320",
       borderRadius: 4,
       height: 36,
