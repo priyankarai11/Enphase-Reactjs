@@ -8,5 +8,7 @@ const PASSWORD_REGEX = RegExp(
 
 const ZIP_REGEX = RegExp(/^[0-9\b]+$/);
 
-const PHONE_NUMBER_REGEX = RegExp(/^[0-9\b]+$/);
-export { EMAIL_REGEX, PASSWORD_REGEX, PHONE_NUMBER_REGEX, ZIP_REGEX };
+const STRING_REGEX = RegExp(/^[a-zA-Z]/);
+
+const NUMBER_REGEX = RegExp(/^[0-9\b]+$/);
+export { EMAIL_REGEX, PASSWORD_REGEX, NUMBER_REGEX, ZIP_REGEX, STRING_REGEX };

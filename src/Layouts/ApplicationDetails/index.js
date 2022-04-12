@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "@mui/material";
+import { FormGroup } from "@mui/material";
+import { FormControlLabel } from "@mui/material";
 import { CardContent, Button } from "@mui/material";
-import { ListItem, Typography } from "@material-ui/core";
+import { ListItem, Typography, Link } from "@material-ui/core";
 import { Chip } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Table, TableContainer } from "@mui/material";
+import { useNavigate } from "react-router";
+import DialogConfirm from "../../components/DialogBox/DialogAlert/index";
 import {
   FIRSTNAME_ERROR,
   LASTNAME_ERROR,
@@ -19,12 +23,13 @@ import {
 } from "../../components/Utils/Message/messageTypes";
 import {
   EMAIL_REGEX,
-  PHONE_NUMBER_REGEX,
+  NUMBER_REGEX,
   ZIP_REGEX,
+  STRING_REGEX,
 } from "../../components/Utils/RegularExpression/constant";
+import { PERSON_ID, CARD_NAME } from "../../components/sessionStorage";
 import Checkbox from "../../components/Checkbox/index";
 import UpArrow from "../../assets/icons/upArrow.svg";
-import StepperContent from "../../components/Stepper/index";
 import "./index.css";
 import { useStyles } from "./style";
 
@@ -46,7 +51,11 @@ function Index() {
     2: 0,
   };
 
-  const [img, setImg] = useState();
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const [img, setImg] = useState(null);
+  const [checked, setChecked] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(true);
   const [upload, setUpload] = useState("UPLOAD");
   const [counter, setCounter] = useState(count);
   const [helperTextemail, setHelperTextEmail] = useState("");
@@ -74,6 +83,13 @@ function Index() {
     electric: "",
   });
 
+  const num = counter[1] * 1.28 + counter[2] * 3.84;
+  const getCapacity = (Math.round(num * 100) / 100).toFixed(2);
+
+  const handleBack = () => {
+    navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
+  };
+
   const increment = (id) => {
     setCounter({ ...counter, [id]: counter[id] + 1 });
   };
@@ -84,6 +100,10 @@ function Index() {
     } else {
       setCounter({ ...counter, [id]: counter[id] - 1 });
     }
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
   const onImageChange = (e) => {
@@ -97,14 +117,14 @@ function Index() {
     const { name, value } = e.target;
     switch (name) {
       case "firstName":
-        if (value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 4) {
           setHelperTextFirstName("");
         } else {
           setHelperTextFirstName(FIRSTNAME_ERROR);
         }
         break;
       case "lastName":
-        if (value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 4) {
           setHelperLastName("");
         } else {
           setHelperLastName(LASTNAME_ERROR);
@@ -118,42 +138,42 @@ function Index() {
         }
         break;
       case "address1":
-        if (value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 4) {
           setHelperTextAddress1("");
         } else {
           setHelperTextAddress1(ADDRESS1_ERROR);
         }
         break;
       case "address2":
-        if (value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 4) {
           setHelperTextAddress2("");
         } else {
           setHelperTextAddress2(ADDRESS2_ERROR);
         }
         break;
       case "city":
-        if (value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 4) {
           setHelperTextCity("");
         } else {
           setHelperTextCity(CITY);
         }
         break;
       case "state":
-        if (value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 4) {
           setHelperTextState("");
         } else {
           setHelperTextState(STATE);
         }
         break;
       case "zip":
-        if (PHONE_NUMBER_REGEX.test(value) && value.length >= 5) {
+        if (NUMBER_REGEX.test(value) && value.length === 5) {
           setHelperTextZip("");
         } else {
           setHelperTextZip(ZIP);
         }
         break;
       case "phone":
-        if (PHONE_NUMBER_REGEX.test(value) && value.length === 10) {
+        if (NUMBER_REGEX.test(value) && value.length === 10) {
           setHelperTextPN("");
         } else {
           setHelperTextPN(PHONENUMBER);
@@ -163,7 +183,7 @@ function Index() {
         setInput({ option: e.target.value });
         break;
       case "electric":
-        if (PHONE_NUMBER_REGEX.test(value) && value.length >= 8) {
+        if (NUMBER_REGEX.test(value) && value.length >= 8) {
           setHelperTextAC("");
         } else {
           setHelperTextAC(ELECTRIC);
@@ -173,8 +193,47 @@ function Index() {
         break;
     }
     setInput({ ...input, [name]: value });
-    console.log({ ...input, [name]: value });
+    // console.log({ ...input, [name]: value });
   };
+  // console.log(counter[1], counter[2], img);
+
+  const disableButton = () => {
+    const {
+      firstName,
+      lastName,
+      email,
+      zip,
+      state,
+      address1,
+      address2,
+      city,
+      phone,
+      electric,
+    } = input;
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      zip === "" ||
+      state === "" ||
+      email === "" ||
+      phone === "" ||
+      electric === "" ||
+      address1 === "" ||
+      address2 === "" ||
+      city === "" ||
+      img === null ||
+      checked === false
+    ) {
+      setIsEnabled(true);
+    } else {
+      setIsEnabled(false);
+    }
+  };
+
+  useEffect(() => {
+    disableButton();
+  });
+  console.log(checked);
   return (
     <>
       <Card className={classes.enterTheDetail}>
@@ -194,6 +253,7 @@ function Index() {
                   onChange={handleChange}
                   error={helperTextfirstName === "" ? false : true}
                   helperText={helperTextfirstName}
+                  InputLabelProps={{ className: classes.textfieldLabel }}
                 />
                 <br />
                 <TextField
@@ -331,7 +391,10 @@ function Index() {
                   {" "}
                   KW Capacity committed for data sharing
                 </Typography>
-                <ListItem className={classes.textField}></ListItem>
+
+                <ListItem className={classes.enphaseField}>
+                  {getCapacity}
+                </ListItem>
                 <TextField
                   className={classes.textField}
                   select
@@ -375,7 +438,7 @@ function Index() {
                 <Typography className={classes.scannedCopy}>
                   Scanned Copy of Program T&C Document
                 </Typography>
-                <d className="fileUploader">
+                <h4 className="fileUploader">
                   {upload}
                   <input
                     type="file"
@@ -383,7 +446,7 @@ function Index() {
                     accept="application/pdf"
                     onChange={onImageChange}
                   />
-                </d>
+                </h4>
                 <span className="selectedFile">{img}</span>
                 <Typography className={classes.fileConditions}>
                   File number limit: 1
@@ -398,9 +461,59 @@ function Index() {
             </Card>
           </div>
         </div>
-        <Checkbox />
+        <Checkbox checked={checked} setChecked={setChecked} />
+        {/* <div className={classes.checkbox}>
+          <FormGroup>
+            <FormControlLabel
+              control={<Checkbox onClick={() => setChecked(!checked)} />}
+              label={
+                <Typography className={classes.formControlLabel}>
+                  I confirm the following:
+                </Typography>
+              }
+            />
+          </FormGroup>
+        </div>
+
+        <div>
+          <ul className={classes.listStyle}>
+            <li className={classes.listItems}>
+              I am authorised to submit the documents that I have uploaded using
+              this site, and have received permission from the applicant to
+              submit this information to Enphase on the applicant’s behalf.
+            </li>
+            <li className={classes.listItems}>
+              I have read and understand{" "}
+              <Link className={classes.linkRoot}>Enphase’s Privacy Policy</Link>{" "}
+              and <Link className={classes.linkRoot}> Terms of Service </Link>
+              (the “Policies”).
+            </li>
+            <li className={classes.listItems}>
+              The applicant has acknowledged that they have read and understand
+              the Policies.
+            </li>
+          </ul>
+        </div> */}
       </Card>
-      {/* <StepperContent input={input} /> */}
+
+      <div className={classes.buttonSection}>
+        <Button
+          variant="outlined"
+          className={classes.previousPage}
+          onClick={handleBack}
+        >
+          Back
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleClickOpen}
+          className={classes.submitForm}
+          // disabled={isEnabled}
+        >
+          Submit
+        </Button>
+        <DialogConfirm setOpen={setOpen} open={open} />
+      </div>
     </>
   );
 }

@@ -31,12 +31,13 @@ function getStepContent(step) {
   }
 }
 
-export default function App({ handleClickOpen }) {
+export default function App({ isEnabled }) {
   const navigate = useNavigate();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState(new Set());
   const [isOpen, setisOpen] = useState(false);
+
   const handleBack = () => {
     console.log(activeStep);
     if (activeStep === 0) {
@@ -44,6 +45,7 @@ export default function App({ handleClickOpen }) {
     } else setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  console.log(isEnabled);
   const handleStep = (step) => () => {
     setActiveStep(step);
   };
@@ -82,7 +84,7 @@ export default function App({ handleClickOpen }) {
       <div>
         <div>
           {getStepContent(activeStep)}
-
+{/* 
           <div className={classes.buttonSection}>
             <Button
               variant="outlined"
@@ -93,13 +95,13 @@ export default function App({ handleClickOpen }) {
             </Button>
             <Button
               variant="contained"
-              onClick={handleClickOpen}
+              // onClick={handleClickOpen}
               className={classes.submitForm}
               disabled
             >
               Submit
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

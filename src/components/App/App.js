@@ -54,13 +54,17 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/aps-submit-new-application-1"
           element={
             <PrivateRoute>
               <SubmitNewApplication />
             </PrivateRoute>
           }
+        /> */}
+        <Route
+          path="/aps-submit-new-application-1"
+          element={<SubmitNewApplication />}
         />
       </Routes>
     </BrowserRouter>

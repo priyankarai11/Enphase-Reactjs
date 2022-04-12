@@ -25,6 +25,16 @@ const useStyles = makeStyles({
     },
   },
 
+  textfieldLabel: {
+    "&.Mui-focused": {
+      color: "#f37320",
+      borderColor: "#f37320",
+    },
+    "&.Mui-error": {
+      color: "red",
+    },
+  },
+
   textFieldEnphase: {
     marginTop: 10,
     marginBottom: 20,
@@ -43,6 +53,7 @@ const useStyles = makeStyles({
     fontSize: "1rem",
     fontFamily: "Roboto",
     marginLeft: 30,
+    marginBottom: 10,
   },
 
   enphaseBattery: {
@@ -148,6 +159,72 @@ const useStyles = makeStyles({
 
   UpArrow: {
     marginLeft: 80,
+  },
+
+  submitForm: {
+    "&.MuiButton-root": {
+      background: "#f37320",
+      marginLeft: 40,
+      marginRight: 40,
+      color: "#ffffff",
+      borderRadius: 4,
+      height: 36,
+      width: 150,
+    },
+    "&.MuiButton-root.Mui-disabled": {
+      opacity: 0.7,
+      background: "#f37320",
+      color: "#ffffff",
+    },
+  },
+
+  buttonSection: {
+    height: 100,
+    float: "right",
+  },
+
+  previousPage: {
+    "&.MuiButton-outlined": {
+      borderColor: "grey",
+      color: "#f37320",
+      borderRadius: 4,
+      height: 36,
+      width: 150,
+    },
+    "&.MuiButton-root:hover": {
+      border: "1px solid #f37320",
+    },
+  },
+
+  listStyle: {
+    marginLeft: 70,
+  },
+
+  linkRoot: {
+    color: "#f37320",
+  },
+
+  listContents: {
+    marginBottom: 50,
+  },
+
+  checkbox: {
+    marginLeft: 30,
+    marginTop: 30,
+    marginBottom: 10,
+  },
+
+  listItems: {
+    marginBottom: 16,
+    fontSize: 14,
+    fontWeight: "bold",
+    fontFamily: "Roboto",
+  },
+
+  formControlLabel: {
+    fontSize: 16,
+    fontWeight: "bold",
+    fontFamily: "Roboto",
   },
 });
 

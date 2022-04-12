@@ -85,8 +85,6 @@ function API_Fetch() {
       });
   };
 
- 
-
   const validateForm = (name, value) => {
     let hasError = false;
     switch (name) {

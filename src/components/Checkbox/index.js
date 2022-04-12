@@ -1,17 +1,18 @@
-import React from "react";
+import { useState } from "react";
 import { FormGroup } from "@mui/material";
 import { FormControlLabel, Checkbox } from "@mui/material";
-import { Link , Typography} from "@material-ui/core";
+import { Link, Typography } from "@material-ui/core";
 import { useStyles } from "./style";
 
-function CheckboxContent() {
+function CheckboxContent({ checked, setChecked }) {
   const classes = useStyles();
+
   return (
     <>
       <div className={classes.checkbox}>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox defaultChecked />}
+            control={<Checkbox onClick={() => setChecked(!checked)} />}
             label={
               <Typography className={classes.formControlLabel}>
                 I confirm the following:

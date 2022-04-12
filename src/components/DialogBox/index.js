@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./index.css";
 import Button from "@restart/ui/esm/Button";
+import "./index.css";
 
 class Dialog extends Component {
   render() {

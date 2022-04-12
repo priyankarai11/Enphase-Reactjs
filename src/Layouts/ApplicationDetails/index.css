@@ -3,7 +3,7 @@
   --orange: #f37321;
 }
 
-d {
+h4 {
   border: 1px solid var(--orange);
   position: relative;
   color: var(--orange);
@@ -17,6 +17,7 @@ d {
   margin-left: 10px;
   margin-bottom: 10px;
   padding-top: 10px;
+  font-weight: normal;
 }
 
 .hide_file {
