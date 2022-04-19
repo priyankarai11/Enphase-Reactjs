@@ -54,6 +54,7 @@ const useStyles = makeStyles({
     fontFamily: "Roboto",
     marginLeft: 30,
     marginBottom: 10,
+    border:"none"
   },
 
   enphaseBattery: {
@@ -172,7 +173,7 @@ const useStyles = makeStyles({
       width: 150,
     },
     "&.MuiButton-root.Mui-disabled": {
-      opacity: 0.7,
+      opacity: 0.5,
       background: "#ff4800",
       color: "#ffffff",
     },

@@ -45,22 +45,14 @@ const values = [
 
 function Index() {
   const classes = useStyles();
-  let count = {
-    1: 0,
-    2: 0,
-  };
-
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const [enphase3, setEnphase3] = useState(0);
-  const [enphase10, setEnphase10] = useState(0);
   const [img, setImg] = useState(null);
+  const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [isEnabled, setIsEnabled] = useState(true);
   const [upload, setUpload] = useState("UPLOAD");
-  const [counter, setCounter] = useState(count);
   const [helperTextemail, setHelperTextEmail] = useState("");
-  const [helperTextfirstName, setHelperTextFirstName] = useState("");
+  const [helperTextfirst_name, setHelperTextFirstName] = useState("");
   const [helperTextlastName, setHelperLastName] = useState("");
   const [helperTextaddress1, setHelperTextAddress1] = useState("");
   const [helperTextaddress2, setHelperTextAddress2] = useState("");
@@ -69,52 +61,85 @@ function Index() {
   const [helperTextstate, setHelperTextState] = useState("");
   const [helperTextpn, setHelperTextPN] = useState("");
   const [helperTextac, setHelperTextAC] = useState("");
-  const [input, setInput] = useState({
-    email: "",
-    firstName: "",
-    lastName: "",
+  const [homeowner_info, setHomeowner_info] = useState({
+    first_name: "",
+    last_name: "",
+    email_address: "",
     address1: "",
     address2: "",
     city: "",
     state: "",
     zip: "",
     phone: "",
-    accountNumner: "",
-    option: "",
-    electric: "",
+    encharge3:0,
+    encharge10:0,
+    program_type:"",
+    electric_account_number: "",
+    kw_capacity_committed:0.00,
+    source_portal:'INTAKE',
+    program_id:PERSON_ID
+   
   });
-
-  const num = counter[1] * 1.28 + counter[2] * 3.84;
-  const getCapacity = (Math.round(num * 100) / 100).toFixed(2);
 
   const handleBack = () => {
     navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
   };
 
-  const increment = (id) => {
-    setCounter({ ...counter, [id]: counter[id] + 1 });
-    if (id === 1) {
-      setEnphase3(counter[1]);
-    } else setEnphase10(counter[2]);
-  };
 
-  const decrement = (id) => {
-    if (counter[id] < 1) {
-      if (id === 1) {
-        setEnphase3(0);
-      } else setEnphase10(0);
-    } else {
-      setCounter({ ...counter, [id]: counter[id] - 1 });
-      if (id === 1) {
-        setEnphase3(counter[1]);
-      } else setEnphase10(counter[2]);
+  var num = homeowner_info.encharge3 * 1.28 + homeowner_info.encharge10 * 3.84;
+  var getCapacities = (Math.round(num * 100) / 100).toFixed(2);
+
+  const getCapacity=()=>{
+    return setHomeowner_info({...homeowner_info, kw_capacity_committed:getCapacities})
+  }
+
+const encharge3_Increment=()=>{
+  getCapacity();
+return setHomeowner_info(prev=>({
+    ...prev, encharge3:prev.encharge3+1}))
+  
+    
+}
+
+const encharge3_Decrement=()=>{
+  if(homeowner_info.encharge3<1)
+  {
+    getCapacity();
+    return setHomeowner_info(prev=>({
+      ...prev, encharge3:0}))
+  }
+  else{
+    getCapacity();
+    return setHomeowner_info(prev=>({
+      ...prev, encharge3:prev.encharge3-1}))
+  }
+}
+
+const encharge10_Increment=()=>{
+  getCapacity();
+  return setHomeowner_info(prev=>({
+    ...prev, encharge10:prev.encharge10+1}))
+  }
+  
+  const encharge10_Decrement=()=>{
+    if(homeowner_info.encharge10<1)
+    {
+      getCapacity();
+     return setHomeowner_info(prev=>({
+      ...prev, encharge10:0}))
     }
-  };
+    else{
+      getCapacity();
+      return setHomeowner_info(prev=>({
+        ...prev, encharge10:prev.encharge10-1}))
+    }
+  }
 
-  console.log(enphase3, enphase10);
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+
 
   const onImageChange = (e) => {
     setImg(`${e.target.files[0].name}`);
@@ -126,21 +151,21 @@ function Index() {
 
     const { name, value } = e.target;
     switch (name) {
-      case "firstName":
+      case "first_name":
         if (STRING_REGEX.test(value) && value.length >= 4) {
           setHelperTextFirstName("");
         } else {
           setHelperTextFirstName(FIRSTNAME_ERROR);
         }
         break;
-      case "lastName":
+      case "last_name":
         if (STRING_REGEX.test(value) && value.length >= 4) {
           setHelperLastName("");
         } else {
           setHelperLastName(LASTNAME_ERROR);
         }
         break;
-      case "email":
+      case "email_address":
         if (EMAIL_REGEX.test(value) && value.length > 0) {
           setHelperTextEmail("");
         } else {
@@ -189,10 +214,10 @@ function Index() {
           setHelperTextPN(PHONENUMBER);
         }
         break;
-      case "option":
-        setInput({ option: e.target.value });
+      case "program_type":
+        setHomeowner_info({ program_type: e.target.value });
         break;
-      case "electric":
+      case "electric_account_number":
         if (NUMBER_REGEX.test(value) && value.length >= 8) {
           setHelperTextAC("");
         } else {
@@ -202,41 +227,40 @@ function Index() {
       default:
         break;
     }
-    setInput({ ...input, [name]: value });
-    // console.log({ ...input, [name]: value });
+    setHomeowner_info({ ...homeowner_info, [name]: value });
   };
-  // console.log(counter[1], counter[2], img);
 
   const disableButton = () => {
     const {
-      firstName,
-      lastName,
-      email,
+      first_name,
+      last_name,
+      email_address,
       zip,
       state,
       address1,
       address2,
       city,
       phone,
-      electric,
-      counter,
-      option,
-    } = input;
+      encharge3,
+      encharge10,
+      electric_account_number,
+      program_type,
+    } = homeowner_info;
     if (
-      firstName === "" ||
-      lastName === "" ||
+      first_name === "" ||
+      last_name === "" ||
       zip === "" ||
       state === "" ||
-      email === "" ||
+      email_address === "" ||
       phone === "" ||
-      electric === "" ||
+      electric_account_number === "" ||
       address1 === "" ||
       address2 === "" ||
       city === "" ||
       img === null ||
-      enphase3 === 0 ||
-      enphase10 === 0 ||
-      option === "" ||
+      encharge3 === 0 ||
+      encharge10 === 0 ||
+      program_type === "" ||
       checked === false
     ) {
       setIsEnabled(true);
@@ -245,10 +269,12 @@ function Index() {
     }
   };
 
+ 
   useEffect(() => {
     disableButton();
   });
 
+ 
   return (
     <>
       <Card className={classes.enterTheDetail}>
@@ -263,11 +289,11 @@ function Index() {
                   className={classes.textField}
                   variant="standard"
                   label="Customer First Name"
-                  value={input.firstName}
-                  name="firstName"
+                  value={homeowner_info.first_name}
+                  name="first_name"
                   onChange={handleChange}
-                  error={helperTextfirstName === "" ? false : true}
-                  helperText={helperTextfirstName}
+                  error={helperTextfirst_name === "" ? false : true}
+                  helperText={helperTextfirst_name}
                   InputLabelProps={{ className: classes.textfieldLabel }}
                 />
                 <br />
@@ -275,8 +301,8 @@ function Index() {
                   className={classes.textField}
                   label="Customer Last Name"
                   variant="standard"
-                  value={input.lastName}
-                  name="lastName"
+                  value={homeowner_info.last_name}
+                  name="last_name"
                   onChange={handleChange}
                   error={helperTextlastName === "" ? false : true}
                   helperText={helperTextlastName}
@@ -285,8 +311,8 @@ function Index() {
                   className={classes.textField}
                   label="Email Address"
                   variant="standard"
-                  value={input.email}
-                  name="email"
+                  value={homeowner_info.email_address}
+                  name="email_address"
                   onChange={handleChange}
                   error={helperTextemail === "" ? false : true}
                   helperText={helperTextemail}
@@ -295,7 +321,7 @@ function Index() {
                   className={classes.textField}
                   label="Address line 1 (Street address, etc"
                   variant="standard"
-                  value={input.address1}
+                  value={homeowner_info.address1}
                   name="address1"
                   onChange={handleChange}
                   error={helperTextaddress1 === "" ? false : true}
@@ -305,7 +331,7 @@ function Index() {
                   className={classes.textField}
                   label="Address line 2 (Apartment, buidling, floor, etc ) (Optional)"
                   variant="standard"
-                  value={input.address2}
+                  value={homeowner_info.address2}
                   name="address2"
                   onChange={handleChange}
                   error={helperTextaddress2 === "" ? false : true}
@@ -315,7 +341,7 @@ function Index() {
                   className={classes.textField}
                   label="City"
                   variant="standard"
-                  value={input.city}
+                  value={homeowner_info.city}
                   name="city"
                   onChange={handleChange}
                   error={helperTextcity === "" ? false : true}
@@ -325,7 +351,7 @@ function Index() {
                   className={classes.textField}
                   label="State"
                   variant="standard"
-                  value={input.state}
+                  value={homeowner_info.state}
                   name="state"
                   onChange={handleChange}
                   error={helperTextstate === "" ? false : true}
@@ -335,7 +361,7 @@ function Index() {
                   className={classes.textField}
                   label="Zip"
                   variant="standard"
-                  value={input.zip}
+                  value={homeowner_info.zip}
                   name="zip"
                   onChange={handleChange}
                   error={helperTextzip === "" ? false : true}
@@ -345,7 +371,7 @@ function Index() {
                   className={classes.textField}
                   label="Phone Number"
                   variant="standard"
-                  value={input.phone}
+                  value={homeowner_info.phone}
                   name="phone"
                   onChange={handleChange}
                   error={helperTextpn === "" ? false : true}
@@ -361,19 +387,15 @@ function Index() {
                     <Chip
                       id="1"
                       className={classes.decrementButton}
-                      onClick={() => {
-                        decrement(1);
-                      }}
+                      onClick={encharge3_Decrement}
                       label="-"
-                      value={counter}
+                      value={homeowner_info.encharge3}
                     />
-                    {enphase3}
+                    {homeowner_info.encharge3}
                     <Chip
                       id="1"
                       className={classes.IncrementCount}
-                      onClick={() => {
-                        increment(1);
-                      }}
+                      onClick={encharge3_Increment}
                       label="+"
                     />
                   </div>
@@ -385,31 +407,26 @@ function Index() {
                     <Chip
                       id="2"
                       className={classes.decrementButton}
-                      onClick={() => {
-                        decrement(2);
-                      }}
+                      onClick={encharge10_Decrement}
                       label="-"
-                      value={counter}
+                      value={homeowner_info.encharge10}
                     />
-                    {enphase10}
+                   {homeowner_info.encharge10}
                     <Chip
                       id="2"
                       className={classes.IncrementCount}
-                      onClick={() => {
-                        increment(2);
-                      }}
+                      onClick={encharge10_Increment}
                       label="+"
                     />
                   </div>
                 </div>
-                <Typography className={classes.textFieldDetails}>
+                <Typography  className={classes.textFieldDetails}>
                   {" "}
                   KW Capacity committed for data sharing
                 </Typography>
-
-                <ListItem className={classes.enphaseField}>
-                  {getCapacity}
-                </ListItem>
+                <Typography className={classes.enphaseField} >  
+                {getCapacities}
+                </Typography>
 
                 <FormControl className={classes.textField} variant="standard">
                   <InputLabel id="demo-simple-select-standard-label">
@@ -418,10 +435,10 @@ function Index() {
                   <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
-                    value={input.option}
+                    value={homeowner_info.program_type}
                     onChange={handleChange}
                     label="Program Option"
-                    name="option"
+                    name="program_type"
                   >
                     {values.map((ele) => (
                       <MenuItem key={ele.value} value={ele.label}>
@@ -435,8 +452,8 @@ function Index() {
                   className={classes.textField}
                   label="Electric Account Number"
                   variant="standard"
-                  value={input.electric}
-                  name="electric"
+                  value={homeowner_info.electric_account_number}
+                  name="electric_account_number"
                   onChange={handleChange}
                   error={helperTextac === "" ? false : true}
                   helperText={helperTextac}
@@ -497,8 +514,8 @@ function Index() {
         >
           Submit
         </Button>
-        <DialogConfirm setOpen={setOpen} open={open} />
-      </div>
+        <DialogConfirm setOpen={setOpen} open={open} homeowner_info={homeowner_info} />      
+        </div>
     </>
   );
 }

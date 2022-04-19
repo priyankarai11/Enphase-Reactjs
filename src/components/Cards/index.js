@@ -9,6 +9,7 @@ import { ListItemText } from "@material-ui/core";
 import { CardContent } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useNavigate } from "react-router";
+import { TOKEN } from "../sessionStorage";
 import { useStyles } from "./style";
 
 function Cards() {
@@ -16,17 +17,18 @@ function Cards() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [cardItem, setCardItem] = useState([]);
-  const TOKEN = sessionStorage.getItem("auth");
-  const getData = async () => {
+  // const TOKEN = sessionStorage.getItem("auth");
+  const getData =  () => {
     const myHeaders = new Headers({
       "Content-Type": "application/json",
       Accept: "application/json",
       "GS-Enphase-Auth": TOKEN,
     });
-    await fetch(
+     fetch(
       "https://gs-dev.qa-enphaseenergy.com/programs-mgr/api/v1/application/programs",
       {
         method: "GET",
+        mode:"cors",
         headers: myHeaders,
       }
     )

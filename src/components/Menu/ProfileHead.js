@@ -13,7 +13,7 @@ function ProfileHead() {
 
   const goBacktoSignIn = () => {
     navigate("/");
-    sessionStorage.clear();
+    localStorage.clear();
   };
 
   const [anchorEl, setAnchorEl] = useState(null);

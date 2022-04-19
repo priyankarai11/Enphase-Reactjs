@@ -50,7 +50,7 @@ function API_Fetch() {
         for (let i in res.data) {
           switch (i) {
             case "token":
-              sessionStorage.setItem("auth", res.data[i]);
+              localStorage.setItem("auth", res.data[i]);
               setIsLoading(false);
               navigate("/iic-dashboard");
               break;

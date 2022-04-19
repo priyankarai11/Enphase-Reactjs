@@ -4,15 +4,19 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Button from "@material-ui/core/Button";
+import CloseIcon from '@mui/icons-material/Close';
 import { TOKEN } from "../../sessionStorage";
 import { useStyles } from "./style";
-const App = ({ setOpen, open }) => {
+const App = ({ setOpen, open,homeowner_info}) => {
   const classes = useStyles();
   const handleClose = () => {
     setOpen(false);
   };
 
+  console.log(homeowner_info)
+
   const submittedForm = () => {
+    const data={homeowner_info};
     const myHeaders = new Headers({
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -23,17 +27,19 @@ const App = ({ setOpen, open }) => {
       {
         method: "POST",
         headers: myHeaders,
+        body:JSON.stringify(data)
       }
     )
       .then((response) => response.json())
-      .then((res) => {
-        const set = res.data.map((ele) => ele);
-      });
+      // .then((res) => {
+      //   // const set = res.data.map((ele) => ele);
+      //   console.log(res)
+      // });
   };
 
   return (
     <div>
-      <Dialog open={open} className={classes.dialog}>
+      <Dialog open={open} >
         <DialogContent>
           <DialogActions className={classes.closeButton} onClick={handleClose}>
             X
@@ -47,13 +53,12 @@ const App = ({ setOpen, open }) => {
             variant="contained"
             className={classes.buttonSubmit}
             onClick={submittedForm}
-            autoFocus
           >
             Yes
           </Button>
           <Button
             variant="outlined"
-            className={classes.outlinedbuttonSubmit}
+            className={classes.outlinedbuttonsSubmit}
             onClick={handleClose}
           >
             No

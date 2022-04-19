@@ -36,14 +36,14 @@ function ApplicationformTable({ open, handleClick }) {
     setPage(0);
   };
 
-  const getData = async () => {
+  const getData = () => {
     const myHeaders = new Headers({
       "Content-Type": "application/json",
       Accept: "application/json",
       "GS-Enphase-Auth": TOKEN,
     });
 
-    await fetch(
+    fetch(
       `https://gs-dev.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/all/view/${id}?page=0&page_size=100&filter_status=`,
       {
         method: "GET",

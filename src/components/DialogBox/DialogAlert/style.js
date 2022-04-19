@@ -1,32 +1,28 @@
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
-  dialog: {
-    padding: "20 24",
-  },
-
+  
   formText: {
     color: "#565657",
     fontSize: 20,
     textAlign: "center",
     fontWeight: 600,
-    width: 500,
-    paddingLeft: 40,
-    paddingRight: 40,
+    width: 350,
   },
 
   buttonControl: {
-    padding: 20,
+  marginLeft:50,
+  paddingBottom:20,
+  marginRight:50,
   },
 
   buttonSubmit: {
     color: "#ffffff",
-    width: "30%",
+    width: "50%",
     display: "block",
     background: "#F37320",
     minHeight: 48,
     borderRadius: 4,
-    marginRight: 150,
     "&.MuiButton-root:hover": {
       background: "#F37320",
     },
@@ -39,14 +35,13 @@ const useStyles = makeStyles({
     fontWeight: "bold",
   },
 
-  outlinedbuttonSubmit: {
+  outlinedbuttonsSubmit: {
     "&.MuiButton-outlined": {
       color: "#F37320",
-      width: "30%",
-      display: "block",
+      width: "50%",
       minHeight: 48,
       borderRadius: 4,
-      marginRight: 15,
+      marginLeft: 15,
       borderColor: "#F37320",
     },
   },
