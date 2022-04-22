@@ -22,17 +22,18 @@ const useStyles = makeStyles({
     color: "#757575",
     "@media (min-width: 1000px)": {
       width: "85%",
-    },
+    },    
   },
 
   textfieldLabel: {
-    "&.Mui-focused": {
-      color: "#f37320",
-      borderColor: "#f37320",
-    },
-    "&.Mui-error": {
-      color: "red",
-    },
+    // "&.Mui-focused": {
+    //   color: "#f37320",
+    //   borderColor: "#f37320",
+    // },
+    // "&.Mui-error": {
+    //   color: "red",
+    // },
+   borderColor:'orange'
   },
 
   textFieldEnphase: {

@@ -55,7 +55,7 @@ function API_Fetch() {
               navigate("/iic-dashboard");
               break;
             case "first_name":
-              sessionStorage.setItem("user_name", res.data[i]);
+              localStorage.setItem("user_name", res.data[i]);
               break;
             default:
               break;

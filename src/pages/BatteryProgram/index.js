@@ -14,7 +14,7 @@ function Index() {
   const classes = useStyles();
   const navigate = useNavigate();
   const { name } = useParams();
-  sessionStorage.setItem("card_name", name);
+  localStorage.setItem("card_name", name);
   const { isShowing, toggle } = useModal();
   const submitNewAppln = () => {
     navigate("/aps-submit-new-application-1");

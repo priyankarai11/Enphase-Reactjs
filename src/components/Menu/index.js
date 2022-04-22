@@ -6,13 +6,15 @@ import ProfileHead from "../Menu/ProfileHead";
 
 function MenuItemList() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [selected, setSelected]=useState("")
   const open = Boolean(anchorEl);
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    setSelected(e.target.innerText)
     setAnchorEl(null);
   };
 
@@ -33,15 +35,17 @@ function MenuItemList() {
           horizontal: "left",
         }}
       >
+        {/* {inputData.map(ele=>
+        <MenuItem>{ele.status}</MenuItem>
+        )} */}
         <MenuItem onClick={handleClose}>All</MenuItem>
-        <MenuItem onClick={handleClose}>Submitted for APS Review</MenuItem>
-        <MenuItem onClick={handleClose}>Approved by APS</MenuItem>
-        <MenuItem onClick={handleClose}>Rejected by APS</MenuItem>
-        <MenuItem onClick={handleClose}>Submitted for Enphase Review</MenuItem>
-        <MenuItem onClick={handleClose}>Approved by Enphase</MenuItem>
-        <MenuItem onClick={handleClose}>Rejected by Enphase</MenuItem>
+        <MenuItem onClick={handleClose}>Application_Submitted</MenuItem>
+        <MenuItem onClick={handleClose}>Application_Approved</MenuItem>
+        <MenuItem onClick={handleClose}>Application_Rejected</MenuItem>
+       <MenuItem onClick={handleClose}>Site_Rejected</MenuItem>
+        <MenuItem onClick={handleClose}>Site_Submitted</MenuItem>
       </Menu>
-      <ApplicationformTable open={open} handleClick={handleClick} />
+      <ApplicationformTable open={open} handleClick={handleClick} selected={selected} />
       <ProfileHead
         handleClick={handleClick}
         handleClose={handleClose}

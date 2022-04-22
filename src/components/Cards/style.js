@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   root: {
-    width: 400,
+    width: 410,
     marginLeft: 50,
     marginTop: 30,
   },
@@ -13,8 +13,13 @@ const useStyles = makeStyles({
 
   arrow: {
     color: "orange",
-    float: "right",
-    marginTop: 10,
+    marginTop: 20,
+    marginLeft:20,
+  },
+
+  cardTop:{
+    display:"flex",
+  flexDirection:"row"
   },
 
   card_view: {
@@ -54,7 +59,12 @@ const useStyles = makeStyles({
     fontFamily: "Segoe UI",
     fontWeight: 600,
     fontSize: 25,
-    width: 370,
+    width: 270,
+    marginTop:12
+  },
+
+  towerImage:{
+   marginTop:2
   },
 
   loaderShow: {

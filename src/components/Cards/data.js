@@ -1,5 +1,3 @@
-// let company = sessionStorage.getItem("account_company_name");
-// let time = sessionStorage.getItem("account_time_zone");
 
 export const dataItems = [
   {

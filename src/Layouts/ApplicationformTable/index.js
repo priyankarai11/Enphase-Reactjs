@@ -15,7 +15,7 @@ import { FaSlidersH } from "react-icons/fa";
 import { stockData } from "./data";
 import { useStyles } from "./style";
 
-function ApplicationformTable({ open, handleClick }) {
+function ApplicationformTable({ open, handleClick, selected }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [pages, setPages] = useState([5, 10, 25, 100]);
@@ -24,7 +24,7 @@ function ApplicationformTable({ open, handleClick }) {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { id } = useParams();
-  sessionStorage.setItem("person_id", id);
+  localStorage.setItem("person_id", id);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -55,7 +55,7 @@ function ApplicationformTable({ open, handleClick }) {
         setIsLoading(false);
 
         for (let i in res.data) {
-          let set = res.data[i].map((ele) => ele);
+          let set = res.data[i].map(ele => ele);
           if (set.length === 0) {
             setItems([]);
           } else setItems(set);
@@ -64,9 +64,9 @@ function ApplicationformTable({ open, handleClick }) {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
-
+    getData(); 
+  },[]);
+  
   return (
     <>
       <Paper sx={{ width: "100%" }} className={classes.paper}>
@@ -105,6 +105,7 @@ function ApplicationformTable({ open, handleClick }) {
             <TableBody className={classes.tableBody}>
               {isLoading && <CircularProgress className={classes.loaderShow} />}
               {items
+              .filter(data=>selected==="" || selected==="All" || data.application_status===selected)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((data) => {
                   return (
@@ -174,7 +175,7 @@ function ApplicationformTable({ open, handleClick }) {
         <TablePagination
           rowsPerPageOptions={pages}
           component="div"
-          count={items.length}
+          count={items.filter(data=>selected==="" || selected==="All" || data.application_status===selected).length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

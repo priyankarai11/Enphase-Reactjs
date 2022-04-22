@@ -10,6 +10,7 @@ import { CardContent } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useNavigate } from "react-router";
 import { TOKEN } from "../sessionStorage";
+import TOWER from "../../assets/Images/electric-tower.svg"
 import { useStyles } from "./style";
 
 function Cards() {
@@ -17,18 +18,17 @@ function Cards() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [cardItem, setCardItem] = useState([]);
-  // const TOKEN = sessionStorage.getItem("auth");
   const getData =  () => {
+    
     const myHeaders = new Headers({
       "Content-Type": "application/json",
       Accept: "application/json",
       "GS-Enphase-Auth": TOKEN,
     });
-     fetch(
+    fetch(
       "https://gs-dev.qa-enphaseenergy.com/programs-mgr/api/v1/application/programs",
       {
         method: "GET",
-        mode:"cors",
         headers: myHeaders,
       }
     )
@@ -39,7 +39,7 @@ function Cards() {
         const set = res.data.map((ele) => ele);
 
         setCardItem(set);
-      });
+      })
   };
 
   useEffect(() => {
@@ -60,14 +60,23 @@ function Cards() {
           >
             {" "}
             <CardContent className={classes.cardsDisplay}>
+              <div className={classes.cardTop}>
+                <div><img className={classes.towerImage} src={TOWER} />
+               </div>
+              <div> 
               <Typography
                 className={classes.residental}
                 variant="h5"
                 component="h2"
               >
                 {person.name}
-                <KeyboardArrowRightIcon className={classes.arrow} />
+               
               </Typography>
+              </div>
+              <div>
+              <KeyboardArrowRightIcon className={classes.arrow} />
+              </div>
+              </div>
 
               <Divider />
               <List>

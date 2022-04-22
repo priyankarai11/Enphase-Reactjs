@@ -38,6 +38,7 @@ function App() {
             </PrivateRoute>
           }
         />
+
         <Route
           path="/aps-application-tracker/:id/:name"
           element={
@@ -54,18 +55,18 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
+        <Route
           path="/aps-submit-new-application-1"
           element={
             <PrivateRoute>
               <SubmitNewApplication />
             </PrivateRoute>
           }
-        /> */}
-        <Route
+        />
+        {/* <Route
           path="/aps-submit-new-application-1"
           element={<SubmitNewApplication />}
-        />
+        /> */}
       </Routes>
     </BrowserRouter>
   );

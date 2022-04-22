@@ -51,6 +51,7 @@ function Index() {
   const [checked, setChecked] = useState(false);
   const [isEnabled, setIsEnabled] = useState(true);
   const [upload, setUpload] = useState("UPLOAD");
+  const [count1, setCount1] = useState(0);
   const [helperTextemail, setHelperTextEmail] = useState("");
   const [helperTextfirst_name, setHelperTextFirstName] = useState("");
   const [helperTextlastName, setHelperLastName] = useState("");
@@ -73,50 +74,50 @@ function Index() {
     phone: "",
     encharge3:0,
     encharge10:0,
-    program_type:"",
+    program_type:"".toUpperCase(),
     electric_account_number: "",
     kw_capacity_committed:0.00,
     source_portal:'INTAKE',
-    program_id:PERSON_ID
-   
-  });
+    program_id:PERSON_ID  
+  },
+  );
 
   const handleBack = () => {
     navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
   };
 
+   
 
-  var num = homeowner_info.encharge3 * 1.28 + homeowner_info.encharge10 * 3.84;
-  var getCapacities = (Math.round(num * 100) / 100).toFixed(2);
-
-  const getCapacity=()=>{
+  const getCapacity = (encharge3,encharge10) => {
+    var num = encharge3 * 1.28 + encharge10 * 3.84;
+    var getCapacities = (Math.round(num * 100) / 100).toFixed(2);
     return setHomeowner_info({...homeowner_info, kw_capacity_committed:getCapacities})
   }
 
-const encharge3_Increment=()=>{
-  getCapacity();
-return setHomeowner_info(prev=>({
-    ...prev, encharge3:prev.encharge3+1}))
-  
-    
+  const encharge3_Increment = () => {
+    getCapacity(homeowner_info.encharge3+1,homeowner_info.encharge10);
+    return setHomeowner_info(prev=>({
+      ...prev, encharge3: prev.encharge3 + 1
+    }))
 }
+
 
 const encharge3_Decrement=()=>{
   if(homeowner_info.encharge3<1)
   {
-    getCapacity();
+    getCapacity(homeowner_info.encharge3,homeowner_info.encharge10);
     return setHomeowner_info(prev=>({
       ...prev, encharge3:0}))
   }
   else{
-    getCapacity();
+    getCapacity(homeowner_info.encharge3-1,homeowner_info.encharge10);
     return setHomeowner_info(prev=>({
       ...prev, encharge3:prev.encharge3-1}))
   }
 }
 
 const encharge10_Increment=()=>{
-  getCapacity();
+  getCapacity(homeowner_info.encharge3,homeowner_info.encharge10+1);
   return setHomeowner_info(prev=>({
     ...prev, encharge10:prev.encharge10+1}))
   }
@@ -124,12 +125,12 @@ const encharge10_Increment=()=>{
   const encharge10_Decrement=()=>{
     if(homeowner_info.encharge10<1)
     {
-      getCapacity();
+      getCapacity(homeowner_info.encharge3,homeowner_info.encharge10);
      return setHomeowner_info(prev=>({
       ...prev, encharge10:0}))
     }
     else{
-      getCapacity();
+      getCapacity(homeowner_info.encharge3,homeowner_info.encharge10-1);
       return setHomeowner_info(prev=>({
         ...prev, encharge10:prev.encharge10-1}))
     }
@@ -294,7 +295,12 @@ const encharge10_Increment=()=>{
                   onChange={handleChange}
                   error={helperTextfirst_name === "" ? false : true}
                   helperText={helperTextfirst_name}
-                  InputLabelProps={{ className: classes.textfieldLabel }}
+                  // InputLabelProps={{ className: classes.textfieldLabel }}
+                  InputProps={{
+                    classes: {
+                      root: classes.root
+                    }
+                  }}
                 />
                 <br />
                 <TextField
@@ -394,6 +400,7 @@ const encharge10_Increment=()=>{
                     {homeowner_info.encharge3}
                     <Chip
                       id="1"
+                      value={count1}
                       className={classes.IncrementCount}
                       onClick={encharge3_Increment}
                       label="+"
@@ -425,7 +432,7 @@ const encharge10_Increment=()=>{
                   KW Capacity committed for data sharing
                 </Typography>
                 <Typography className={classes.enphaseField} >  
-                {getCapacities}
+                {homeowner_info.kw_capacity_committed}
                 </Typography>
 
                 <FormControl className={classes.textField} variant="standard">

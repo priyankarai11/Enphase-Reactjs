@@ -28,6 +28,15 @@ const useStyles = makeStyles({
     },
   },
 
+  loaderShow: {
+    color: "#f37321",
+    marginLeft: 300,
+    marginTop: 100,
+    "@media (min-width: 1000px)": {
+      marginLeft: 800,
+    },
+  },
+  
   closeButton: {
     cursor: "pointer",
     color: "grey",
