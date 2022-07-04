@@ -39,13 +39,11 @@ export default function App({ isEnabled }) {
   const [isOpen, setisOpen] = useState(false);
 
   const handleBack = () => {
-    console.log(activeStep);
     if (activeStep === 0) {
       navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
     } else setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  console.log(isEnabled);
   const handleStep = (step) => () => {
     setActiveStep(step);
   };

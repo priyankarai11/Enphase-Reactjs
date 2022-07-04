@@ -39,6 +39,12 @@ const useStyles = makeStyles({
     width: 150,
   },
 
+  noData: {
+    width: 250,
+    marginLeft: 50,
+    marginTop:20,
+  },
+
   root: {
     "&.MuiChip-root": {
       borderRadius: 15,

@@ -62,8 +62,8 @@ function Index() {
   const [helperTextstate, setHelperTextState] = useState("");
   const [helperTextpn, setHelperTextPN] = useState("");
   const [helperTextac, setHelperTextAC] = useState("");
-  const [homeowner_info, setHomeowner_info] = useState({
-    first_name: "",
+  const [input, setInput] = useState({
+    homeowner_info: {  first_name: "",
     last_name: "",
     email_address: "",
     address1: "",
@@ -74,65 +74,78 @@ function Index() {
     phone: "",
     encharge3:0,
     encharge10:0,
-    program_type:"".toUpperCase(),
+    program_type:"",
     electric_account_number: "",
-    kw_capacity_committed:0.00,
+    kw_capacity_committed: 0.00
+    },
     source_portal:'INTAKE',
-    program_id:PERSON_ID  
+    program_id:PERSON_ID
   },
   );
 
+  
   const handleBack = () => {
     navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
   };
 
-   
-
   const getCapacity = (encharge3,encharge10) => {
     var num = encharge3 * 1.28 + encharge10 * 3.84;
     var getCapacities = (Math.round(num * 100) / 100).toFixed(2);
-    return setHomeowner_info({...homeowner_info, kw_capacity_committed:getCapacities})
+    return setInput(prev => ({
+      ...prev,
+      homeowner_info: { ...prev.homeowner_info, kw_capacity_committed:getCapacities  }
+    }))
   }
 
   const encharge3_Increment = () => {
-    getCapacity(homeowner_info.encharge3+1,homeowner_info.encharge10);
-    return setHomeowner_info(prev=>({
-      ...prev, encharge3: prev.encharge3 + 1
+    getCapacity(input.homeowner_info.encharge3+1,input.homeowner_info.encharge10);
+    return setInput(prev => ({
+      ...prev,
+      homeowner_info: { ...prev.homeowner_info, encharge3: prev.homeowner_info.encharge3 + 1 }
     }))
 }
 
 
 const encharge3_Decrement=()=>{
-  if(homeowner_info.encharge3<1)
-  {
-    getCapacity(homeowner_info.encharge3,homeowner_info.encharge10);
-    return setHomeowner_info(prev=>({
-      ...prev, encharge3:0}))
+  if (input.homeowner_info.encharge3 < 1) {
+    getCapacity(input.homeowner_info.encharge3, input.homeowner_info.encharge10);
+    return setInput(prev => ({
+      ...prev,
+      homeowner_info: { ...prev.homeowner_info, encharge3: 0 }
+    }))
   }
-  else{
-    getCapacity(homeowner_info.encharge3-1,homeowner_info.encharge10);
-    return setHomeowner_info(prev=>({
-      ...prev, encharge3:prev.encharge3-1}))
+  else {
+    getCapacity(input.homeowner_info.encharge3 - 1, input.homeowner_info.encharge10);
+    return setInput(prev => ({
+      ...prev,
+      homeowner_info: { ...prev.homeowner_info, encharge3: prev.homeowner_info.encharge3 - 1 }
+    }))
   }
 }
 
 const encharge10_Increment=()=>{
-  getCapacity(homeowner_info.encharge3,homeowner_info.encharge10+1);
-  return setHomeowner_info(prev=>({
-    ...prev, encharge10:prev.encharge10+1}))
+  getCapacity(input.homeowner_info.encharge3,input.homeowner_info.encharge10+1);
+  return setInput(prev => ({
+    ...prev,
+    homeowner_info: { ...prev.homeowner_info, encharge10: prev.homeowner_info.encharge10 + 1 }
+  }))
   }
   
   const encharge10_Decrement=()=>{
-    if(homeowner_info.encharge10<1)
+    if(input.homeowner_info.encharge10<1)
     {
-      getCapacity(homeowner_info.encharge3,homeowner_info.encharge10);
-     return setHomeowner_info(prev=>({
-      ...prev, encharge10:0}))
+      getCapacity(input.homeowner_info.encharge3,input.homeowner_info.encharge10);
+      return setInput(prev => ({
+        ...prev,
+        homeowner_info: { ...prev.homeowner_info, encharge10: 0 }
+      }))
     }
     else{
-      getCapacity(homeowner_info.encharge3,homeowner_info.encharge10-1);
-      return setHomeowner_info(prev=>({
-        ...prev, encharge10:prev.encharge10-1}))
+      getCapacity(input.homeowner_info.encharge3,input.homeowner_info.encharge10-1);
+      return setInput(prev => ({
+        ...prev,
+        homeowner_info: { ...prev.homeowner_info, encharge10: prev.homeowner_info.encharge10 - 1 }
+      }))
     }
   }
 
@@ -216,7 +229,10 @@ const encharge10_Increment=()=>{
         }
         break;
       case "program_type":
-        setHomeowner_info({ program_type: e.target.value });
+        return setInput(prev => ({
+          ...prev,
+          homeowner_info: { ...prev.homeowner_info, program_type:e.target.value  }
+        }))
         break;
       case "electric_account_number":
         if (NUMBER_REGEX.test(value) && value.length >= 8) {
@@ -228,7 +244,7 @@ const encharge10_Increment=()=>{
       default:
         break;
     }
-    setHomeowner_info({ ...homeowner_info, [name]: value });
+    setInput({...input,homeowner_info:{...input.homeowner_info,[name]:value}})
   };
 
   const disableButton = () => {
@@ -246,7 +262,7 @@ const encharge10_Increment=()=>{
       encharge10,
       electric_account_number,
       program_type,
-    } = homeowner_info;
+    } = input.homeowner_info;
     if (
       first_name === "" ||
       last_name === "" ||
@@ -274,8 +290,7 @@ const encharge10_Increment=()=>{
   useEffect(() => {
     disableButton();
   });
-
- 
+  
   return (
     <>
       <Card className={classes.enterTheDetail}>
@@ -290,7 +305,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   variant="standard"
                   label="Customer First Name"
-                  value={homeowner_info.first_name}
+                  value={input.first_name}
                   name="first_name"
                   onChange={handleChange}
                   error={helperTextfirst_name === "" ? false : true}
@@ -307,7 +322,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="Customer Last Name"
                   variant="standard"
-                  value={homeowner_info.last_name}
+                  value={input.last_name}
                   name="last_name"
                   onChange={handleChange}
                   error={helperTextlastName === "" ? false : true}
@@ -317,7 +332,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="Email Address"
                   variant="standard"
-                  value={homeowner_info.email_address}
+                  value={input.email_address}
                   name="email_address"
                   onChange={handleChange}
                   error={helperTextemail === "" ? false : true}
@@ -327,7 +342,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="Address line 1 (Street address, etc"
                   variant="standard"
-                  value={homeowner_info.address1}
+                  value={input.address1}
                   name="address1"
                   onChange={handleChange}
                   error={helperTextaddress1 === "" ? false : true}
@@ -337,7 +352,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="Address line 2 (Apartment, buidling, floor, etc ) (Optional)"
                   variant="standard"
-                  value={homeowner_info.address2}
+                  value={input.address2}
                   name="address2"
                   onChange={handleChange}
                   error={helperTextaddress2 === "" ? false : true}
@@ -347,7 +362,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="City"
                   variant="standard"
-                  value={homeowner_info.city}
+                  value={input.city}
                   name="city"
                   onChange={handleChange}
                   error={helperTextcity === "" ? false : true}
@@ -357,7 +372,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="State"
                   variant="standard"
-                  value={homeowner_info.state}
+                  value={input.state}
                   name="state"
                   onChange={handleChange}
                   error={helperTextstate === "" ? false : true}
@@ -367,7 +382,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="Zip"
                   variant="standard"
-                  value={homeowner_info.zip}
+                  value={input.zip}
                   name="zip"
                   onChange={handleChange}
                   error={helperTextzip === "" ? false : true}
@@ -377,7 +392,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="Phone Number"
                   variant="standard"
-                  value={homeowner_info.phone}
+                  value={input.phone}
                   name="phone"
                   onChange={handleChange}
                   error={helperTextpn === "" ? false : true}
@@ -391,16 +406,14 @@ const encharge10_Increment=()=>{
                   <div className={classes.enphaseBattery}>
                     {" "}
                     <Chip
-                      id="1"
                       className={classes.decrementButton}
                       onClick={encharge3_Decrement}
                       label="-"
-                      value={homeowner_info.encharge3}
+                      value={input.homeowner_info.encharge3}
                     />
-                    {homeowner_info.encharge3}
+                    {input.homeowner_info.encharge3}
                     <Chip
-                      id="1"
-                      value={count1}
+                      value={input.homeowner_info.encharge3}
                       className={classes.IncrementCount}
                       onClick={encharge3_Increment}
                       label="+"
@@ -412,18 +425,17 @@ const encharge10_Increment=()=>{
                   <div className={classes.enphaseBattery}>
                     {" "}
                     <Chip
-                      id="2"
                       className={classes.decrementButton}
                       onClick={encharge10_Decrement}
                       label="-"
-                      value={homeowner_info.encharge10}
+                      value={input.homeowner_info.encharge10}
                     />
-                   {homeowner_info.encharge10}
+                   {input.homeowner_info.encharge10}
                     <Chip
-                      id="2"
                       className={classes.IncrementCount}
                       onClick={encharge10_Increment}
                       label="+"
+                      value={input.homeowner_info.encharge10}
                     />
                   </div>
                 </div>
@@ -432,7 +444,7 @@ const encharge10_Increment=()=>{
                   KW Capacity committed for data sharing
                 </Typography>
                 <Typography className={classes.enphaseField} >  
-                {homeowner_info.kw_capacity_committed}
+                {input.homeowner_info.kw_capacity_committed}
                 </Typography>
 
                 <FormControl className={classes.textField} variant="standard">
@@ -442,7 +454,7 @@ const encharge10_Increment=()=>{
                   <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
-                    value={homeowner_info.program_type}
+                    value={input.homeowner_info.program_type}
                     onChange={handleChange}
                     label="Program Option"
                     name="program_type"
@@ -459,7 +471,7 @@ const encharge10_Increment=()=>{
                   className={classes.textField}
                   label="Electric Account Number"
                   variant="standard"
-                  value={homeowner_info.electric_account_number}
+                  value={input.electric_account_number}
                   name="electric_account_number"
                   onChange={handleChange}
                   error={helperTextac === "" ? false : true}
@@ -521,7 +533,7 @@ const encharge10_Increment=()=>{
         >
           Submit
         </Button>
-        <DialogConfirm setOpen={setOpen} open={open} homeowner_info={homeowner_info} />      
+        <DialogConfirm setOpen={setOpen} open={open} input={input} />      
         </div>
     </>
   );

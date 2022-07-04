@@ -18,28 +18,45 @@ function Cards() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [cardItem, setCardItem] = useState([]);
+
   const getData =  () => {
-    
     const myHeaders = new Headers({
-      "Content-Type": "application/json",
+      //"Content-Type": "application/json",
       Accept: "application/json",
       "GS-Enphase-Auth": TOKEN,
     });
+
+    // fetch(
+    //   "https://gs-stg.qa-enphaseenergy.com/session-mgr/api/v1/application/user_info",
+    //   { method: "GET", headers: myHeaders }
+    // ).then((response) => response.json());
+
     fetch(
-      "https://gs-dev.qa-enphaseenergy.com/programs-mgr/api/v1/application/programs",
+      //https://gs-dev.qa-enphaseenergy.com/programs-mgr/api/v1/application/programs
+      "https://gs-stg.qa-enphaseenergy.com/programs-mgr/api/v1/application/programs",
       {
         method: "GET",
         headers: myHeaders,
       }
     )
       .then((response) => response.json())
+
+      // .then(function (response)
+      // {
+      //   if (response.status !== 200)
+      //   {
+      //     throw new Error(response.status)
+      //     }
+      // })
+      // .catch(function (error)
+      // {
+      //   console.log(error)
+      // })
       .then((res) => {
         setIsLoading(false);
-
         const set = res.data.map((ele) => ele);
-
         setCardItem(set);
-      })
+      });
   };
 
   useEffect(() => {
@@ -50,9 +67,9 @@ function Cards() {
     <div className={classes.cardview}>
       <div className={classes.card_view}>
         {isLoading && <CircularProgress className={classes.loaderShow} />}
-        {cardItem.map((person) => (
+        {cardItem.map((person, index) => (
           <Card
-            key={person.id}
+            key={index}
             className={classes.root}
             onClick={() =>
               navigate(`/aps-application-tracker/${person.id}/${person.name}`)
@@ -98,6 +115,7 @@ function Cards() {
         ))}
       </div>
     </div>
+  
   );
 }
 

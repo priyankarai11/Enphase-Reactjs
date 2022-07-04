@@ -27,7 +27,7 @@ function Index() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { id } = useParams();
+  const { id,program_id } = useParams();
   const backtoApplicationTracker = () => {
     navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
   };
@@ -41,13 +41,14 @@ function Index() {
 
   const getData = async () => {
     const myHeaders = new Headers({
-      "Content-Type": "application/json",
+     // "Content-Type": "application/json",
       Accept: "application/json",
       "GS-Enphase-Auth": TOKEN,
     });
-
+    
     await fetch(
-      `https://gs-dev.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/${id}?programId=617c2bccd78f9720c955838f`,
+      //dev-->stg
+      `https://gs-stg.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/${id}?programId=${program_id}`,
       {
         method: "GET",
         headers: myHeaders,

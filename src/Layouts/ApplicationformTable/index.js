@@ -15,20 +15,20 @@ import { FaSlidersH } from "react-icons/fa";
 import { stockData } from "./data";
 import { useStyles } from "./style";
 
+
 function ApplicationformTable({ open, handleClick, selected }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
-  const [pages, setPages] = useState([5, 10, 25, 100]);
+  const [pages, setPages] = useState([5, 10, 25, 100,150]);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const { id } = useParams();
-  localStorage.setItem("person_id", id);
+  const { program_id } = useParams();
+  localStorage.setItem("person_id", program_id);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
-    console.log(page, rowsPerPage, items.length);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -38,13 +38,13 @@ function ApplicationformTable({ open, handleClick, selected }) {
 
   const getData = () => {
     const myHeaders = new Headers({
-      "Content-Type": "application/json",
+     // "Content-Type": "application/json",
       Accept: "application/json",
       "GS-Enphase-Auth": TOKEN,
     });
 
     fetch(
-      `https://gs-dev.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/all/view/${id}?page=0&page_size=100&filter_status=`,
+      `https://gs-stg.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/all/view/${program_id}?page=0&page_size=1000&filter_status=`,
       {
         method: "GET",
         headers: myHeaders,
@@ -103,10 +103,21 @@ function ApplicationformTable({ open, handleClick, selected }) {
               </TableRow>
             </TableHead>
             <TableBody className={classes.tableBody}>
-              {isLoading && <CircularProgress className={classes.loaderShow} />}
+              {isLoading && <CircularProgress className={classes.loaderShow} />}  
               {items
               .filter(data=>selected==="" || selected==="All" || data.application_status===selected)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              //   .length <1 ?
+              //   <TableRow>
+              //    <TableCell colSpan={items.length}>
+              //     <div display="flex" justifyContent="center" alignItems="center" minHeight="150px" flexDirection="column">
+              //       {/* <DraftsIcon fontSize="large" color="disabled" /> */}
+              //        No Data Found
+              //     </div>
+              //  </TableCell>
+              // </TableRow>
+              //   :
+              //    items
                 .map((data) => {
                   return (
                     <TableRow>
@@ -115,7 +126,7 @@ function ApplicationformTable({ open, handleClick, selected }) {
                           className={classes.link}
                           onClick={() =>
                             navigate(
-                              `/bb-rejected-application-1/${data.application_id}`
+                              `/bb-rejected-application-1/${data.application_id}/${program_id}`
                             )
                           }
                         >

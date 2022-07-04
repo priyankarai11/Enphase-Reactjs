@@ -37,7 +37,8 @@ function API_Fetch() {
     setIsLoading(true);
     const data = { email, password };
     fetch(
-      ` https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}`,
+      // https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}
+      ` https://gs-stg.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}`,
       {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -45,7 +46,6 @@ function API_Fetch() {
       }
     )
       .then((response) => response.json())
-
       .then((res) => {
         for (let i in res.data) {
           switch (i) {
@@ -56,6 +56,9 @@ function API_Fetch() {
               break;
             case "first_name":
               localStorage.setItem("user_name", res.data[i]);
+              break;
+            case "is_installer":
+              localStorage.setItem("is_installer", res.data[i]);
               break;
             default:
               break;

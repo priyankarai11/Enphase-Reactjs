@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
-  
   formText: {
     color: "#565657",
     fontSize: 20,
@@ -11,9 +10,9 @@ const useStyles = makeStyles({
   },
 
   buttonControl: {
-  marginLeft:50,
-  paddingBottom:20,
-  marginRight:50,
+    marginLeft: 50,
+    paddingBottom: 20,
+    marginRight: 50,
   },
 
   buttonSubmit: {
@@ -26,6 +25,22 @@ const useStyles = makeStyles({
     "&.MuiButton-root:hover": {
       background: "#F37320",
     },
+    "&.MuiButton-root.Mui-disabled": {
+      opacity: 0.5,
+      background: "#ff4800",
+      color: "#ffffff",
+    },
+  },
+
+  textarea: {
+    resize: "none",
+    padding: 20,
+    width: 360,
+    marginLeft: 20,
+    height: 120,
+    fontSize: 16,
+    fontFamily: "Roboto",
+    border: "2px solid #F37320 ",
   },
 
   loaderShow: {
@@ -36,7 +51,7 @@ const useStyles = makeStyles({
       marginLeft: 800,
     },
   },
-  
+
   closeButton: {
     cursor: "pointer",
     color: "grey",
