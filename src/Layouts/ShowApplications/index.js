@@ -617,6 +617,7 @@ const ShowApplications = (props) => {
               setApproved={setApproved}
               cnt={cnt}
               setCnt={setCnt}
+              setCheckedOne={setCheckedOne}
             />
           </Card>
         </Card>

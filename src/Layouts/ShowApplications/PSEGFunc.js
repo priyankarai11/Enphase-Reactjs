@@ -11,11 +11,12 @@ const SearchButton = ({
   countDecrement,
   getApprovedClick,
   getRejectedClick,
+  setCheckedOne,
 }) => {
   const classes = useStyles();
   const [vals, setVals] = useState(true);
-    const [ites, setItes] = useState(true);
-    
+  const [ites, setItes] = useState(true);
+
   const getApproved = () => {
     setVals(false);
     setItes(true);
@@ -35,6 +36,7 @@ const SearchButton = ({
     setVals(!vals);
     setItes(false);
     getUndoFunc();
+    setCheckedOne(false)
     if (vals === true) {
       countIncrement();
     } else {
@@ -82,14 +84,14 @@ const SearchButton = ({
       );
 
     case 1:
-     return <div/>
+      return <div />;
     case 2:
-       return (
-         <div className={classes.approvedPart}>
-           <img src={checkBox} className={classes.checkBox} />
-           <div className={classes.checkWithApprove}>Approved</div>
-         </div>
-       );
+      return (
+        <div className={classes.approvedPart}>
+          <img src={checkBox} className={classes.checkBox} />
+          <div className={classes.checkWithApprove}>Approved</div>
+        </div>
+      );
     case 3:
       return (
         <div className={classes.approvedPart}>

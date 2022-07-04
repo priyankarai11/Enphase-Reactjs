@@ -167,6 +167,7 @@ const ApplicationDetail = ({
         countIncrement={countIncrement}
         getApprovedClick={getApprovedClick}
         getRejectedClick={getRejectedClick}
+        setCheckedOne={setCheckedOne}
       />
     ) : (
       <SearchButton
