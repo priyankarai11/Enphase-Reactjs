@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Link } from "@material-ui/core";
@@ -7,8 +7,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import ModalBox from "../../components/ModalBox/index";
 import Menu from "../../components/Menu/index";
 import useModal from "../../components/ModalBox/useModal";
+import RewardModal from "../../components/ModalBox/reward";
 import ProfileHeader from "../../components/Profile";
 import ShowApplications from "../../Layouts/ShowApplications/index";
+import DocumentDownload from "../../components/DialogBox/DocumentDownload/downloadForm"
 import { IS_INSTALLER } from "../../components/sessionStorage";
 import { useStyles } from "./style";
 
@@ -16,11 +18,17 @@ function Index() {
   const classes = useStyles();
   const navigate = useNavigate();
   const { name } = useParams();
+  const [open, setOpen]=useState(false)
   localStorage.setItem("card_name", name);
   const { isShowing, toggle } = useModal();
+
   const submitNewAppln = () => {
-    navigate("/aps-submit-new-application-1");
+    navigate(`/aps-submit-new-application-1/${name}`);
   };
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
 
   const isInstallerFunction = () => {
     return (
@@ -36,6 +44,17 @@ function Index() {
             </Typography>
           </div>
           <div className={classes.buttonSections}>
+            {name === "Battery Storage Rewards Program" ? (
+              <Button
+                variant="outlined"
+                className={classes.newApplication}
+                onClick={handleOpen}
+              >
+                DOWNLOAD PROGRAM DOCUMENTS
+              </Button>
+            ) : (
+              ""
+            )}
             <Button
               variant="outlined"
               className={classes.newApplication}
@@ -51,10 +70,15 @@ function Index() {
             >
               SEE HOW APPLICATION PROCESS WORKS
             </Button>
-            <ModalBox isShowing={isShowing} hide={toggle} />
+            {name === "Battery Storage Rewards Program" ? (
+              <RewardModal isShowing={isShowing} hide={toggle} />
+            ) : (
+              <ModalBox isShowing={isShowing} hide={toggle} />
+            )}
+            <DocumentDownload open={open} setOpen={setOpen} />
           </div>
         </div>
-       <Menu />
+        <Menu name={name} />
       </>
     );
   }

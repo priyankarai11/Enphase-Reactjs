@@ -9,34 +9,39 @@ import { PERSON_ID, CARD_NAME } from "../sessionStorage";
 import { useNavigate } from "react-router";
 import Dialog from "../../components/DialogBox/DialogAlert/index";
 import ApplicationForm from "../../Layouts/ApplicationDetails/index";
+import StorageRewardProgram from '../../Layouts/StorageRewardProgram/index'
 import { steps } from "./constant";
 import { useStyles } from "./style";
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return (
-        <div>
-          {" "}
-          <ApplicationForm />{" "}
-        </div>
-      );
-
-    case 1:
-      return "do step 2";
-    case 2:
-      return "do step 3";
-    default:
-      return "unknown step";
-  }
-}
-
-export default function App({ isEnabled }) {
+export default function App({ name }) {
   const navigate = useNavigate();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState(new Set());
   const [isOpen, setisOpen] = useState(false);
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return name === "Battery Storage Rewards Program" ? (
+          <div>
+            {" "}
+            <StorageRewardProgram />{" "}
+          </div>
+        ) : (
+          <div>
+            {" "}
+            <ApplicationForm />{" "}
+          </div>
+        );
+      case 1:
+        return "do step 2";
+      case 2:
+        return "do step 3";
+      default:
+        return "unknown step";
+    }
+  }
 
   const handleBack = () => {
     if (activeStep === 0) {
@@ -82,7 +87,7 @@ export default function App({ isEnabled }) {
       <div>
         <div>
           {getStepContent(activeStep)}
-{/* 
+          {/* 
           <div className={classes.buttonSection}>
             <Button
               variant="outlined"

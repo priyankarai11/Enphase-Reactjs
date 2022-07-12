@@ -24,7 +24,7 @@ export const useStyles = makeStyles({
   txtField: {
     marginTop: 10,
     height: 52,
-    width:546,
+    width: 546,
     "& .MuiFormLabel-root": {
       marginTop: 8,
     },
@@ -49,7 +49,7 @@ export const useStyles = makeStyles({
     fontSize: 14,
     marginLeft: 10,
     "@media (max-width: 1024px)": {
-      marginLeft:!2,
+      marginLeft: !2,
     },
   },
 
@@ -288,8 +288,12 @@ export const useStyles = makeStyles({
     "@media (min-width: 1000px)": {
       marginLeft: 247,
       marginTop: -400,
-      position:"fixed",
+      position: "fixed",
     },
+  },
+
+  arrow: {
+    width: 10,
   },
 
   paginationDisplay: {
@@ -351,10 +355,20 @@ export const useStyles = makeStyles({
     width: 570,
     height: 500,
     boxShadow: "none",
-    overflowY: "scroll",
-    scrollbarWidth: "thin",
+    overflowY: "auto",
+    marginRight: 16,
+    marginTop:-12,
+    padding: 0,
+    listStyle: "none",
+    "&::-webkit-scrollbar": {
+      width: 3,
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.2)",
+    },
     "@media (max-width: 1024px)": {
       width: 585,
+      overflowX:"auto",
     },
   },
 

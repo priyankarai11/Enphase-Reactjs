@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Link } from "@material-ui/core";
 import { Breadcrumbs } from "@material-ui/core";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { CARD_NAME, PERSON_ID } from "../../components/sessionStorage/index";
 import ProfileHeader from "../../components/Profile";
 import Stepper from "../../components/Stepper/index";
@@ -12,6 +12,8 @@ import { useStyles } from "./style";
 function Index() {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { name } = useParams();
+
   return (
     <>
       <ProfileHeader />
@@ -29,7 +31,7 @@ function Index() {
             color="inherit"
             className={classes.link}
             onClick={() =>
-              navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`)
+              navigate(`/aps-application-tracker/${PERSON_ID}/${name}`)
             }
           >
             {CARD_NAME}
@@ -56,7 +58,7 @@ function Index() {
           </Button>
         </div>
       </div>
-      <Stepper />
+      <Stepper name={name} />
     </>
   );
 }

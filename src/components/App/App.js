@@ -56,7 +56,7 @@ function App() {
           }
         />
         <Route
-          path="/aps-submit-new-application-1"
+          path="/aps-submit-new-application-1/:name"
           element={
             <PrivateRoute>
               <SubmitNewApplication />

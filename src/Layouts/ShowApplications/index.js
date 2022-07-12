@@ -38,7 +38,9 @@ const ShowApplications = (props) => {
   const [getValues, setGetValues] = useState("");
   const [checkedOne, setCheckedOne] = useState(false);
   const [getItem, setGetItem] = useState("")
-  const [reference, setReference]=useState("")
+  const [reference, setReference] = useState("")
+  const [error, setError] = useState("");
+  const [errorCheck, setErrorCheck]=useState("")
   const [changeStatus, setChangeStatus] = useState(0);
   const [homeowner, setHomeowner] = useState({
     meter:"",
@@ -225,7 +227,7 @@ const ShowApplications = (props) => {
                          href="https://admin.energyhub.net/utility/login.html"
                        >
                          <Link className={classes.visit}>
-                           Visit PSEG Portal
+                           Visit PSEG Portal &#62;
                          </Link>
                        </a>
                      </span>
@@ -417,7 +419,7 @@ const ShowApplications = (props) => {
        );
      }
   }
-
+console.log(flag, open)
   const validatedFunc = () => {
     switch (getValue) {
       case 0:
@@ -445,7 +447,11 @@ const ShowApplications = (props) => {
                   flag={flag}
                   setFlag={setFlag}
                 />
-                <RejectNotFound open={flag} setOpen={setFlag} siteId={homeowner.siteId} />
+               {flag && (<RejectNotFound
+                  open={flag}
+                  setOpen={setFlag}
+                  siteId={homeowner.siteId}
+                />)}
               </div>
               <div>
                 <Button

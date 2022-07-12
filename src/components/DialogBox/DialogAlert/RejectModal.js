@@ -28,8 +28,6 @@ const Approve = ({
     setOpen(false);
   };
 
-  console.log(dataStatus);
-
   const data = {
     application_status: dataStatus,
     last_modified_by: "dummy_cs@gmail.com",

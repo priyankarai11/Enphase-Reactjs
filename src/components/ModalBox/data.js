@@ -1,3 +1,4 @@
+import { Link } from "@mui/material";
 import number_1 from "../../assets/icons/number_1.svg";
 import number_2 from "../../assets/icons/number_2.svg";
 import number_3 from "../../assets/icons/number_3.svg";
@@ -42,5 +43,35 @@ export const modalData = [
     logo:  groupProfile ,
     text: "Good Job! Once approved by Enphase, you’ve got the site successfully enrolled in the program.",
     tagline: "APS can now schedule events for the site",
+  },
+];
+
+
+export const modalData1 = [
+  {
+    imgPath: number_1,
+    logo: groupProfile,
+    text: "Download Enphase T&C Document and NYSERDA Customer Attestation Form. Get these forms signed from homeowner and upload on PSEG Portal.",
+  },
+  {
+    imgPath: number_2,
+    logo: groupProfile,
+    text: "Once site installation is completed, download and populate PSEG Enrolment form.",
+  },
+  {
+    imgPath: number_3,
+    logo: groupProfile,
+    text: "Fill homeowner details, upload all three documents (PSEG Enrolment Form, Enphase T&C and NYSERDA Customer Attestation Form) and submit the application here for Enphase review.",
+  },
+  {
+    imgPath: number_4,
+    logo: groupProfile,
+    text: "Enphase reviews the application and provides its approval. On Enphase approval, the application is submitted for PSEG review.",
+  },
+  {
+    imgPath: number_5,
+    logo: groupProfile,
+    text: "Good Job! Once approved by PSEG, you’ve got the site successfully enrolled in the program",
+    tagline: "Events can now be scheduled for the live site.",
   },
 ];

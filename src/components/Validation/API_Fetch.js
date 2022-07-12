@@ -38,10 +38,13 @@ function API_Fetch() {
     const data = { email, password };
     fetch(
       // https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}
-      ` https://gs-stg.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}`,
+      `https://gs-stg.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}`,
       {
         method: "post",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "",
+          "gs-enphase-auth":null
+        },
         body: JSON.stringify(data),
       }
     )

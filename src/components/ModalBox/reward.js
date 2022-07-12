@@ -1,16 +1,18 @@
+/** @format */
+
 import React from "react";
 import { Link, MobileStepper } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import Typography from "@material-ui/core/Typography";
-import { modalData } from "./data";
+import { modalData1 } from "./data";
 import { useStyles } from "./style";
 
 function Modal({ isShowing, hide }) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = modalData.length;
+  const maxSteps = modalData1.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -21,7 +23,7 @@ function Modal({ isShowing, hide }) {
   };
 
   return isShowing ? (
-   <>
+    <>
       <div className={classes.modalOverlay} />
       <div
         className={classes.modalWrapper}
@@ -44,30 +46,30 @@ function Modal({ isShowing, hide }) {
 
           <img
             className={classes.Numbers_Logo}
-            src={modalData[activeStep].imgPath}
+            src={modalData1[activeStep].imgPath}
           />
           <div>
             <img
               className={classes.groupProfile_Logo}
-              src={modalData[activeStep].logo}
+              src={modalData1[activeStep].logo}
             />
           </div>
 
           <Typography className={classes.downloadEneryHub}>
-            {modalData[activeStep].text}{" "}
+            {modalData1[activeStep].text}{" "}
           </Typography>
           <Link className={classes.downloadDocument}>
             {" "}
-            {modalData[activeStep].tag}{" "}
+            {modalData1[activeStep].tag}{" "}
           </Link>
           <Typography className={classes.tagLine}>
-            {modalData[activeStep].tagline}
+            {modalData1[activeStep].tagline}
           </Typography>
           <MobileStepper
             className={classes.mobileStepper}
-            modalData={maxSteps}
+            modalData1={maxSteps}
             position="static"
-            steps={6}
+            steps={5}
             variant="dots"
             activeStep={activeStep}
             nextButton={

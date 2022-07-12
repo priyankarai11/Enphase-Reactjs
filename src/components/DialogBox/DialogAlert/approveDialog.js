@@ -8,13 +8,24 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
-import RejectNotFound from "../RejectNotFound.js/index"
-import RejectModal from "./RejectModal"
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { TOKEN, PERSON_ID, CARD_NAME } from "../../sessionStorage";
 import { useStyles } from "./style";
 
-const Approve = ({ setOpen, open,getItem, applicationId, timestamp, setIsActive, dataStatus, homeowner, setFlag , flag}) => {
+const Approve = ({
+  error,
+  setError,
+  setOpen,
+  open,
+  getItem,
+  applicationId,
+  timestamp,
+  setIsActive,
+  dataStatus,
+  homeowner,
+  flag,
+  setFlag,
+  getapprovedDescision,
+}) => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,63 +37,69 @@ const Approve = ({ setOpen, open,getItem, applicationId, timestamp, setIsActive,
     timestamp: timestamp,
   };
 
-  const dataSet = {
-    "site_id": homeowner.siteId,
-    "utility_reference_id": getItem,
-    "homeowner_info": {
-     "first_name": homeowner.first_name,
-     "last_name": homeowner.last_name,
-      "phone": homeowner.phone,
-      "email_address": homeowner.email,
-      "city": homeowner.city,
-      "state": homeowner.state,
-     " zip": homeowner.zip,
-      "electric_account_number": homeowner.EAN,
-      "program_type": homeowner.option,
-      "address1": homeowner.address1,
-      "address2": homeowner.address2,
-      "kw_capacity_committed": homeowner.capacity,
-      "utility_meter_number": homeowner.meter,
+  const payload = {
+    site_id: homeowner.siteId,
+    utility_reference_id: getItem,
+    homeowner_info: {
+      first_name: homeowner.first_name,
+      last_name: homeowner.last_name,
+      phone: homeowner.phone,
+      email_address: homeowner.email,
+      city: homeowner.city,
+      state: homeowner.state,
+      zip: homeowner.zip,
+      electric_account_number: homeowner.EAN,
+      program_type: homeowner.option,
+      address1: homeowner.address1,
+      address2: homeowner.address2,
+      kw_capacity_committed: homeowner.capacity,
+      utility_meter_number: homeowner.meter,
     },
   };
-
-  const getapprovedDescision = () => {
-    setOpen(false);
-    setFlag(true) 
-  };
-
 
   //  if (open === false) {
   //    isLoading && <CircularProgress className={classes.loaderShow} />;
   //    setFlag(true);
   //  }
-   
+
+  // const getapprovedDescision = () => {
+  //   setOpen(false);
+  //   setFlag(true);
+  // };
+
   const handleClose = () => {
     setOpen(false);
   };
 
- const GetForm = async () => {
+  const GetForm = async () => {
+    let formData = new FormData();
+    const json = JSON.stringify(payload);
+    const blob = new Blob([json], {
+      type: "application/json",
+    });
+    formData.append("application_form", blob);
+
     const myHeaders = new Headers({
-      "Content-Type": "application/json",
       Accept: "application/json",
       "GS-Enphase-Auth": TOKEN,
     });
+
     await fetch(
       `https://gs-stg.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/${applicationId}`,
       {
         method: "PUT",
         headers: myHeaders,
-        body: JSON.stringify(dataSet),
+        body: formData,
       }
     )
       .then((response) => response.json())
-      .then((res) => {
-        setIsLoading(false);
-        setOpen(false);
-        setIsActive(0);
-      });
+      // .then((res) => {
+      //   setIsLoading(false);
+      //   setOpen(false);
+      //   setIsActive(0);
+      // });
   };
- 
+
   const submittedForm = async () => {
     GetForm();
     const myHeaders = new Headers({
@@ -100,16 +117,19 @@ const Approve = ({ setOpen, open,getItem, applicationId, timestamp, setIsActive,
     )
       .then((response) => response.json())
       .then((res) => {
-        setIsLoading(false);
+        if (res.error.code != 400) {
+          setIsLoading(false);
           setOpen(false);
           setIsActive(0);
-        toast.success("Application approved successfully !", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      });
+          toast.success("Application approved successfully !", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        } else {
+          setOpen(false);
+          setFlag(true);
+        }
+      })
   };
-
-    console.log(open, flag);
 
   return (
     <div>
@@ -127,7 +147,7 @@ const Approve = ({ setOpen, open,getItem, applicationId, timestamp, setIsActive,
             variant="contained"
             className={classes.buttonSubmit}
             onClick={() => {
-              getapprovedDescision();
+              submittedForm();
             }}
           >
             Yes

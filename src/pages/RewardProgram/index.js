@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import { TableBody } from "@material-ui/core";
@@ -6,23 +8,23 @@ import { TableHead } from "@material-ui/core";
 import { TablePagination, TableContainer, Link } from "@material-ui/core";
 import { TableRow } from "@material-ui/core";
 import Paper from "@mui/material/Paper";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Chip from "@mui/material/Chip";
 import { useNavigate } from "react-router";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { TOKEN } from "../../components/sessionStorage";
 import { useParams } from "react-router";
 import { FaSlidersH } from "react-icons/fa";
-import { stockData } from "./data";
 import { useStyles } from "./style";
 
-
-function ApplicationformTable({ open, handleClick, selected }) {
+function RewardProgram({ open, handleClick, selected}) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
-  const [pages, setPages] = useState([5, 10, 25, 100,150]);
+  const [pages, setPages] = useState([5, 10, 25, 100, 150]);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [status,setStatus]=useState("")
   const navigate = useNavigate();
   const { program_id } = useParams();
   localStorage.setItem("person_id", program_id);
@@ -38,7 +40,7 @@ function ApplicationformTable({ open, handleClick, selected }) {
 
   const getData = () => {
     const myHeaders = new Headers({
-     // "Content-Type": "application/json",
+      // "Content-Type": "application/json",
       Accept: "application/json",
       "GS-Enphase-Auth": TOKEN,
     });
@@ -55,18 +57,61 @@ function ApplicationformTable({ open, handleClick, selected }) {
         setIsLoading(false);
 
         for (let i in res.data) {
-          let set = res.data[i].map(ele => ele);
+          let set = res.data[i].map((ele) => ele);
           if (set.length === 0) {
             setItems([]);
           } else setItems(set);
         }
       });
-  };
+    };
+    
+    const getTimestamp = (time) => {
+        const d = new Date(time);
+        const date =
+          d.toDateString() +
+          ", " +
+          d.getHours() +
+          ":" +
+          d.getMinutes() +
+          ":" +
+          d.getSeconds(); 
+        return date
+    }
+
+    const getStatus = (data) => {
+        switch (data) {
+          case "Application_Submitted":
+            return "#F0D852";
+          case "Application_Approved":
+            return "#F0D852";
+          case "Site_Rejected":
+            return "#FA2E2E";
+          case "Site_Approved":
+            return "#4ED01F";
+          case "Application_Rejected":
+            return "#FA2E2E";
+        }
+    }
+
+    const getStatusName = (data) => {
+        switch (data) {
+          case "Application_Submitted":
+            return "Submitted for Enphase Review";
+          case "Application_Approved":
+            return "Submitted for PSEG Review";
+          case "Site_Rejected":
+            return "Rejected by PSEG";
+          case "Site_Approved":
+            return "Approved by PSEG";
+          case "Application_Rejected":
+            return "Rejected by Enphase";
+        }
+   }
 
   useEffect(() => {
-    getData(); 
-  },[]);
-  
+    getData();
+  }, []);
+
   return (
     <>
       <Paper sx={{ width: "100%" }} className={classes.paper}>
@@ -80,14 +125,12 @@ function ApplicationformTable({ open, handleClick, selected }) {
                 <TableCell className={classes.tabelCell}>
                   APPLICATION ID
                 </TableCell>
+                <TableCell className={classes.tabelCell}>SITE ID</TableCell>
                 <TableCell className={classes.tabelCell}>
-                  ENPHASE SITE ID
+                  DLRP CONTRACTED AMOUNT (kW)
                 </TableCell>
                 <TableCell className={classes.tabelCell}>
                   HOME OWNER FULL NAME
-                </TableCell>
-                <TableCell className={classes.tabelCell}>
-                  INSTALLER NAME
                 </TableCell>
                 <TableCell className={classes.tabelCell}>
                   APPLICATION STATUS
@@ -100,26 +143,34 @@ function ApplicationformTable({ open, handleClick, selected }) {
                     aria-expanded={open ? "true" : undefined}
                   />
                 </TableCell>
+                <TableCell className={classes.tabelCell}>
+                  TIMESTAMP
+                  <InfoOutlinedIcon className={classes.filtered} />
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody className={classes.tableBody}>
-              {isLoading && <CircularProgress className={classes.loaderShow} />}  
+              {isLoading && <CircularProgress className={classes.loaderShow} />}
               {items
-              .filter(data=>selected==="" || selected==="All" || data.application_status===selected)
+                .filter(
+                  (data) => 
+                    selected === "" ||
+                    selected === "All" ||
+                    data.application_status === selected
+                )
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              //   .length <1 ?
-              //   <TableRow>
-              //    <TableCell colSpan={items.length}>
-              //     <div display="flex" justifyContent="center" alignItems="center" minHeight="150px" flexDirection="column">
-              //       {/* <DraftsIcon fontSize="large" color="disabled" /> */}
-              //        No Data Found
-              //     </div>
-              //  </TableCell>
-              // </TableRow>
-              //   :
-              //    items
+                //   .length <1 ?
+                //   <TableRow>
+                //    <TableCell colSpan={items.length}>
+                //     <div display="flex" justifyContent="center" alignItems="center" minHeight="150px" flexDirection="column">
+                //       {/* <DraftsIcon fontSize="large" color="disabled" /> */}
+                //        No Data Found
+                //     </div>
+                //  </TableCell>
+                // </TableRow>
+                //   :
+                //    items
                 .map((data) => {
-                 
                   return (
                     <TableRow>
                       <TableCell className={classes.tableRow}>
@@ -136,12 +187,12 @@ function ApplicationformTable({ open, handleClick, selected }) {
                       </TableCell>
                       <TableCell className={classes.tableRow}>
                         {data.site_id === null ? "---" : data.site_id}
-                      </TableCell>
+                      </TableCell>{" "}
+                      <TableCell className={classes.tableRow}>
+                        {data.committed_capacity}
+                      </TableCell>{" "}
                       <TableCell className={classes.tableRow}>
                         {data.home_owner_first_name} {data.home_owner_last_name}
-                      </TableCell>
-                      <TableCell className={classes.tableRow}>
-                        {data.installer_first_name} {data.installer_last_name}
                       </TableCell>
                       <TableCell className={classes.tableRow}>
                         <Chip
@@ -150,33 +201,21 @@ function ApplicationformTable({ open, handleClick, selected }) {
                             <div
                               className={classes.roundIcon}
                               style={{
-                                background:
-                                  (data.application_status ===
-                                    "Application_Submitted" &&
-                                    "#F0D852") ||
-                                  (data.application_status ===
-                                    "Application_Approved" &&
-                                    "#4ED01F ") ||
-                                  (data.application_status ===
-                                    "Site_Rejected" &&
-                                    "#FA2E2E ") ||
-                                  (data.application_status ===
-                                    "Application_Rejected" &&
-                                    "#FA2E2E ") ||
-                                  (data.application_status ===
-                                    "Site_Submitted" &&
-                                    "#4ED01F "),
+                                background: getStatus(data.application_status),
                               }}
                             ></div>
                           }
                           label={
                             <div className={classes.labelStyle}>
-                              {data.application_status}
+                              {getStatusName(data.application_status)}
                             </div>
                           }
                           size="small"
                           variant="outlined"
                         />
+                      </TableCell>
+                      <TableCell className={classes.tableRow}>
+                        {getTimestamp(data.last_modified_at)}
                       </TableCell>
                     </TableRow>
                   );
@@ -187,7 +226,14 @@ function ApplicationformTable({ open, handleClick, selected }) {
         <TablePagination
           rowsPerPageOptions={pages}
           component="div"
-          count={items.filter(data=>selected==="" || selected==="All" || data.application_status===selected).length}
+          count={
+            items.filter(
+              (data) =>
+                selected === "" ||
+                selected === "All" ||
+                data.application_status === selected
+            ).length
+          }
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
@@ -197,4 +243,4 @@ function ApplicationformTable({ open, handleClick, selected }) {
     </>
   );
 }
-export default ApplicationformTable;
+export default RewardProgram;

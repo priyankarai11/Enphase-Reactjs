@@ -19,6 +19,7 @@ import {
   ZIP,
   PHONENUMBER,
   ELECTRIC,
+  ZIPPED
 } from "../../components/Utils/Message/messageTypes";
 import {
   EMAIL_REGEX,
@@ -62,7 +63,9 @@ function Index() {
   const [helperTextstate, setHelperTextState] = useState("");
   const [helperTextpn, setHelperTextPN] = useState("");
   const [helperTextac, setHelperTextAC] = useState("");
-  const [input, setInput] = useState({
+  const [filename, setFileName] = useState(null);
+  const [optionType,setOptionType]=useState("")
+  let [input, setInput] = useState({
     homeowner_info: {  first_name: "",
     last_name: "",
     email_address: "",
@@ -156,24 +159,25 @@ const encharge10_Increment=()=>{
 
 
   const onImageChange = (e) => {
-    setImg(`${e.target.files[0].name}`);
+    setImg(e.target.files[0]);
+    setFileName(`${e.target.files[0].name}`);
     setUpload("RE-UPLOAD");
   };
-
+  
   const handleChange = (e) => {
     e.preventDefault();
 
     const { name, value } = e.target;
     switch (name) {
       case "first_name":
-        if (STRING_REGEX.test(value) && value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 2) {
           setHelperTextFirstName("");
         } else {
           setHelperTextFirstName(FIRSTNAME_ERROR);
         }
         break;
       case "last_name":
-        if (STRING_REGEX.test(value) && value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 2) {
           setHelperLastName("");
         } else {
           setHelperLastName(LASTNAME_ERROR);
@@ -187,28 +191,28 @@ const encharge10_Increment=()=>{
         }
         break;
       case "address1":
-        if (STRING_REGEX.test(value) && value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 2) {
           setHelperTextAddress1("");
         } else {
           setHelperTextAddress1(ADDRESS1_ERROR);
         }
         break;
       case "address2":
-        if (STRING_REGEX.test(value) && value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 2) {
           setHelperTextAddress2("");
         } else {
           setHelperTextAddress2(ADDRESS2_ERROR);
         }
         break;
       case "city":
-        if (STRING_REGEX.test(value) && value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 2) {
           setHelperTextCity("");
         } else {
           setHelperTextCity(CITY);
         }
         break;
       case "state":
-        if (STRING_REGEX.test(value) && value.length >= 4) {
+        if (STRING_REGEX.test(value) && value.length >= 2) {
           setHelperTextState("");
         } else {
           setHelperTextState(STATE);
@@ -218,7 +222,14 @@ const encharge10_Increment=()=>{
         if (NUMBER_REGEX.test(value) && value.length === 5) {
           setHelperTextZip("");
         } else {
-          setHelperTextZip(ZIP);
+          if (value.length === 0)
+          {
+             setHelperTextZip(ZIP);
+          }
+          else {
+             setHelperTextZip(ZIPPED);
+          }
+         
         }
         break;
       case "phone":
@@ -229,11 +240,24 @@ const encharge10_Increment=()=>{
         }
         break;
       case "program_type":
-        return setInput(prev => ({
-          ...prev,
-          homeowner_info: { ...prev.homeowner_info, program_type:e.target.value  }
-        }))
-        break;
+        setOptionType(e.target.value)
+        if (e.target.value === "Data Only") {
+          return setInput((prev) => ({
+            ...prev,
+            homeowner_info: {
+              ...prev.homeowner_info,
+              program_type: "DATA_ONLY",
+            },
+          }));
+        }
+        else {
+          return setInput((prev) => ({
+            ...prev,
+            homeowner_info: {
+              ...prev.homeowner_info,
+              program_type: "DATA_AND_DISPATCH",
+            },
+          }));}
       case "electric_account_number":
         if (NUMBER_REGEX.test(value) && value.length >= 8) {
           setHelperTextAC("");
@@ -248,7 +272,7 @@ const encharge10_Increment=()=>{
   };
 
   const disableButton = () => {
-    const {
+    let {
       first_name,
       last_name,
       email_address,
@@ -290,7 +314,7 @@ const encharge10_Increment=()=>{
   useEffect(() => {
     disableButton();
   });
-  
+ 
   return (
     <>
       <Card className={classes.enterTheDetail}>
@@ -313,8 +337,8 @@ const encharge10_Increment=()=>{
                   // InputLabelProps={{ className: classes.textfieldLabel }}
                   InputProps={{
                     classes: {
-                      root: classes.root
-                    }
+                      root: classes.root,
+                    },
                   }}
                 />
                 <br />
@@ -430,7 +454,7 @@ const encharge10_Increment=()=>{
                       label="-"
                       value={input.homeowner_info.encharge10}
                     />
-                   {input.homeowner_info.encharge10}
+                    {input.homeowner_info.encharge10}
                     <Chip
                       className={classes.IncrementCount}
                       onClick={encharge10_Increment}
@@ -439,12 +463,12 @@ const encharge10_Increment=()=>{
                     />
                   </div>
                 </div>
-                <Typography  className={classes.textFieldDetails}>
+                <Typography className={classes.textFieldDetails}>
                   {" "}
                   KW Capacity committed for data sharing
                 </Typography>
-                <Typography className={classes.enphaseField} >  
-                {input.homeowner_info.kw_capacity_committed}
+                <Typography className={classes.enphaseField}>
+                  {input.homeowner_info.kw_capacity_committed}
                 </Typography>
 
                 <FormControl className={classes.textField} variant="standard">
@@ -454,7 +478,7 @@ const encharge10_Increment=()=>{
                   <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
-                    value={input.homeowner_info.program_type}
+                    value={optionType}
                     onChange={handleChange}
                     label="Program Option"
                     name="program_type"
@@ -494,13 +518,14 @@ const encharge10_Increment=()=>{
                 <h4 className="fileUploader">
                   {upload}
                   <input
+                    id="fileInput"
                     type="file"
                     className="hide_file"
                     accept="application/pdf"
                     onChange={onImageChange}
                   />
                 </h4>
-                <span className="selectedFile">{img}</span>
+                <span className="selectedFile">{filename}</span>
                 <Typography className={classes.fileConditions}>
                   File number limit: 1
                 </Typography>
@@ -533,8 +558,8 @@ const encharge10_Increment=()=>{
         >
           Submit
         </Button>
-        <DialogConfirm setOpen={setOpen} open={open} input={input} />      
-        </div>
+        <DialogConfirm setOpen={setOpen} open={open} input={input} img={img} />
+      </div>
     </>
   );
 }
