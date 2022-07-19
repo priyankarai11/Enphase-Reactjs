@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 import { TOKEN ,PERSON_ID,CARD_NAME} from "../../sessionStorage";
 import { useStyles } from "./style";
 
-const App = ({ setOpen, open,input, img}) => {
+const App = ({ setOpen, open,input, pdfFile}) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,7 @@ const App = ({ setOpen, open,input, img}) => {
        type: "application/json",
      });
     formData.append("application_form", blob);
-    formData.append("tandc_form",img);
+    formData.append("tandc_form",pdfFile);
 
     const blb = new Blob([], {
       type: "multipart/form-data",

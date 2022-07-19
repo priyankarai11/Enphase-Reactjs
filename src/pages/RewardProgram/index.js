@@ -17,7 +17,7 @@ import { useParams } from "react-router";
 import { FaSlidersH } from "react-icons/fa";
 import { useStyles } from "./style";
 
-function RewardProgram({ open, handleClick, selected}) {
+function RewardProgram({ open, handleClick, selected,name}) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [pages, setPages] = useState([5, 10, 25, 100, 150]);
@@ -178,7 +178,7 @@ function RewardProgram({ open, handleClick, selected}) {
                           className={classes.link}
                           onClick={() =>
                             navigate(
-                              `/bb-rejected-application-1/${data.application_id}/${program_id}`
+                              `/view-application/${data.application_id}/${program_id}/${name}`
                             )
                           }
                         >

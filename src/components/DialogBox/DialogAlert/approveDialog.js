@@ -22,9 +22,7 @@ const Approve = ({
   setIsActive,
   dataStatus,
   homeowner,
-  flag,
   setFlag,
-  getapprovedDescision,
 }) => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
@@ -57,16 +55,6 @@ const Approve = ({
     },
   };
 
-  //  if (open === false) {
-  //    isLoading && <CircularProgress className={classes.loaderShow} />;
-  //    setFlag(true);
-  //  }
-
-  // const getapprovedDescision = () => {
-  //   setOpen(false);
-  //   setFlag(true);
-  // };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -93,11 +81,6 @@ const Approve = ({
       }
     )
       .then((response) => response.json())
-      // .then((res) => {
-      //   setIsLoading(false);
-      //   setOpen(false);
-      //   setIsActive(0);
-      // });
   };
 
   const submittedForm = async () => {

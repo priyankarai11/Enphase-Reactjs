@@ -7,7 +7,7 @@ function index() {
     <div className="footer_part">
       <img src={UserIcon} className="logo_enphase" />
       <h3 className="copyright">
-        ©2008-2021 Enphase Energy Inc. All rights reserved.{" "}
+        ©2008-2022 Enphase Energy Inc. All rights reserved.{" "}
         <a
           href="https://www4.enphase.com/en-us/legal/privacy-policy"
           target="_blank"

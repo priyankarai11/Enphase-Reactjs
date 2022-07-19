@@ -35,7 +35,6 @@ function API_Fetch() {
       return;
     }
     setIsLoading(true);
-    const data = { email, password };
     fetch(
       // https://gs-dev.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}
       `https://gs-stg.qa-enphaseenergy.com/session-mgr/api/v1/application/login?username=${email}&password=${password}`,
@@ -43,9 +42,9 @@ function API_Fetch() {
         method: "post",
         headers: {
           "Content-Type": "",
-          "gs-enphase-auth":null
+          "gs-enphase-auth": null,
+          Accept: "application/json",
         },
-        body: JSON.stringify(data),
       }
     )
       .then((response) => response.json())
@@ -59,6 +58,9 @@ function API_Fetch() {
               break;
             case "first_name":
               localStorage.setItem("user_name", res.data[i]);
+              break;
+            case "last_name":
+              localStorage.setItem("user_name1", res.data[i]);
               break;
             case "is_installer":
               localStorage.setItem("is_installer", res.data[i]);

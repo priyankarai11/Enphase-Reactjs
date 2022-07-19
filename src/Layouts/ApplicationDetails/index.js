@@ -47,7 +47,7 @@ const values = [
 function Index() {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [img, setImg] = useState(null);
+  const [pdfFile, setpdfFile] = useState(null);
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [isEnabled, setIsEnabled] = useState(true);
@@ -159,7 +159,7 @@ const encharge10_Increment=()=>{
 
 
   const onImageChange = (e) => {
-    setImg(e.target.files[0]);
+    setpdfFile(e.target.files[0]);
     setFileName(`${e.target.files[0].name}`);
     setUpload("RE-UPLOAD");
   };
@@ -298,7 +298,7 @@ const encharge10_Increment=()=>{
       address1 === "" ||
       address2 === "" ||
       city === "" ||
-      img === null ||
+      pdfFile === null ||
       encharge3 === 0 ||
       encharge10 === 0 ||
       program_type === "" ||
@@ -558,7 +558,7 @@ const encharge10_Increment=()=>{
         >
           Submit
         </Button>
-        <DialogConfirm setOpen={setOpen} open={open} input={input} img={img} />
+        <DialogConfirm setOpen={setOpen} open={open} input={input} pdfFile={pdfFile} />
       </div>
     </>
   );

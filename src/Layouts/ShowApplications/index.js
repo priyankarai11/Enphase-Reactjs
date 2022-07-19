@@ -1,22 +1,19 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
  Card, TextField, Link, Checkbox
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { useParams } from "react-router";
 import pdf from "../../assets/icons/pdfDwnld.svg"
 import checkBox from "../../assets/icons/checkBox.png"
 import Reject from "../../assets/icons/reject.png";
-import DownloadApplication from "../../assets/icons/downloadApplication.svg"
 import RejectDialog from "../../components/DialogBox/RejectDialog/index";
 import ApproveDialog from "../../components/DialogBox/DialogAlert/approveDialog";
 import RejectModal from "../../components/DialogBox/DialogAlert/RejectModal"
 import RejectNotFound from "../../components/DialogBox/RejectNotFound.js/index"
 import { TOKEN } from "../../components/sessionStorage";
-import ApplicationDetail from "./apllicationDetail";
 import {ButtonDisplay} from "./constant"
 import Documents from "./documents"
 import { useStyles } from "./style";
@@ -39,19 +36,17 @@ const ShowApplications = (props) => {
   const [checkedOne, setCheckedOne] = useState(false);
   const [getItem, setGetItem] = useState("")
   const [reference, setReference] = useState("")
-  const [error, setError] = useState("");
-  const [errorCheck, setErrorCheck]=useState("")
   const [changeStatus, setChangeStatus] = useState(0);
   const [homeowner, setHomeowner] = useState({
-    meter:"",
-    programUrl: "",
-    signed: "",
+    meter: "",
+    programUrl: null,
+    signed: null,
     phone: "",
     email: "",
     capacity: "",
     option: "",
     siteId: "",
-    url: "",
+    url: null,
     first_name: "",
     last_name: "",
     address1: "",
@@ -64,17 +59,6 @@ const ShowApplications = (props) => {
     payment: "",
   });
   const { program_id } = useParams();
-
-  const getIDDetails = () => {
-    return (
-      <div className={classes.applicationShow}>
-        <span className={classes.applicationDetail}>Application Details</span>
-        <div className={classes.description}>
-          Click on the Application ID from the left pane to open the application
-        </div>
-      </div>
-    );
-  };
 
   const getStatusIdData = () => {
     const myHeaders = new Headers({
@@ -186,6 +170,8 @@ const ShowApplications = (props) => {
       <img src={Reject} className={classes.checkBoxed} />
     );
   }
+
+  
 
   const validatedPSEGFunc = () => {
      switch (getValue) {
@@ -419,7 +405,7 @@ const ShowApplications = (props) => {
        );
      }
   }
-console.log(flag, open)
+
   const validatedFunc = () => {
     switch (getValue) {
       case 0:
@@ -562,107 +548,32 @@ console.log(flag, open)
 
   const getUrl = () => {
     return props.name === "Battery Storage Rewards Program"
-      ? getValues
-      : homeowner.url;
+      ? getValues || "about:blank"
+      : homeowner.url || "about:blank";
   };
 
-  const getBoxIdDetails = () => {
-    return (
-      <div className={classes.applicationShow}>
-        <div>
-          <span className={classes.applicationDetail}>Application Details</span>
-          <div className={classes.buttonSec}>
-            <div>
-              {getButtons()}
-              <a
-                target="_blank"
-                href="https://enlighten-qa2.enphaseenergy.com/login"
-              >
-                <Button variant="outlined" className={classes.openEnlighten}>
-                  Open Site Details on Enlighten
-                </Button>
-              </a>
-            </div>
-          </div>
-        </div>
-        <Card className={classes.textFieldSection}>
-          <div>
-            <iframe
-              className={classes.downloadPrint}
-              type="text/html"
-              src={getUrl() + "#toolbar=0"}
-            />
-            <div className={classes.downloadSec}>
-              <a href={getUrl()} target="_blank" rel="noopener noreferrer">
-                <img
-                  className={classes.downloadSymbol}
-                  src={DownloadApplication}
-                  onClick={() => getUrl()}
-                />
-              </a>
-              <a
-                className={classes.downloadLink}
-                href={getUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download Application
-              </a>
-              {isPageLoading && (
-                <CircularProgress className={classes.loaderShow} />
-              )}
-            </div>
-          </div>
-          <Card className={classes.textFieldSec}>
-            <ApplicationDetail
-              count={count}
-              setCount={setCount}
-              getValue={getValue}
-              homeowner={homeowner}
-              name={props.name}
-              setApproved={setApproved}
-              cnt={cnt}
-              setCnt={setCnt}
-              setCheckedOne={setCheckedOne}
-            />
-          </Card>
-        </Card>
-        {displayStatus()}
-      </div>
-    );
-  };
-
-  const getBoxDetails = () => {
-    switch (isActive) {
-      case 0:
-        return (
-          <Documents
-            getIDDetails={getIDDetails}
-            isActive={isActive}
-            setIsActive={setIsActive}
-            setApplicationId={setApplicationId}
-            setGetValue={setGetValue}
-            name={props.name}
-            setCount={setCount}
-            setChangeStatus={setChangeStatus}
-          />
-        );
-      default:
-        return (
-          <Documents
-            isActive={isActive}
-            setIsActive={setIsActive}
-            setApplicationId={setApplicationId}
-            getIDDetails={getBoxIdDetails}
-            setGetValue={setGetValue}
-            name={props.name}
-            setCount={setCount}
-            setChangeStatus={setChangeStatus}
-          />
-        );
-    }
-  };
-  return <div>{getBoxDetails()}</div>;
+  return (
+    <Documents
+      isActive={isActive}
+      setIsActive={setIsActive}
+      applicationId={applicationId}
+      setApplicationId={setApplicationId}
+      setGetValue={setGetValue}
+      name={props.name}
+      getValue={getValue}
+      homeowner={homeowner}
+      count={count}
+      setCount={setCount}
+      setChangeStatus={setChangeStatus}
+      setApproved={setApproved}
+      cnt={cnt}
+      setCnt={setCnt}
+      setCheckedOne={setCheckedOne}
+      getButtons={getButtons}
+      displayStatus={displayStatus}
+      getUrl={getUrl}
+    />
+  );
 };
 
 export default ShowApplications;

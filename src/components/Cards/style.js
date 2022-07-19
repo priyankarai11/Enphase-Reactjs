@@ -5,6 +5,9 @@ const useStyles = makeStyles({
     width: 410,
     marginLeft: 50,
     marginTop: 30,
+    "@media (max-width: 500px)": {
+      marginLeft: 0,
+    },
   },
 
   table: {
@@ -14,12 +17,12 @@ const useStyles = makeStyles({
   arrow: {
     color: "orange",
     marginTop: 20,
-    marginLeft:20,
+    marginLeft: 20,
   },
 
-  cardTop:{
-    display:"flex",
-  flexDirection:"row"
+  cardTop: {
+    display: "flex",
+    flexDirection: "row",
   },
 
   card_view: {
@@ -60,11 +63,11 @@ const useStyles = makeStyles({
     fontWeight: 600,
     fontSize: 25,
     width: 270,
-    marginTop:12
+    marginTop: 12,
   },
 
-  towerImage:{
-   marginTop:2
+  towerImage: {
+    marginTop: 2,
   },
 
   loaderShow: {

@@ -92,6 +92,7 @@ export const useStyles = makeStyles({
       marginRight: 40,
       minHeight: 37,
       textTransform: "none",
+      color: "#545456",
     },
   },
 
@@ -237,7 +238,7 @@ export const useStyles = makeStyles({
   },
 
   idDisplay: {
-    textAlign: "center",
+    marginLeft: 26,
   },
 
   applnDetail: {
@@ -247,6 +248,7 @@ export const useStyles = makeStyles({
     fontFamily: "Roboto",
     fontWeight: "bold",
     width: 186,
+    marginBottom: 20,
     "@media (max-width: 1000px)": {
       marginBottom: 20,
     },
@@ -279,6 +281,8 @@ export const useStyles = makeStyles({
     backgroundColor: "#F5F5F5",
     color: "#000000",
     fontWeight: "bolder",
+    fontFamily: "Roboto, sans-serif",
+    fontSize: 14,
   },
 
   loaderShow: {
@@ -321,7 +325,7 @@ export const useStyles = makeStyles({
   },
 
   boxSection: {
-    width: "95%",
+    width: "85%",
     marginTop: 6,
     //marginLeft: 30,
     borderRadius: 4,
@@ -336,6 +340,8 @@ export const useStyles = makeStyles({
     border: "1px dashed #70707089",
     borderRadius: 6,
     cursor: "pointer",
+    fontFamily: "Roboto, sans-serif",
+    fontSize: 14,
   },
 
   textFieldSection: {
@@ -357,7 +363,7 @@ export const useStyles = makeStyles({
     boxShadow: "none",
     overflowY: "auto",
     marginRight: 16,
-    marginTop:-12,
+    marginTop: -12,
     padding: 0,
     listStyle: "none",
     "&::-webkit-scrollbar": {
@@ -368,7 +374,7 @@ export const useStyles = makeStyles({
     },
     "@media (max-width: 1024px)": {
       width: 585,
-      overflowX:"auto",
+      overflowX: "auto",
     },
   },
 

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Menu } from "@mui/material";
 import { MenuItem } from "@mui/material";
-import { Button } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { NAME } from "../sessionStorage/index";
+import { NAME, NAME1 } from "../sessionStorage/index";
 import { useStyles } from "./style";
 
-function ProfileHead() {
+function ProfileHead({ anchorEl, handleClick, open,setAnchorEl }) {
   const navigate = useNavigate();
   const classes = useStyles();
 
@@ -16,15 +16,13 @@ function ProfileHead() {
     localStorage.clear();
   };
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (e) => {
-    setAnchorEl(e.currentTarget);
-  };
-
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const Mobile = ({ children }) => {
+    const isMobile = useMediaQuery({ maxWidth: 767 });
+    return isMobile ? children : null;
   };
 
   return (
@@ -33,34 +31,39 @@ function ProfileHead() {
         className="arrowMark"
         onClick={handleClick}
         id="menu"
-        aria-controls={open ? "menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
       />
 
       <Menu
         className={classes.menu}
         id="menu"
-        aria-labelledby="demo-positioned-button"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
+        // anchorOrigin={{
+        //   vertical: "top",
+        //   horizontal: "left",
+        // }}
+        // transformOrigin={{
+        //   vertical: "top",
+        //   horizontal: "left",
+
+        //}}
       >
-        <MenuItem className={classes.menuItem} onClick={handleClose}>
-          {NAME}
+        <Mobile>
+          <span className="user_name" onClick={handleClick}>
+            Hi {NAME} {NAME1}
+          </span>
+        </Mobile>
+
+        <MenuItem
+          // classes={{ focusVisible: classes.focus }}
+          className={classes.contact}
+          onClick={() => (window.location = "mailto:yourmail@domain.com")}
+        >
+          Contact Support
         </MenuItem>
-        <MenuItem>
-          <Button className={classes.logOut} onClick={goBacktoSignIn}>
-            Log Out
-          </Button>
+        <MenuItem className={classes.logOut} onClick={goBacktoSignIn}>
+          Log Out
         </MenuItem>
       </Menu>
     </>

@@ -238,6 +238,10 @@ const useStyles = makeStyles({
   },
   fileContent: {
     display: "flex",
+    flexDirection: "column",
+    "@media (min-width: 1000px)": {
+      flexDirection:"row",
+    },
   },
 });
 

@@ -53,9 +53,9 @@ const values = [
 function Index() {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [img1, setImg1] = useState(null);
-  const [img2, setImg2] = useState(null);
-  const [img3, setImg3] = useState(null);
+  const [csvFile, setcsvFile] = useState(null);
+  const [pdfFileOne, setpdfFileOne] = useState(null);
+  const [pdfFileTwo, setpdfFileTwo] = useState(null);
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [isEnabled, setIsEnabled] = useState(true);
@@ -94,7 +94,7 @@ const [helperTextcapacity, setHelperTextCapacity] = useState("");
       zip: "",
       email_address: "",
       phone: "",
-      kw_capacity_committed: 0.0,
+      kw_capacity_committed: "",
       electric_account_number: "",
       utility_meter_number: "",
       program_type: "DISPATCH",
@@ -113,19 +113,19 @@ const [helperTextcapacity, setHelperTextCapacity] = useState("");
   };
 
   const onImageChange = (e) => {
-    setImg1(e.target.files[0]);
+    setcsvFile(e.target.files[0]);
     setFileName(`${e.target.files[0].name}`);
     setUpload("RE-UPLOAD");
     };
     
      const onImageChange2 = (e) => {
-       setImg2(e.target.files[0]);
+       setpdfFileOne(e.target.files[0]);
        setFileName2(`${e.target.files[0].name}`);
        setUpload2("RE-UPLOAD");
     };
     
      const onImageChange3 = (e) => {
-       setImg3(e.target.files[0]);
+       setpdfFileTwo(e.target.files[0]);
        setFileName3(`${e.target.files[0].name}`);
        setUpload3("RE-UPLOAD");
      };
@@ -262,9 +262,9 @@ const [helperTextcapacity, setHelperTextCapacity] = useState("");
       address1 === "" ||
       address2 === "" ||
       city === "" ||
-      img1 === null ||
-      img2 === null ||
-      img3 === null ||
+      csvFile === null ||
+      pdfFileOne === null ||
+      pdfFileTwo === null ||
       kw_capacity_committed === "" ||
       utility_meter_number===""||
       checked === false
@@ -432,97 +432,100 @@ const [helperTextcapacity, setHelperTextCapacity] = useState("");
               </TableContainer>
             </Table>
           </div>
-
-          <div className={classes.uploadingFile}>
-            <Typography className={classes.fileuploaderContent}>
-              Files to be uploaded
-            </Typography>
-            <div className={classes.fileContent}>
-              <Card className={classes.uploadFile}>
-                <CardContent className={classes.fileCardContent}>
-                  <img className={classes.UpArrow} src={UpArrow} />
-                  <Typography className={classes.scannedCopy}>
-                    PSEG Enrollment Form
-                  </Typography>
-                  <h4 className="fileUploader">
-                    {upload}
-                    <input
-                      id="fileInput"
-                      type="file"
-                      className="hide_file"
-                      accept="text/csv"
-                      onChange={onImageChange}
-                    />
-                  </h4>
-                  <span className="selectedFile">{filename}</span>
-                  <Typography className={classes.fileConditions}>
-                    File number limit: 1
-                  </Typography>
-                  <Typography className={classes.fileConditions}>
-                    Size limit:10GB
-                  </Typography>
-                  <Typography className={classes.fileConditions}>
-                    Allowed file types:CSV
-                  </Typography>
-                </CardContent>
-              </Card>
-              <Card className={classes.uploadFile}>
-                <CardContent className={classes.fileCardContent}>
-                  <img className={classes.UpArrow} src={UpArrow} />
-                  <Typography className={classes.scannedCopy}>
-                    NYSERDA Customer Attestation Form
-                  </Typography>
-                  <h4 className="fileUploader">
-                    {upload2}
-                    <input
-                      id="fileInput"
-                      type="file"
-                      className="hide_file"
-                      accept="application/pdf"
-                      onChange={onImageChange2}
-                    />
-                  </h4>
-                  <span className="selectedFile">{filename2}</span>
-                  <Typography className={classes.fileConditions}>
-                    File number limit: 1
-                  </Typography>
-                  <Typography className={classes.fileConditions}>
-                    Size limit:10GB
-                  </Typography>
-                  <Typography className={classes.fileConditions}>
-                    Allowed file types:PDF
-                  </Typography>
-                </CardContent>
-              </Card>
-              <Card className={classes.uploadFile}>
-                <CardContent className={classes.fileCardContent}>
-                  <img className={classes.UpArrow} src={UpArrow} />
-                  <Typography className={classes.scannedCopy}>
-                    Scanned Copy of Enphase Terms and Conditions Document
-                  </Typography>
-                  <h4 className="fileUploader">
-                    {upload3}
-                    <input
-                      id="fileInput"
-                      type="file"
-                      className="hide_file"
-                      accept="application/pdf"
-                      onChange={onImageChange3}
-                    />
-                  </h4>
-                  <span className="selectedFile">{filename3}</span>
-                  <Typography className={classes.fileConditions}>
-                    File number limit: 1
-                  </Typography>
-                  <Typography className={classes.fileConditions}>
-                    Size limit:10GB
-                  </Typography>
-                  <Typography className={classes.fileConditions}>
-                    Allowed file types:PDF
-                  </Typography>
-                </CardContent>
-              </Card>
-            </div>
+          <div>
+            <Card>
+              <div className={classes.uploadingFile}>
+                <Typography className={classes.fileuploaderContent}>
+                  Files to be uploaded
+                </Typography>
+                <div className={classes.fileContent}>
+                  <Card className={classes.uploadFile}>
+                    <CardContent className={classes.fileCardContent}>
+                      <img className={classes.UpArrow} src={UpArrow} />
+                      <Typography className={classes.scannedCopy}>
+                        PSEG Enrollment Form
+                      </Typography>
+                      <h4 className="fileUploader">
+                        {upload}
+                        <input
+                          id="fileInput"
+                          type="file"
+                          className="hide_file"
+                          accept="text/csv"
+                          onChange={onImageChange}
+                        />
+                      </h4>
+                      <span className="selectedFile">{filename}</span>
+                      <Typography className={classes.fileConditions}>
+                        File number limit: 1
+                      </Typography>
+                      <Typography className={classes.fileConditions}>
+                        Size limit:10GB
+                      </Typography>
+                      <Typography className={classes.fileConditions}>
+                        Allowed file types:CSV
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                  <Card className={classes.uploadFile}>
+                    <CardContent className={classes.fileCardContent}>
+                      <img className={classes.UpArrow} src={UpArrow} />
+                      <Typography className={classes.scannedCopy}>
+                        NYSERDA Customer Attestation Form
+                      </Typography>
+                      <h4 className="fileUploader">
+                        {upload2}
+                        <input
+                          id="fileInput"
+                          type="file"
+                          className="hide_file"
+                          accept="application/pdf"
+                          onChange={onImageChange2}
+                        />
+                      </h4>
+                      <span className="selectedFile">{filename2}</span>
+                      <Typography className={classes.fileConditions}>
+                        File number limit: 1
+                      </Typography>
+                      <Typography className={classes.fileConditions}>
+                        Size limit:10GB
+                      </Typography>
+                      <Typography className={classes.fileConditions}>
+                        Allowed file types:PDF
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                  <Card className={classes.uploadFile}>
+                    <CardContent className={classes.fileCardContent}>
+                      <img className={classes.UpArrow} src={UpArrow} />
+                      <Typography className={classes.scannedCopy}>
+                        Scanned Copy of Enphase Terms and Conditions Document
+                      </Typography>
+                      <h4 className="fileUploader">
+                        {upload3}
+                        <input
+                          id="fileInput"
+                          type="file"
+                          className="hide_file"
+                          accept="application/pdf"
+                          onChange={onImageChange3}
+                        />
+                      </h4>
+                      <span className="selectedFile">{filename3}</span>
+                      <Typography className={classes.fileConditions}>
+                        File number limit: 1
+                      </Typography>
+                      <Typography className={classes.fileConditions}>
+                        Size limit:10GB
+                      </Typography>
+                      <Typography className={classes.fileConditions}>
+                        Allowed file types:PDF
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
         <Checkbox checked={checked} setChecked={setChecked} />
@@ -548,9 +551,9 @@ const [helperTextcapacity, setHelperTextCapacity] = useState("");
           setOpen={setOpen}
           open={open}
           homeowner_info={homeowner_info}
-          img1={img1}
-          img2={img2}
-          img3={img3}
+          csvFile={csvFile}
+          pdfFileOne={pdfFileOne}
+          pdfFileTwo={pdfFileTwo}
         />
       </div>
     </>

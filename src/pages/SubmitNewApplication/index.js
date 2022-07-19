@@ -34,7 +34,7 @@ function Index() {
               navigate(`/aps-application-tracker/${PERSON_ID}/${name}`)
             }
           >
-            {CARD_NAME}
+            {name}
           </Link>
           <Typography className={classes.submitNewApplication}>
             Submit new application

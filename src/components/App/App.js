@@ -48,7 +48,7 @@ function App() {
           }
         />
         <Route
-          path="/bb-rejected-application-1/:id/:program_id"
+          path="/view-application/:id/:program_id/:name"
           element={
             <PrivateRoute>
               <ApplicationIdTracker />

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
+import { CircularProgress } from "@material-ui/core";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaEyeSlash } from "react-icons/fa";
@@ -7,7 +8,6 @@ import { FaEye } from "react-icons/fa";
 import Dialog from "../DialogBox";
 import { useStyles } from "./style";
 import "./index.css";
-import { CircularProgress } from "@material-ui/core";
 
 toast.configure();
 

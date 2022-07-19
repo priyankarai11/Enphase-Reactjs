@@ -9,16 +9,38 @@ function MenuItemList({name}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selected, setSelected] = useState("")
     const [anchorEll, setAnchorEll] = useState(null);
-    const [select, setSelect] = useState("");
+  const [select, setSelect] = useState("");
   const open = Boolean(anchorEl);
   const opened=Boolean(anchorEll)
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
-
+  
   const handleClose = (e) => {
-    setSelected(e.target.innerText)
+    switch (e.target.innerText) {
+      case "All":
+        setSelected("All");
+        break;
+      case "Submitted for APS Review":
+        setSelected("Application_Submitted");
+        break;
+      case "Approved by APS":
+        setSelected("Application_Approved");
+        break;
+      case "Approved by Enphase":
+        setSelected("Site_Approved");
+        break;
+      case "Rejected by Enphase":
+        setSelected("Site_Rejected");
+        break;
+      case "Submitted for Enphase Review":
+        setSelected("Site_Submitted");
+        break;
+      case "Rejected by APS":
+        setSelected("Application_Rejected");
+        break;
+    }
     setAnchorEl(null);
   };
 
@@ -26,11 +48,6 @@ function MenuItemList({name}) {
      setAnchorEll(e.currentTarget);
   };
 
-        //   case "Site_Approved":
-        //     return "Approved by PSEG";
-        //   case "Application_Rejected":
-        //     return "Rejected by Enphase";
-        // }
   const handleClosed = (e) => {
     switch (e.target.innerText)
     {
@@ -71,11 +88,12 @@ function MenuItemList({name}) {
         <MenuItem>{ele.status}</MenuItem>
         )} */}
         <MenuItem onClick={handleClose}>All</MenuItem>
-        <MenuItem onClick={handleClose}>Application_Submitted</MenuItem>
-        <MenuItem onClick={handleClose}>Application_Approved</MenuItem>
-        <MenuItem onClick={handleClose}>Application_Rejected</MenuItem>
-        <MenuItem onClick={handleClose}>Site_Rejected</MenuItem>
-        <MenuItem onClick={handleClose}>Site_Submitted</MenuItem>
+        <MenuItem onClick={handleClose}>Submitted for APS Review</MenuItem>
+        <MenuItem onClick={handleClose}>Approved by APS</MenuItem>
+        <MenuItem onClick={handleClose}>Rejected by APS</MenuItem>
+        <MenuItem onClick={handleClose}>Submitted for Enphase Review</MenuItem>
+        <MenuItem onClick={handleClose}>Approved by Enphase</MenuItem>
+        <MenuItem onClick={handleClose}>Rejected by Enphase</MenuItem>
       </Menu>
       <Menu
         id="demo-positioned-menu"
@@ -114,11 +132,6 @@ function MenuItemList({name}) {
           name={name}
         />
       )}
-      {/* <ProfileHead
-        handleClick={handleClick}
-        handleClose={handleClose}
-        anchorEl={anchorEl}
-      /> */}
     </>
   );
 }

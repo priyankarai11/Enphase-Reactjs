@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 import { TOKEN, PERSON_ID, CARD_NAME } from "../../sessionStorage";
 import { useStyles } from "./style";
 
-const App = ({ setOpen, open, homeowner_info, img1,img2,img3 }) => {
+const App = ({ setOpen, open, homeowner_info, csvFile,pdfFileOne,pdfFileTwo }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -35,9 +35,9 @@ const App = ({ setOpen, open, homeowner_info, img1,img2,img3 }) => {
       type: "application/json",
     });
     formData.append("application_form", blob);
-      formData.append("tandc_form", img3);
-      formData.append("enrollment_form", img1);
-      formData.append("signed_form1", img2);
+      formData.append("tandc_form", pdfFileTwo);
+      formData.append("enrollment_form", csvFile);
+      formData.append("signed_form1", pdfFileOne);
       
     const signed2 = new Blob([], {
       type: "multipart/form-data",

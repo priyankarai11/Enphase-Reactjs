@@ -2,21 +2,42 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   menu: {
-    paddingLeft: 20,
-    marginRight: 20,
-    marginLeft: 20,
+    marginLeft: -18,
+    marginTop: 20,
+    width: 250,
   },
 
-  menuItem: {
+  contact: {
     "&.MuiMenuItem-root": {
-      color: "grey",
-      marginLeft: 6,
+      color: " #6F6F6F",
+      backgroundColor: "#ffffff",
+      marginLeft: -4,
+      marginTop: -8,
+      fontSize: 15,
+      textTransform: "none",
+      fontWeight: 500,
+      width: 190,
+      fontFamily: "Roboto, sans-serif",
+      "&.Mui-focusVisible": {
+        backgroundColor: "white",
+      },
     },
   },
 
   logOut: {
-    "&.MuiButton-root": {
-      color: "grey",
+    "&.MuiMenuItem-root": {
+      color: " #6F6F6F",
+      backgroundColor: "#ffffff",
+      marginLeft: -1,
+      marginTop: -8,
+      width: 72,
+      fontSize: 15,
+      textTransform: "none",
+      fontWeight: 500,
+      fontFamily: "Roboto, sans-serif",
+      "&.Mui-focusVisible": {
+        backgroundColor: "#ffffff",
+      },
     },
   },
 });

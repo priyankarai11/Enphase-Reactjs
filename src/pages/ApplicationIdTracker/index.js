@@ -27,9 +27,9 @@ function Index() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { id,program_id } = useParams();
+  const { id,program_id ,name,active} = useParams();
   const backtoApplicationTracker = () => {
-    navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`);
+    navigate(`/aps-application-tracker/${PERSON_ID}/${name}`);
   };
 
   const saveFile = () => {
@@ -65,6 +65,8 @@ function Index() {
       });
   };
 
+    console.log(active);
+
   useEffect(() => {
     getData();
   }, []);
@@ -85,10 +87,10 @@ function Index() {
           color="inherit"
           className={classes.link}
           onClick={() =>
-            navigate(`/aps-application-tracker/${PERSON_ID}/${CARD_NAME}`)
+            navigate(`/aps-application-tracker/${PERSON_ID}/${name}`)
           }
         >
-          {CARD_NAME}
+          {name}
         </Link>
         <Typography className={classes.viewApplication}>
           View Application

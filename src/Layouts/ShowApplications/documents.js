@@ -1,90 +1,49 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Card,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Avatar,
-} from "@material-ui/core";
+import React, { useState, useEffect,useRef } from "react";
 import { useParams } from "react-router";
-import { Pagination } from "@mui/material";
+import Button from "@material-ui/core/Button";
+import { Card } from "@material-ui/core";
+import DownloadApplication from "../../assets/icons/downloadApplication.svg";
+import ApplicationDetail from "./apllicationDetail";
 import { TOKEN } from "../../components/sessionStorage";
-import { MenuItems, PSEG } from "./constant";
+import GetProgram from "./GetProgram";
 import { useStyles } from "./style";
 
 const Documents = (props) => {
   const classes = useStyles();
   const [menuValue, setMenuValue] = useState(0);
   const [item, setItem] = useState([]);
-  const [page, setPage] = useState(1);
   const [cardActive,setCardActive]=useState(null)
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [menuDesc, setMenuDesc] = useState("Site_Submitted");
-  const [menu,setMenu]=useState("Application_Submitted")
+  const [menu, setMenu] = useState("Application_Submitted")
+
   const { program_id } = useParams();
-  const COUNT = Math.ceil(item.length / rowsPerPage);
-
-
+  
   const getStatus = () => {
     return props.name === "Battery Storage Rewards Program"? menu: menuDesc
   }
 
-  const handleClose = (e) => {
-    const { setIsActive, setCount } = props;
-    setMenuValue(e.target.value);
-    if (props.name === "Battery Storage Rewards Program")
-    {
-      switch (e.target.value) {
-        case 0:
-          setMenu("Application_Submitted");
-          setIsActive(0);
-          setCount(0);
-          break;
-        case 1: setMenu("Application_Rejected");
-          setIsActive(0);
-           setCount(0);
-          break;
-        case 2: setMenu("Application_Approved");
-          setIsActive(0);
-           setCount(0);
-          break;
-        case 3: setMenu("Site_Approved");
-          setIsActive(0);
-           setCount(0);
-          break;
-        case 4: setMenu("Site_Rejected");
-          setIsActive(0);
-           setCount(0);
-          break;
-      }
-    }
-    else {
-      switch (e.target.value) {
-        case 0:
-          setMenuDesc("Site_Submitted");
-          setIsActive(0);
-           setCount(0);
-          break;
-        case 1:
-          setMenuDesc("Site_Approved");
-          setIsActive(0);
-           setCount(0);
-          break;
-        case 2:
-          setMenuDesc("Site_Rejected");
-          setIsActive(0);
-           setCount(0);
-          break;
-      }
-    }
+  const countIncrement = () => {
+    const { setCount, count } = props;
+    setCount(count + 1);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const getApprovedClick = () => {
+     const { setCnt, cnt } = props;
+    setCnt(cnt + 1);
+  };
+
+  const getRejectedClick = () => {
+     const { setCnt, cnt } = props;
+    if (cnt < 1) {
+      setCnt(0);
+    } else setCnt(cnt - 1);
+  };
+
+  const countDecrement = () => {
+      const { setCount, count } = props;
+    setCount(count - 1);
   };
 
   const getStatusData = () => {
@@ -94,7 +53,6 @@ const Documents = (props) => {
       "GS-Enphase-Auth": TOKEN,
     });
     fetch(
-      //https://gs-stg.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/all/view/${program_id}?page=0&page_size=1000&filter_status=
       `https://gs-stg.qa-enphaseenergy.com/enrollment-mgr/api/v1/application/applicationids/${program_id}?filter_status=${getStatus()}&page_no=0&page_size=1000`,
       {
         method: "GET",
@@ -106,112 +64,120 @@ const Documents = (props) => {
         setItem(res.data.data);
       });
   };
-
-  const getBoxDetails = (id) => {
-    const { isActive, setIsActive, setApplicationId, setChangeStatus } = props;
-    setIsActive(isActive + 1);
-    setApplicationId(id);
-    setCardActive(id)
-    setChangeStatus(0)
-  };
-
-
-  const displayId = (appln,site) => {
-   return props.name === "Battery Lease Program" ? (
-     <div className={classes.idDisplay}>{site}</div>
-   ) : (
-     <div className={classes.idDisplay}>
-       {appln}_{site}
-     </div>
-   );
-  }
-
-  const mapFunct = () => {
-    return props.name === "Battery Storage Rewards Program" ? PSEG : MenuItems
-  }
   
+  const displayDownload = () => {
+    return props.getUrl() === "about:blank" ? (
+      ""
+    ) : (
+      <>
+        <a href={props.getUrl()} target="_blank" rel="noopener noreferrer">
+          <img
+            className={classes.downloadSymbol}
+            src={DownloadApplication}
+            onClick={() => props.getUrl()}
+          />
+        </a>
+        <a
+          className={classes.downloadLink}
+          href={props.getUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Download Application
+        </a>
+        {/* {isPageLoading && (
+                <CircularProgress className={classes.loaderShow} />
+              )} */}
+      </>
+    );
+  }
+
+   const getBoxIdDetails = () => {
+     return (
+       <div className={classes.applicationShow}>
+         <div>
+           <span className={classes.applicationDetail}>
+             Application Details
+           </span>
+           <div className={classes.buttonSec}>
+             <div>
+               {props.getUrl()==="about:blank"?"":props.getButtons()}
+               <a
+                 target="_blank"
+                 href="https://enlighten-qa2.enphaseenergy.com/login"
+               >
+                 <Button variant="outlined" className={classes.openEnlighten}>
+                   Open Site Details on Enlighten
+                 </Button>
+               </a>
+             </div>
+           </div>
+         </div>
+         <Card className={classes.textFieldSection}>
+           <div>
+             <iframe
+               className={classes.downloadPrint}
+               type="text/html"
+               src={props.getUrl() + "#toolbar=0"}
+             />
+             <div className={classes.downloadSec}>{displayDownload()}</div>
+           </div>
+           <Card className={classes.textFieldSec}>
+             <ApplicationDetail
+               homeowner={props.homeowner}
+               name={props.name}
+               getValue={props.getValue}
+               countIncrement={countIncrement}
+               getApprovedClick={getApprovedClick}
+               getRejectedClick={getRejectedClick}
+               countDecrement={countDecrement}
+               setApproved={props.setApproved}
+               setCheckedOne={props.setCheckedOne}
+               applicationId={props.applicationId}
+             />
+           </Card>
+         </Card>
+         {props.displayStatus()}
+       </div>
+     );
+   };
+
+   const getBoxDetails = (id) => {
+     const {
+       setIsActive,
+       isActive,
+       setApplicationId,
+       setChangeStatus,
+     } = props;
+     setIsActive(isActive + 1);
+     setApplicationId(id);
+     setCardActive(id);
+     setChangeStatus(0);
+  };
+ 
   useEffect(() => {
     const { setGetValue } = props;
     getStatusData();
     setGetValue(menuValue);
   }, [menuValue]);
-
+ 
   return (
-    <Card className={classes.cardSection}>
-      <Card className={classes.selectOption}>
-        <FormControl variant="standard" className={classes.formControl}>
-          <InputLabel className={classes.inputLabel}>
-            Show Applicatons:
-          </InputLabel>
-
-          <Select
-            value={menuValue}
-            className={classes.menuItemSection}
-            onChange={handleClose}
-            MenuProps={{
-              classes: {
-                paper: classes.dropDownStyleEvent,
-              },
-            }}
-            inputProps={{
-              classes: {
-                icon: classes.icon,
-                root: classes.root,
-              },
-            }}
-          >
-            {mapFunct().map((ele, index) => (
-              <div
-                key={index}
-                value={index}
-                className={classes.mainMenuSection}
-              >
-                <div
-                  className={classes.indicator}
-                  style={{ background: ele.color }}
-                ></div>
-                <MenuItem className={classes.menuSec}>{ele.item}</MenuItem>
-              </div>
-            ))}
-          </Select>
-        </FormControl>
-        <div className={classes.applnDetail}>
-          {props.name === "Battery Lease Program"
-            ? "Applications by Site ID"
-            : "Applications by Application ID_Site ID"}
-        </div>
-        <div>
-          {item
-            .slice((page - 1) * rowsPerPage, page * rowsPerPage)
-            .map((data, index) => {
-              return (
-                <div key={index} className={classes.boxSection}>
-                  <Box
-                    p={1}
-                    className={
-                      data.application_id !== cardActive
-                        ? classes.boxDesign
-                        : classes.boxColored
-                    }
-                    onClick={() => getBoxDetails(data.application_id)}
-                  >
-                    {displayId(data.application_id, data.site_id)}
-                  </Box>
-                </div>
-              );
-            })}
-        </div>
-        <Pagination
-          className={classes.paginationDisplay}
-          count={item.length === 0 ? 0 : COUNT}
-          size="small"
-          page={page}
-          shape="rounded"
-          onChange={handleChangePage}
-        />
-      </Card>
-      <Card className={classes.documentSec}>{props.getIDDetails()}</Card>
-    </Card>
+    <GetProgram
+      item={item}
+      cardActive={cardActive}
+      getBoxDetails={getBoxDetails}
+      setIsActive={props.setIsActive}
+      setCount={props.setCount}
+      setMenu={setMenu}
+      setMenuValue={setMenuValue}
+      setMenuDesc={setMenuDesc}
+      menuValue={menuValue}
+      getButtons={props.getButtons}
+      getUrl={props.getUrl}
+      displayStatus={props.displayStatus}
+      getBoxIdDetails={getBoxIdDetails}
+      isActive={props.isActive}
+    />
   );
 };
 
